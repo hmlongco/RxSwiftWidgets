@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4CA2D07A22EA2E030006BC05"
+               BlueprintIdentifier = "4C44C2C122EA4E3600E3CBDD"
                BuildableName = "RxSwiftWidgetsDemo.app"
                BlueprintName = "RxSwiftWidgetsDemo"
                ReferencedContainer = "container:RxSwiftWidgets.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4CA2D07A22EA2E030006BC05"
+            BlueprintIdentifier = "4C44C2C122EA4E3600E3CBDD"
             BuildableName = "RxSwiftWidgetsDemo.app"
             BlueprintName = "RxSwiftWidgetsDemo"
             ReferencedContainer = "container:RxSwiftWidgets.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4CA2D07A22EA2E030006BC05"
+            BlueprintIdentifier = "4C44C2C122EA4E3600E3CBDD"
             BuildableName = "RxSwiftWidgetsDemo.app"
             BlueprintName = "RxSwiftWidgetsDemo"
             ReferencedContainer = "container:RxSwiftWidgets.xcodeproj">
