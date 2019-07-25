@@ -28,155 +28,146 @@ struct SampleWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        ZStackWidget([
+        ContainerWidget(
 
-            ImageWidget(named: "vector1")
-                .contentMode(.scaleAspectFill)
-                .safeArea(false),
+            VStackWidget([
 
-            ContainerWidget(
+                ContainerWidget(
+                    ImageWidget(named: "Solutions-Center-logo")
+                        .height(90)
+                        .contentMode(.scaleAspectFit)
+                        .position(.centerHorizontally)
+                    )
+                    .padding(h: 0, v: 30),
 
-                VStackWidget([
-
-                    ContainerWidget(
-                        ImageWidget(named: "Solutions-Center-logo")
-                            .height(90)
-                            .contentMode(.scaleAspectFit)
-                            .position(.centerHorizontally)
-                        )
-                        .padding(h: 0, v: 30),
-
-                    HStackWidget([
-                        ImageWidget()
-                            .image(viewModel.imageNamePublisher)
-                            .backgroundColor(.gray)
-                            .cornerRadius(30)
-                            .clipsToBounds(true)
-                            .height(60)
-                            .width(60),
-
-                        TitleWidgetView(title: viewModel.labelText2),
-                        ])
-                        .padding(10),
-
-                    LabelWidget()
-                        .text(viewModel.labelText1)
-                        .font(.preferredFont(forTextStyle: .title2))
+                HStackWidget([
+                    ImageWidget()
+                        .image(viewModel.imageNamePublisher)
                         .backgroundColor(.gray)
-                        .padding(4)
-                        .with { (label, _) in
-                            label.adjustsFontSizeToFitWidth = true
-                        },
+                        .cornerRadius(30)
+                        .clipsToBounds(true)
+                        .height(60)
+                        .width(60),
 
-                    LabelWidget()
-                        .text(viewModel.labelText2)
-                        .text(viewModel.labelPublisher)
-                        .text(viewModel.labelPublisher.map { $0 })
-                        .font(.preferredFont(forTextStyle: .title2))
-                        .backgroundColor(.gray)
-                        .padding(4),
-
-                    LabelWidget()
-                        .text(viewModel.errorPublisher)
-                        .font(.preferredFont(forTextStyle: .callout))
-                        .color(.white)
-                        .backgroundColor(.red)
-                        .numberOfLines(0)
-                        .padding(5)
-                        .hidden(viewModel.errorPublisher.map { $0 == nil }),
-
-                    HStackWidget([
-                        LabelWidget.title3("•"),
-                        LabelWidget.title3("Remember Me"),
-                        SpacerWidget(),
-                        ViewWidget(UISwitch())
-                            .with { (view, _) in
-                                view.isOn = true
-                            }
-                    ]),
-
-                    ButtonWidget("Toggle Error")
-                        .color(.orange)
-                        .font(.footnote)
-                        .onTap { _ in
-                            if self.viewModel.errorPublisher.value == nil {
-                                self.viewModel.errorPublisher.accept("This is an error!")
-                            } else {
-                                self.viewModel.errorPublisher.accept(nil)
-                            }
-                        },
-
-                    ContainerWidget(
-                        HStackWidget([
-                            ButtonWidget("Present")
-                                .color(.orange)
-                                .font(.footnote)
-                                .onTap { context in
-                                    context.present(widget: SampleDestinationWidget()) { (string: String) in
-                                        print(string)
-                                    }
-                                },
-                            ButtonWidget("Push")
-                                .color(.orange)
-                                .font(.footnote)
-                                .onTap { context in
-                                    context.push(widget: SampleDestinationWidget()) { (string: String) in
-                                        print(string)
-                                    }
-                                },
-                            ])
-                            .position(.centerHorizontally)
-                        ),
-
-                    SpacerWidget(),
-
-                    HStackWidget([
-                    ZStackWidget([
-                        LabelWidget.title3("CL")
-                            .position(.centerLeft),
-                        LabelWidget.title3("CR")
-                            .position(.centerRight),
-                        LabelWidget.title3("CT")
-                            .position(.centerTop),
-                        LabelWidget.title3("CB")
-                            .position(.centerBottom),
-                        ])
-                        .padding(10)
-                        .height(100),
-
-                    ZStackWidget([
-                        LabelWidget.title3("TL")
-                            .position(.topLeft),
-                        LabelWidget.title3("TR")
-                            .position(.topRight),
-                        LabelWidget.title3("BL")
-                            .position(.bottomLeft),
-                        LabelWidget.title3("BR")
-                            .position(.bottomRight),
-                        LabelWidget.title3("CT")
-                            .position(.center),
-                        ])
-                        .padding(10)
-                        .height(100),
+                    TitleWidgetView(title: viewModel.labelText2),
                     ])
-                    .distribution(.fillEqually),
+                    .padding(10),
 
-                    LabelWidget.footnote("A footnote")
-                        .alignment(.center)
-                        .onTap { _ in
-                            self.viewModel.labelPublisher.onNext("Changed again!")
-                        },
+                LabelWidget()
+                    .text(viewModel.labelText1)
+                    .font(.preferredFont(forTextStyle: .title2))
+                    .backgroundColor(.gray)
+                    .padding(4)
+                    .with { (label, _) in
+                        label.adjustsFontSizeToFitWidth = true
+                    },
 
-                    ]) // ColumnWidget
-                    .padding(20)
+                LabelWidget()
+                    .text(viewModel.labelText2)
+                    .text(viewModel.labelPublisher)
+                    .text(viewModel.labelPublisher.map { $0 })
+                    .font(.preferredFont(forTextStyle: .title2))
+                    .backgroundColor(.gray)
+                    .padding(4),
 
-                ) // ContainerWidget
-                .padding(h: 20, v: 0)
+                LabelWidget()
+                    .text(viewModel.errorPublisher)
+                    .font(.preferredFont(forTextStyle: .callout))
+                    .color(.white)
+                    .backgroundColor(.red)
+                    .numberOfLines(0)
+                    .padding(5)
+                    .hidden(viewModel.errorPublisher.map { $0 == nil }),
 
-            ]) // ZStackWidget
+                HStackWidget([
+                    LabelWidget.title3("•"),
+                    LabelWidget.title3("Remember Me"),
+                    SpacerWidget(),
+                    ViewWidget(UISwitch())
+                        .with { (view, _) in
+                            view.isOn = true
+                        }
+                ]),
+
+                ButtonWidget("Toggle Error")
+                    .color(.orange)
+                    .font(.footnote)
+                    .onTap { _ in
+                        if self.viewModel.errorPublisher.value == nil {
+                            self.viewModel.errorPublisher.accept("This is an error!")
+                        } else {
+                            self.viewModel.errorPublisher.accept(nil)
+                        }
+                    },
+
+                ContainerWidget(
+                    HStackWidget([
+                        ButtonWidget("Present")
+                            .color(.orange)
+                            .font(.footnote)
+                            .onTap { context in
+                                context.present(widget: SampleDestinationWidget()) { (string: String) in
+                                    print(string)
+                                }
+                            },
+                        ButtonWidget("Push")
+                            .color(.orange)
+                            .font(.footnote)
+                            .onTap { context in
+                                context.push(widget: SampleDestinationWidget()) { (string: String) in
+                                    print(string)
+                                }
+                            },
+                        ])
+                        .position(.centerHorizontally)
+                    ),
+
+                SpacerWidget(),
+
+                HStackWidget([
+                ZStackWidget([
+                    LabelWidget.title3("CL")
+                        .position(.centerLeft),
+                    LabelWidget.title3("CR")
+                        .position(.centerRight),
+                    LabelWidget.title3("CT")
+                        .position(.centerTop),
+                    LabelWidget.title3("CB")
+                        .position(.centerBottom),
+                    ])
+                    .padding(10)
+                    .height(100),
+
+                ZStackWidget([
+                    LabelWidget.title3("TL")
+                        .position(.topLeft),
+                    LabelWidget.title3("TR")
+                        .position(.topRight),
+                    LabelWidget.title3("BL")
+                        .position(.bottomLeft),
+                    LabelWidget.title3("BR")
+                        .position(.bottomRight),
+                    LabelWidget.title3("CT")
+                        .position(.center),
+                    ])
+                    .padding(10)
+                    .height(100),
+                ])
+                .distribution(.fillEqually),
+
+                LabelWidget.footnote("A footnote")
+                    .alignment(.center)
+                    .onTap { _ in
+                        self.viewModel.labelPublisher.onNext("Changed again!")
+                    },
+
+                ]) // ColumnWidget
+                .padding(20)
+
+            ) // ContainerWidget
             .context { $0.put(UIFont.preferredFont(forTextStyle: .title1)) }
             .onWillAppear { _ in self.viewModel.load() }
-            .navigationBar(title: "Main", hidden: true)
+            .navigationBar(title: "Sample", hidden: false)
             .backgroundColor(UIColor(white: 0.1, alpha: 1.0))
             .safeArea(false)
         }

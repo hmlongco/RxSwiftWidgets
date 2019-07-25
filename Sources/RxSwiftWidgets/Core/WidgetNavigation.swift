@@ -32,14 +32,28 @@ extension WidgetContext {
 
     // dismissible functionality
 
-    public func present<T>(widget: Widget, animated: Bool = true, onDismiss: WidgetDismissibleHandler<T>? = nil) {
+    public func present(widget: Widget, animated: Bool = true) {
+        let controller = UIWidgetHostController(widget)
+        let dismissible = WidgetDismissibleType<Void>(viewController: controller, onDismiss: nil, presented: true)
+        controller.context = self.set(dismissible: dismissible)
+        navigationController?.present(controller, animated: animated, completion: nil)
+    }
+
+    public func present<T>(widget: Widget, animated: Bool = true, onDismiss: @escaping WidgetDismissibleHandler<T>) {
         let controller = UIWidgetHostController(widget)
         let dismissible = WidgetDismissibleType(viewController: controller, onDismiss: onDismiss, presented: true)
         controller.context = self.set(dismissible: dismissible)
         navigationController?.present(controller, animated: animated, completion: nil)
     }
 
-    public func push<T>(widget: Widget, animated: Bool = true, onDismiss: WidgetDismissibleHandler<T>? = nil) {
+    public func push(widget: Widget, animated: Bool = true) {
+        let controller = UIWidgetHostController(widget)
+        let dismissible = WidgetDismissibleType<Void>(viewController: controller, onDismiss: nil, presented: false)
+        controller.context = self.set(dismissible: dismissible)
+        navigationController?.pushViewController(controller, animated: animated)
+    }
+
+    public func push<T>(widget: Widget, animated: Bool = true, onDismiss: @escaping WidgetDismissibleHandler<T>) {
         let controller = UIWidgetHostController(widget)
         let dismissible = WidgetDismissibleType(viewController: controller, onDismiss: onDismiss, presented: false)
         controller.context = self.set(dismissible: dismissible)

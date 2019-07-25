@@ -27,6 +27,9 @@
 		4C21216E22EA5ED900C5D6FB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21216A22EA5ED900C5D6FB /* Colors.swift */; };
 		4C21217222EA5F5000C5D6FB /* SampleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21217122EA5F5000C5D6FB /* SampleWidget.swift */; };
 		4C21217422EA601E00C5D6FB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C21217322EA601E00C5D6FB /* Launch Screen.storyboard */; };
+		4C21217622EA626200C5D6FB /* MainMenuWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21217522EA626200C5D6FB /* MainMenuWidget.swift */; };
+		4C21217722EA63B200C5D6FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */; };
+		4C21217D22EA698900C5D6FB /* MainMenuLabelWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21217C22EA698900C5D6FB /* MainMenuLabelWidget.swift */; };
 		4C44C2C522EA4E3600E3CBDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */; };
 		4C44C2E022EA508F00E3CBDD /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwift::RxCocoa::Product" /* RxCocoa.framework */; };
 		4C44C2E122EA508F00E3CBDD /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwift::RxCocoa::Product" /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -524,6 +527,8 @@
 		4C21216A22EA5ED900C5D6FB /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		4C21217122EA5F5000C5D6FB /* SampleWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleWidget.swift; sourceTree = "<group>"; };
 		4C21217322EA601E00C5D6FB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		4C21217522EA626200C5D6FB /* MainMenuWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuWidget.swift; sourceTree = "<group>"; };
+		4C21217C22EA698900C5D6FB /* MainMenuLabelWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuLabelWidget.swift; sourceTree = "<group>"; };
 		4C44C2C222EA4E3600E3CBDD /* RxSwiftWidgetsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftWidgetsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		4C44C2F722EA525300E3CBDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -922,6 +927,15 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
+		4C21217B22EA697300C5D6FB /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4C21217522EA626200C5D6FB /* MainMenuWidget.swift */,
+				4C21217C22EA698900C5D6FB /* MainMenuLabelWidget.swift */,
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
 		4C44C2C322EA4E3600E3CBDD /* RxSwiftWidgetsDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -944,6 +958,7 @@
 			isa = PBXGroup;
 			children = (
 				4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */,
+				4C21217B22EA697300C5D6FB /* MainMenu */,
 				4C21217122EA5F5000C5D6FB /* SampleWidget.swift */,
 			);
 			path = Application;
@@ -1685,7 +1700,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C21217622EA626200C5D6FB /* MainMenuWidget.swift in Sources */,
 				4C21216D22EA5ED900C5D6FB /* Style.swift in Sources */,
+				4C21217D22EA698900C5D6FB /* MainMenuLabelWidget.swift in Sources */,
 				4C21216C22EA5ED900C5D6FB /* Fonts.swift in Sources */,
 				4C21217222EA5F5000C5D6FB /* SampleWidget.swift in Sources */,
 				4C21216E22EA5ED900C5D6FB /* Colors.swift in Sources */,
@@ -1991,6 +2008,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				4C21217722EA63B200C5D6FB /* AppDelegate.swift in Sources */,
 				OBJ_646 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

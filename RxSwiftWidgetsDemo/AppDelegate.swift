@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
         window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController()
-        let vc = UIWidgetHostController(SampleWidget())
+        let vc = UIWidgetHostController(MainMenuWidget())
         navigationController.addChild(vc)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
