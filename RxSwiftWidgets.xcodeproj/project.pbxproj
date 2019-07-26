@@ -343,7 +343,7 @@
 		OBJ_675 /* LabelWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* LabelWidget.swift */; };
 		OBJ_676 /* SpacerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* SpacerWidget.swift */; };
 		OBJ_677 /* VStackWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* VStackWidget.swift */; };
-		OBJ_678 /* ViewWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* ViewWidget.swift */; };
+		OBJ_678 /* UIViewWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* UIViewWidget.swift */; };
 		OBJ_679 /* ZStackWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* ZStackWidget.swift */; };
 		OBJ_681 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwift::RxCocoa::Product" /* RxCocoa.framework */; };
 		OBJ_682 /* RxCocoaRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwift::RxCocoaRuntime::Product" /* RxCocoaRuntime.framework */; };
@@ -781,7 +781,7 @@
 		OBJ_37 /* LabelWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWidget.swift; sourceTree = "<group>"; };
 		OBJ_38 /* SpacerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerWidget.swift; sourceTree = "<group>"; };
 		OBJ_39 /* VStackWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackWidget.swift; sourceTree = "<group>"; };
-		OBJ_40 /* ViewWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWidget.swift; sourceTree = "<group>"; };
+		OBJ_40 /* UIViewWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewWidget.swift; sourceTree = "<group>"; };
 		OBJ_41 /* ZStackWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackWidget.swift; sourceTree = "<group>"; };
 		OBJ_44 /* RxSwiftWidgetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftWidgetsTests.swift; sourceTree = "<group>"; };
 		OBJ_45 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
@@ -1217,8 +1217,8 @@
 				OBJ_36 /* ImageWidget.swift */,
 				OBJ_37 /* LabelWidget.swift */,
 				OBJ_38 /* SpacerWidget.swift */,
+				OBJ_40 /* UIViewWidget.swift */,
 				OBJ_39 /* VStackWidget.swift */,
-				OBJ_40 /* ViewWidget.swift */,
 				OBJ_41 /* ZStackWidget.swift */,
 			);
 			path = Widgets;
@@ -2042,7 +2042,7 @@
 				OBJ_675 /* LabelWidget.swift in Sources */,
 				OBJ_676 /* SpacerWidget.swift in Sources */,
 				OBJ_677 /* VStackWidget.swift in Sources */,
-				OBJ_678 /* ViewWidget.swift in Sources */,
+				OBJ_678 /* UIViewWidget.swift in Sources */,
 				OBJ_679 /* ZStackWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

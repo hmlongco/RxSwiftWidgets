@@ -36,11 +36,8 @@ struct MainMenuWidget: WidgetView {
 
                     SpacerWidget(),
 
-                    LabelWidget("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
-                        .alignment(.center)
-                        .color(.white)
-                        .numberOfLines(0)
-                        .font(.preferredFont(forTextStyle: .footnote)),
+                    LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
+                        .alignment(.center),
 
                     ]) // VStackWidget
                     .spacing(12)

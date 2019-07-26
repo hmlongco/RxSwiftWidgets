@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public struct ViewWidget<View:UIView>
+public struct UIViewWidget<View:UIView>
     : Widget
     , WidgetViewModifying {
     

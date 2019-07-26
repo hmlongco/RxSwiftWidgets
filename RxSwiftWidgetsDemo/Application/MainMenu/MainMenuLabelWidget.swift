@@ -17,7 +17,7 @@ struct MainMenuItemWidget: WidgetView {
             .color(.white)
             .font(.preferredFont(forTextStyle: .title3))
             .padding(h: 20, v: 8)
-            .onTap(onTap)
+            .onTap(handler: onTap)
     }
 
 }

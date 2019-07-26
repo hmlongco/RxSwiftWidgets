@@ -15,14 +15,20 @@ import RxCocoa
 
 extension WidgetViewModifying {
 
-    public func onTap(_ tapped: @escaping (WidgetContext) -> Void) -> Self {
+    public func onTap(effect: WidgetTapEffectType? = WidgetTapEffectDim(), handler: @escaping (WidgetContext) -> Void) -> Self {
         return modified(WidgetModifierBlock({ (view, context) in
             let tapGesture = UITapGestureRecognizer()
             view.addGestureRecognizer(tapGesture)
             view.isUserInteractionEnabled = true
             tapGesture.rx.event
                 .subscribe(onNext: { (gesture) in
-                    tapped(context)
+                    if let effect = effect {
+                        effect.animate(view) {
+                            handler(context)
+                        }
+                    } else {
+                        handler(context)
+                    }
                 })
                 .disposed(by: context.disposeBag)
         }))
@@ -58,3 +64,22 @@ extension WidgetViewModifying {
 
 }
 
+public protocol WidgetTapEffectType {
+    func animate(_ view: UIView, _ completion: @escaping () -> Void)
+}
+
+public struct WidgetTapEffectDim: WidgetTapEffectType {
+    public init() {}
+    public func animate(_ view: UIView, _ completion: @escaping () -> Void) {
+        let oldAlpha = view.alpha
+        UIView.animate(withDuration: 0.05, animations: {
+            view.alpha = max(view.alpha - 0.4, 0)
+        }, completion: { (completed) in
+            UIView.animate(withDuration: 0.05, animations: {
+                view.alpha = oldAlpha
+            }, completion: { completed in
+                completion()
+            })
+        })
+    }
+}

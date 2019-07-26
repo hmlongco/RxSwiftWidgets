@@ -30,6 +30,8 @@ public struct LabelWidget
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textInsets = padding
         label.backgroundColor = .clear
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
         modifiers?.apply(to: label, with: context)
         
@@ -77,6 +79,14 @@ public struct LabelWidget
     }
 }
 
+extension LabelWidget {
+    static func footnote(_ text: String) -> LabelWidget {
+        return LabelWidget(text)
+            .color(.lightGray)
+            .numberOfLines(0)
+            .font(.preferredFont(forTextStyle: .footnote))
+    }
+}
 
 fileprivate class WidgetLabel: UILabel {
     var textInsets: UIEdgeInsets? {

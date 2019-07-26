@@ -32,6 +32,8 @@ public struct ButtonWidget
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         button.contentEdgeInsets = padding ?? button.contentEdgeInsets
         button.backgroundColor = .clear
+        button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
         modifiers?.apply(to: button, with: context)
         
@@ -56,11 +58,17 @@ public struct ButtonWidget
         })
     }
 
-    public func onTap(_ tapped: @escaping (WidgetContext) -> Void) -> Self {
+    public func onTap(effect: WidgetTapEffectType? = WidgetTapEffectDim(), handler: @escaping (WidgetContext) -> Void) -> Self {
         return modified(WidgetModifierBlock<UIButton>({ (button, context) in
             button.rx.tap
                 .subscribe(onNext: { _ in
-                    tapped(context)
+                    if let effect = effect {
+                        effect.animate(button) {
+                            handler(context)
+                        }
+                    } else {
+                        handler(context)
+                    }
                 })
                 .disposed(by: context.disposeBag)
         }))

@@ -83,7 +83,7 @@ struct SampleWidget: WidgetView {
                     LabelWidget.title3("•"),
                     LabelWidget.title3("Remember Me"),
                     SpacerWidget(),
-                    ViewWidget(UISwitch())
+                    UIViewWidget(UISwitch())
                         .with { (view, _) in
                             view.isOn = true
                         }
