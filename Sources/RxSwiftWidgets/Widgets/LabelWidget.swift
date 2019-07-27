@@ -21,6 +21,7 @@ public struct LabelWidget
     public init(_ text: String? = nil) {
         if let text = text {
             modifiers = [WidgetModifier(keyPath: \UILabel.text, value: text)]
+            modifiers?.reserveCapacity(8)
         }
     }
 
@@ -80,7 +81,7 @@ public struct LabelWidget
 }
 
 extension LabelWidget {
-    static func footnote(_ text: String) -> LabelWidget {
+    public static func footnote(_ text: String) -> LabelWidget {
         return LabelWidget(text)
             .color(.lightGray)
             .numberOfLines(0)

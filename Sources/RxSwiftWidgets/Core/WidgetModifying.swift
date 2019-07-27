@@ -28,6 +28,7 @@ extension WidgetModifying {
         var widget = self
         if widget.modifiers == nil {
             widget.modifiers = [modifier]
+            widget.modifiers?.reserveCapacity(8)
         } else {
             widget.modifiers?.append(modifier)
         }

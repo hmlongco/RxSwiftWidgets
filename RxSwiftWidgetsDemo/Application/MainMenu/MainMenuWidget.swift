@@ -12,42 +12,42 @@ struct MainMenuWidget: WidgetView {
                 .contentMode(.scaleAspectFill)
                 .safeArea(false),
 
-            ContainerWidget(
+            VStackWidget([
 
-                VStackWidget([
-
-                    ContainerWidget(
+                ContainerWidget(
+                    HStackWidget([
                         ImageWidget(named: "RxSwiftWidgets-Logo-DK")
-                            .height(120)
-                            .width(120)
-                            .contentMode(.scaleAspectFit)
-                            .position(.centerHorizontally)
-                        ),
+                            .height(100)
+                            .width(100)
+                            .contentMode(.scaleAspectFit),
+                        LabelWidget("RxSwiftWidgets")
+                            .font(.title2)
+                            .color(.white)
+                        ])
+                        .position(.centerHorizontally)
+                    ),
 
-                    MainMenuItemWidget(text: "Sample 1") {
-                        $0.push(widget: SampleWidget())
-                    },
-                    MainMenuItemWidget(text: "Sample 2") {
-                        $0.push(widget: SampleWidget())
-                    },
-                    MainMenuItemWidget(text: "Sample 3") {
-                        $0.push(widget: SampleWidget())
-                    },
+                MainMenuItemWidget(text: "Sample 1") {
+                    $0.push(widget: SampleWidget())
+                },
+                MainMenuItemWidget(text: "Sample 2") {
+                    $0.push(widget: SampleWidget())
+                },
+                MainMenuItemWidget(text: "Sample 3") {
+                    $0.push(widget: SampleWidget())
+                },
 
-                    SpacerWidget(),
+                SpacerWidget(),
 
-                    LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
-                        .alignment(.center),
+                LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
+                    .alignment(.center),
 
-                    ]) // VStackWidget
-                    .spacing(12)
-
-                ) // ContainerWidget
-                .padding(h: 30, v: 20)
+                ]) // VStackWidget
+                .spacing(12)
+                .padding(h: 30, v: 50)
 
             ]) // ZStackWidget
-            .navigationBar(title: "Main", hidden: true)
-            .backgroundColor(UIColor(white: 0.1, alpha: 1.0))
+            .navigationBar(title: "Main Menu", hidden: true)
             .safeArea(false)
         }
 }

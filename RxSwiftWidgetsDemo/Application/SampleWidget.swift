@@ -192,11 +192,6 @@ extension LabelWidget {
             .contentHuggingPriority(.defaultHigh, for: .horizontal)
             .padding(h: 0, v: 4)
     }
-    static func footnote(_ text: String) -> LabelWidget {
-        LabelWidget(text)
-            .color(.gray)
-            .font(.preferredFont(forTextStyle: .footnote))
-    }
 }
 
 struct SampleDestinationWidget: WidgetView {
