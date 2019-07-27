@@ -27,15 +27,24 @@ struct MainMenuWidget: WidgetView {
                         .position(.centerHorizontally)
                     ),
 
-                MainMenuItemWidget(text: "Sample 1") {
-                    $0.push(widget: SampleWidget())
+                MainMenuItemWidget(text: "Sample 1") { context in
+                    context.navigator?.push(widget: SampleWidget())
                 },
-                MainMenuItemWidget(text: "Sample 2") {
-                    $0.push(widget: SampleWidget())
+                MainMenuItemWidget(text: "Sample 2") { context in
+                    context.navigator?.push(widget: SampleWidget())
                 },
-                MainMenuItemWidget(text: "Sample 3") {
-                    $0.push(widget: SampleWidget())
+                MainMenuItemWidget(text: "Sample 3") { context in
+                    context.navigator?.push(widget: SampleWidget())
                 },
+
+                ButtonWidget("Push Dismissible")
+                    .color(.orange)
+                    .font(.footnote)
+                    .onTap { context in
+                        context.navigator?.push(widget: SampleWidget(), onDismiss: { (string: String) in
+                            print(string)
+                        })
+                    },
 
                 SpacerWidget(),
 

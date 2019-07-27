@@ -10,15 +10,25 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public class UIWidgetHostController: UIViewController {
+public protocol WidgetDismissibleHost {
+    var dismissible: WidgetDismissibleType? { get set }
+}
 
-    public var context: WidgetContext?
-    public var widget: Widget?
+public class UIWidgetHostController
+    : UIViewController
+    , WidgetDismissibleHost {
 
-    public init(_ widget: Widget? = nil, context: WidgetContext? = nil) {
-        self.context = context
-        self.widget = widget
+    public var widget: Widget!
+    public var context: WidgetContext!
+    public var dismissible: WidgetDismissibleType?
+
+    // lifecycle
+
+    public init(_ widget: Widget, with context: WidgetContext? = nil, dismissible: WidgetDismissibleType? = nil) {
         super.init(nibName: nil, bundle: nil)
+        self.widget = widget
+        self.context = (context?.new(for: self) ?? WidgetContext(self))
+        self.dismissible = dismissible
     }
 
     required init?(coder: NSCoder) {
@@ -35,10 +45,7 @@ public class UIWidgetHostController: UIViewController {
     }
 
     public func build() {
-        context = context?.new(for: self) ?? WidgetContext(self)
-        if let widget = widget {
-            view.build(widget: widget, with: context!)
-        }
+        view.build(widget: widget, with: context)
     }
 
 }

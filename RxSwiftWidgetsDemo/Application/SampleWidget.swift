@@ -100,27 +100,34 @@ struct SampleWidget: WidgetView {
                         }
                     },
 
-                ContainerWidget(
-                    HStackWidget([
-                        ButtonWidget("Present")
-                            .color(.orange)
-                            .font(.footnote)
-                            .onTap { context in
-                                context.present(widget: SampleDestinationWidget()) { (string: String) in
-                                    print(string)
-                                }
-                            },
-                        ButtonWidget("Push")
-                            .color(.orange)
-                            .font(.footnote)
-                            .onTap { context in
-                                context.push(widget: SampleDestinationWidget()) { (string: String) in
-                                    print(string)
-                                }
-                            },
-                        ])
-                        .position(.centerHorizontally)
-                    ),
+                ButtonWidget("Dismiss")
+                    .color(.orange)
+                    .font(.footnote)
+                    .onTap { context in
+                        context.navigator?.dismiss(returning: "This is my return value!")
+                    },
+
+//                ContainerWidget(
+//                    HStackWidget([
+//                        ButtonWidget("Present")
+//                            .color(.orange)
+//                            .font(.footnote)
+//                            .onTap { context in
+//                                context.present(widget: SampleDestinationWidget()) { (string: String) in
+//                                    print(string)
+//                                }
+//                            },
+//                        ButtonWidget("Push")
+//                            .color(.orange)
+//                            .font(.footnote)
+//                            .onTap { context in
+//                                context.push(widget: SampleDestinationWidget()) { (string: String) in
+//                                    print(string)
+//                                }
+//                            },
+//                        ])
+//                        .position(.centerHorizontally)
+//                    ),
 
                 SpacerWidget(),
 
@@ -206,12 +213,13 @@ struct SampleDestinationWidget: WidgetView {
                 ButtonWidget("Done")
                     .color(.orange)
                     .font(.footnote)
-                    .onTap { $0.dismiss(returning: "Some Value") },
+//                    .onTap { $0.dismiss(returning: "Some Value") }
+                ,
 
                 ButtonWidget("Cancel")
                     .color(.orange)
                     .font(.footnote)
-                    .onTap { $0.dismiss() }
+//                    .onTap { $0.dismiss() }
                 ])
                 .alignment(.center)
                 .position(.center)

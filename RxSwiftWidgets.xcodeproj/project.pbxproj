@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		4C15DED322ECFA7900196894 /* WidgetLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED122ECF9BD00196894 /* WidgetLifecycle.swift */; };
 		4C21216B22EA5ED900C5D6FB /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21216722EA5ED900C5D6FB /* Styles.swift */; };
 		4C21216C22EA5ED900C5D6FB /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21216822EA5ED900C5D6FB /* Fonts.swift */; };
 		4C21216D22EA5ED900C5D6FB /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21216922EA5ED900C5D6FB /* Style.swift */; };
@@ -521,6 +522,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4C15DED122ECF9BD00196894 /* WidgetLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLifecycle.swift; sourceTree = "<group>"; };
 		4C21216722EA5ED900C5D6FB /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		4C21216822EA5ED900C5D6FB /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		4C21216922EA5ED900C5D6FB /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
@@ -1449,6 +1451,7 @@
 			children = (
 				OBJ_11 /* Widget.swift */,
 				OBJ_12 /* WidgetContext.swift */,
+				4C15DED122ECF9BD00196894 /* WidgetLifecycle.swift */,
 				OBJ_13 /* WidgetModifier.swift */,
 				OBJ_14 /* WidgetModifying.swift */,
 				OBJ_15 /* WidgetNavigation.swift */,
@@ -2033,6 +2036,7 @@
 				OBJ_666 /* WidgetModifyUIViewGestures.swift in Sources */,
 				OBJ_667 /* WidgetModifyUIViewLayer.swift in Sources */,
 				OBJ_668 /* WidgetModifyUIViewRx.swift in Sources */,
+				4C15DED322ECFA7900196894 /* WidgetLifecycle.swift in Sources */,
 				OBJ_669 /* Published.swift in Sources */,
 				OBJ_670 /* WidgetBindable.swift in Sources */,
 				OBJ_671 /* ButtonWidget.swift in Sources */,

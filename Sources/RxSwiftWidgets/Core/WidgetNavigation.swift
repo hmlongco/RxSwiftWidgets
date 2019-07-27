@@ -7,74 +7,157 @@
 //
 
 import UIKit
+import RxSwift
 
-public typealias WidgetDismissibleHandler<ReturnType> = (_ value: ReturnType) -> Void
-
-public protocol AnyWidgetDismissible {
-    var viewController: UIViewController? { get }
-    var presented: Bool { get }
-    func dismiss()
-}
-
-extension AnyWidgetDismissible {
-    func dismiss() {
-        guard let viewController = viewController else { return }
-        if presented {
-            viewController.dismiss(animated: true, completion: nil)
-        } else {
-            viewController.navigationController?.popToViewController(viewController, animated: false)
-            viewController.navigationController?.popViewController(animated: true)
-        }
-    }
-}
 
 extension WidgetContext {
 
-    // dismissible functionality
-
-    public func present(widget: Widget, animated: Bool = true) {
-        let controller = UIWidgetHostController(widget)
-        let dismissible = WidgetDismissibleType<Void>(viewController: controller, onDismiss: nil, presented: true)
-        controller.context = self.set(dismissible: dismissible)
-        navigationController?.present(controller, animated: animated, completion: nil)
+    public var navigator: WidgetNavigator? {
+        if viewController != nil {
+            return WidgetNavigator(self)
+        }
+        return nil
     }
 
-    public func present<T>(widget: Widget, animated: Bool = true, onDismiss: @escaping WidgetDismissibleHandler<T>) {
-        let controller = UIWidgetHostController(widget)
-        let dismissible = WidgetDismissibleType(viewController: controller, onDismiss: onDismiss, presented: true)
-        controller.context = self.set(dismissible: dismissible)
-        navigationController?.present(controller, animated: animated, completion: nil)
+}
+
+
+
+public struct WidgetNavigator {
+
+    var context: WidgetContext
+
+    public init(_ context: WidgetContext) {
+        self.context = context
+    }
+
+    public var navigationController: UINavigationController? {
+        context.viewController?.navigationController
     }
 
     public func push(widget: Widget, animated: Bool = true) {
-        let controller = UIWidgetHostController(widget)
-        let dismissible = WidgetDismissibleType<Void>(viewController: controller, onDismiss: nil, presented: false)
-        controller.context = self.set(dismissible: dismissible)
-        navigationController?.pushViewController(controller, animated: animated)
+        let viewController = UIWidgetHostController(widget, with: context)
+        navigationController?.pushViewController(viewController, animated: animated)
     }
 
-    public func push<T>(widget: Widget, animated: Bool = true, onDismiss: @escaping WidgetDismissibleHandler<T>) {
-        let controller = UIWidgetHostController(widget)
-        let dismissible = WidgetDismissibleType(viewController: controller, onDismiss: onDismiss, presented: false)
-        controller.context = self.set(dismissible: dismissible)
-        navigationController?.pushViewController(controller, animated: animated)
+    public func push<ReturnType>(widget: Widget, animated: Bool = true, onDismiss handler: @escaping WidgetDismissibleReturnHandler<ReturnType>) {
+        let dismissible = WidgetDismissibleReturn<ReturnType>(presented: false, handler: handler)
+        let viewController = UIWidgetHostController(widget, with: context, dismissible: dismissible)
+        navigationController?.pushViewController(viewController, animated: animated)
     }
 
-    public func dismiss<Value>(returning value: Value) {
-        guard let dismissible = dismissible else { return }
-        if let dismissible = dismissible as? WidgetDismissibleType<Value> {
-            dismissible.onDismiss?(value)
+    public func dismiss<Value>(returning value: Value, animated: Bool = true) {
+        guard let viewController = context.viewController, let host = viewController as? WidgetDismissibleHost else { return }
+        if let dimissible = host.dismissible, let wrapper = dimissible as? WidgetDismissibleReturn<Value> {
+            wrapper.handler?(value)
         }
-        dismissible.dismiss()
+        dismiss(animated: animated)
     }
 
-    public func dismiss() {
-        dismissible?.dismiss()
+    public func dismiss(animated: Bool = true) {
+        guard let viewController = context.viewController, let host = viewController as? WidgetDismissibleHost else { return }
+        if host.dismissible?.presented ?? false {
+
+        } else {
+            viewController.navigationController?.popViewController(animated: animated)
+        }
     }
 
-    public func back(animated: Bool = true) {
-        navigationController?.popViewController(animated: animated)
+//    public func pop(animated: Bool = true) {
+//        navigationController?.popViewController(animated: animated)
+//    }
+
+}
+
+
+extension WidgetContext {
+
+    public init(_ viewController: UIViewController) {
+        self.attributes = [String(describing: UIViewController.self):viewController]
+        self.disposeBag = DisposeBag()
     }
+
+    public var viewController: UIViewController? {
+        return get(UIViewController.self)
+    }
+
+    public var dismissible: WidgetDismissibleType? {
+        return get(WidgetDismissibleType.self)
+    }
+
+    public func new(for viewController: UIViewController) -> WidgetContext {
+        var context = set(viewController: viewController)
+        context.disposeBag = DisposeBag()
+        return context
+    }
+
+    public func set(viewController: UIViewController) -> WidgetContext {
+        return put(viewController as UIViewController)
+    }
+
+    public func set(dismissible: WidgetDismissibleType) -> WidgetContext {
+        return put(dismissible)
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+extension WidgetContext {
+
+//    // dismissible functionality
+//
+//    public func present(widget: Widget, animated: Bool = true) {
+//        let controller = UIWidgetHostController(widget)
+//        let dismissible = WidgetDismissibleType<Void>(viewController: controller, onDismiss: nil, presented: true)
+//        controller.context = self.set(dismissible: dismissible)
+//        navigationController?.present(controller, animated: animated, completion: nil)
+//    }
+//
+//    public func present<T>(widget: Widget, animated: Bool = true, onDismiss: @escaping WidgetOnDismissHandler<T>) {
+//        let controller = UIWidgetHostController(widget)
+//        let dismissible = WidgetDismissibleType(viewController: controller, onDismiss: onDismiss, presented: true)
+//        controller.context = self.set(dismissible: dismissible)
+//        navigationController?.present(controller, animated: animated, completion: nil)
+//    }
+//
+//    public func push(widget: Widget, animated: Bool = true) {
+//        let controller = UIWidgetHostController(widget)
+//        let dismissible = WidgetDismissibleType<Void>(viewController: controller, onDismiss: nil, presented: false)
+//        controller.context = self.set(dismissible: dismissible)
+//        navigationController?.pushViewController(controller, animated: animated)
+//    }
+//
+//    public func push<T>(widget: Widget, animated: Bool = true, onDismiss: @escaping WidgetOnDismissHandler<T>) {
+//        let controller = UIWidgetHostController(widget)
+//        let dismissible = WidgetDismissibleType(viewController: controller, onDismiss: onDismiss, presented: false)
+//        controller.context = self.set(dismissible: dismissible)
+//        navigationController?.pushViewController(controller, animated: animated)
+//    }
+//
+//    public func dismiss<Value>(returning value: Value) {
+//        guard let dismissible = dismissible else { return }
+//        if let dismissible = dismissible as? WidgetDismissibleType<Value> {
+//            dismissible.onDismiss?(value)
+//        }
+//        dismissible.dismiss()
+//    }
+//
+//    public func dismiss() {
+//        dismissible?.dismiss()
+//    }
+//
+//    public func back(animated: Bool = true) {
+//        navigationController?.popViewController(animated: animated)
+//    }
 
     // standard functionality
 
@@ -104,11 +187,33 @@ extension WidgetContext {
 
 }
 
-internal struct WidgetDismissibleType<ReturnType>: AnyWidgetDismissible {
-    public weak var viewController: UIViewController?
-    public let onDismiss: WidgetDismissibleHandler<ReturnType>?
+public protocol WidgetDismissibleType {
+    var presented: Bool { get }
+}
+
+public struct WidgetDismissibleVoid: WidgetDismissibleType {
     public let presented: Bool
 }
+
+public struct WidgetDismissibleReturn<Value>: WidgetDismissibleType {
+    public let presented: Bool
+    public let handler: WidgetDismissibleReturnHandler<Value>?
+}
+
+public typealias WidgetDismissibleReturnHandler<ReturnType> = (_ value: ReturnType) -> Void
+
+
+//extension WidgetDismissibleType {
+//    func dismiss() {
+//        guard let viewController = viewController else { return }
+//        if presented {
+//            viewController.dismiss(animated: true, completion: nil)
+//        } else {
+//            viewController.navigationController?.popToViewController(viewController, animated: false)
+//            viewController.navigationController?.popViewController(animated: true)
+//        }
+//    }
+//}
 
 extension WidgetModifying {
 
@@ -128,62 +233,6 @@ extension WidgetModifying {
                     .disposed(by: context.disposeBag)
             }
         })
-    }
-
-}
-
-extension WidgetViewModifying {
-
-    public func onWillAppear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
-        return modified(WidgetModifierBlock({ (view, context) in
-            if let vc = context.viewController {
-                vc.rx.methodInvoked(#selector(UIViewController.viewWillAppear(_:)))
-                    .subscribe(onNext: { (arguments) in
-                        let animated = arguments.first as? Bool ?? true
-                        handler(context.set(animated, for: "animated"))
-                    })
-                    .disposed(by: context.disposeBag)
-            }
-        }))
-    }
-
-    public func onDidAppear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
-        return modified(WidgetModifierBlock({ (view, context) in
-            if let vc = context.viewController {
-                vc.rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:)))
-                    .subscribe(onNext: { (arguments) in
-                        let animated = arguments.first as? Bool ?? true
-                        handler(context.set(animated, for: "animated"))
-                    })
-                    .disposed(by: context.disposeBag)
-            }
-        }))
-    }
-
-    public func onWillDisappear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
-        return modified(WidgetModifierBlock({ (view, context) in
-            if let vc = context.viewController {
-                vc.rx.methodInvoked(#selector(UIViewController.viewWillDisappear(_:)))
-                    .subscribe(onNext: { (arguments) in
-                        let animated = arguments.first as? Bool ?? true
-                        handler(context.set(animated, for: "animated"))
-                    })
-                    .disposed(by: context.disposeBag)
-            }
-        }))
-    }
-
-    public func onDidDisappear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
-        return modified(WidgetModifierBlock({ (view, context) in
-            if let vc = context.viewController {
-                vc.rx.methodInvoked(#selector(UIViewController.viewDidDisappear(_:)))
-                    .subscribe(onNext: { (arguments) in
-                        let animated = arguments.first as? Bool ?? true
-                        handler(context.set(animated, for: "animated"))
-                    })
-                    .disposed(by: context.disposeBag)
-            }
-        }))
     }
 
 }

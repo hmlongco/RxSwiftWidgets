@@ -30,26 +30,12 @@ public struct WidgetContext {
 
     public struct Keys {}
 
-    public var attributes: [String:Any?] = [:]
-
-    public weak var viewController: UIViewController?
-    public var dismissible: AnyWidgetDismissible?
+    public var attributes: [String:Any?]
     public var disposeBag: DisposeBag
 
     public init() {
+        self.attributes = [:]
         self.disposeBag = DisposeBag()
-    }
-
-    public init(_ viewController: UIViewController) {
-        self.viewController = viewController
-        self.disposeBag = DisposeBag()
-    }
-
-    public func new(for viewController: UIViewController) -> WidgetContext {
-        var context = self
-        context.viewController = viewController
-        context.disposeBag = DisposeBag()
-        return context
     }
 
     public func get<T>(_ key: String) -> T {
@@ -83,13 +69,7 @@ public struct WidgetContext {
         context.attributes[key] = value
         return context
     }
-
-    public func set(dismissible: AnyWidgetDismissible?) -> WidgetContext {
-        var context = self
-        context.dismissible = dismissible
-        return context
-    }
-
+    
 }
 
 public extension WidgetContext.Keys {
