@@ -22,6 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		4C15DED322ECFA7900196894 /* WidgetLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED122ECF9BD00196894 /* WidgetLifecycle.swift */; };
+		4C15DED622EDE5BB00196894 /* WidgetDismissible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED422EDE4A900196894 /* WidgetDismissible.swift */; };
+		4C15DED822EE341100196894 /* DemoDismissibleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED722EE341100196894 /* DemoDismissibleWidget.swift */; };
+		4C15DEDA22EE399F00196894 /* WidgetModifyUINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED922EE399F00196894 /* WidgetModifyUINavigation.swift */; };
 		4C21216B22EA5ED900C5D6FB /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21216722EA5ED900C5D6FB /* Styles.swift */; };
 		4C21216C22EA5ED900C5D6FB /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21216822EA5ED900C5D6FB /* Fonts.swift */; };
 		4C21216D22EA5ED900C5D6FB /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21216922EA5ED900C5D6FB /* Style.swift */; };
@@ -523,6 +526,9 @@
 
 /* Begin PBXFileReference section */
 		4C15DED122ECF9BD00196894 /* WidgetLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLifecycle.swift; sourceTree = "<group>"; };
+		4C15DED422EDE4A900196894 /* WidgetDismissible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDismissible.swift; sourceTree = "<group>"; };
+		4C15DED722EE341100196894 /* DemoDismissibleWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoDismissibleWidget.swift; sourceTree = "<group>"; };
+		4C15DED922EE399F00196894 /* WidgetModifyUINavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetModifyUINavigation.swift; sourceTree = "<group>"; };
 		4C21216722EA5ED900C5D6FB /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		4C21216822EA5ED900C5D6FB /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		4C21216922EA5ED900C5D6FB /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
@@ -934,6 +940,7 @@
 			children = (
 				4C21217522EA626200C5D6FB /* MainMenuWidget.swift */,
 				4C21217C22EA698900C5D6FB /* MainMenuLabelWidget.swift */,
+				4C15DED722EE341100196894 /* DemoDismissibleWidget.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -1191,6 +1198,7 @@
 		OBJ_22 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				4C15DED922EE399F00196894 /* WidgetModifyUINavigation.swift */,
 				OBJ_23 /* WidgetModifyUIView.swift */,
 				OBJ_24 /* WidgetModifyUIViewConstraints.swift */,
 				OBJ_25 /* WidgetModifyUIViewCustom.swift */,
@@ -1451,6 +1459,7 @@
 			children = (
 				OBJ_11 /* Widget.swift */,
 				OBJ_12 /* WidgetContext.swift */,
+				4C15DED422EDE4A900196894 /* WidgetDismissible.swift */,
 				4C15DED122ECF9BD00196894 /* WidgetLifecycle.swift */,
 				OBJ_13 /* WidgetModifier.swift */,
 				OBJ_14 /* WidgetModifying.swift */,
@@ -1706,6 +1715,7 @@
 				4C21217622EA626200C5D6FB /* MainMenuWidget.swift in Sources */,
 				4C21216D22EA5ED900C5D6FB /* Style.swift in Sources */,
 				4C21217D22EA698900C5D6FB /* MainMenuLabelWidget.swift in Sources */,
+				4C15DED822EE341100196894 /* DemoDismissibleWidget.swift in Sources */,
 				4C21216C22EA5ED900C5D6FB /* Fonts.swift in Sources */,
 				4C21217222EA5F5000C5D6FB /* SampleWidget.swift in Sources */,
 				4C21216E22EA5ED900C5D6FB /* Colors.swift in Sources */,
@@ -2023,6 +2033,7 @@
 				OBJ_653 /* Widget.swift in Sources */,
 				OBJ_654 /* WidgetContext.swift in Sources */,
 				OBJ_655 /* WidgetModifier.swift in Sources */,
+				4C15DED622EDE5BB00196894 /* WidgetDismissible.swift in Sources */,
 				OBJ_656 /* WidgetModifying.swift in Sources */,
 				OBJ_657 /* WidgetNavigation.swift in Sources */,
 				OBJ_658 /* WidgetPadding.swift in Sources */,
@@ -2030,6 +2041,7 @@
 				OBJ_660 /* WidgetView.swift in Sources */,
 				OBJ_661 /* UIView+Widgets.swift in Sources */,
 				OBJ_662 /* UIViewController+Widgets.swift in Sources */,
+				4C15DEDA22EE399F00196894 /* WidgetModifyUINavigation.swift in Sources */,
 				OBJ_663 /* WidgetModifyUIView.swift in Sources */,
 				OBJ_664 /* WidgetModifyUIViewConstraints.swift in Sources */,
 				OBJ_665 /* WidgetModifyUIViewCustom.swift in Sources */,

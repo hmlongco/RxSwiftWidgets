@@ -27,24 +27,14 @@ struct MainMenuWidget: WidgetView {
                         .position(.centerHorizontally)
                     ),
 
-                MainMenuItemWidget(text: "Sample 1") { context in
+                MainMenuItemWidget(text: "Sample Widget") { context in
                     context.navigator?.push(widget: SampleWidget())
                 },
-                MainMenuItemWidget(text: "Sample 2") { context in
-                    context.navigator?.push(widget: SampleWidget())
+                MainMenuItemWidget(text: "Dismissible Sample") { context in
+                    context.navigator?.push(widget: DemoDismissibleWidget(), onDismiss: { (value: String) in
+                        print(value)
+                    })
                 },
-                MainMenuItemWidget(text: "Sample 3") { context in
-                    context.navigator?.push(widget: SampleWidget())
-                },
-
-                ButtonWidget("Push Dismissible")
-                    .color(.orange)
-                    .font(.footnote)
-                    .onTap { context in
-                        context.navigator?.push(widget: SampleWidget(), onDismiss: { (string: String) in
-                            print(string)
-                        })
-                    },
 
                 SpacerWidget(),
 

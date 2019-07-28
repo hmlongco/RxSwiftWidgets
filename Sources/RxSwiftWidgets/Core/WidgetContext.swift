@@ -30,11 +30,10 @@ public struct WidgetContext {
 
     public struct Keys {}
 
-    public var attributes: [String:Any?]
+    public var attributes: [String:Any?] = [:]
     public var disposeBag: DisposeBag
 
     public init() {
-        self.attributes = [:]
         self.disposeBag = DisposeBag()
     }
 
