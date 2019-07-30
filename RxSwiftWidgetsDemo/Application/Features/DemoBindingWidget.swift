@@ -1,13 +1,19 @@
+//
+//  DemoBindingWidget.swift
+//  RxSwiftWidgetsDemo
+//
+//  Created by Michael Long on 7/30/19.
+//
 
 import UIKit
 import RxSwiftWidgets
 
-struct DemoDismissibleWidget: WidgetView {
+struct DemoBindingWidget: WidgetView {
+
+    @Binding var title: String
 
     let desc = """
-        Demonstrates launching a dismissible widget and returning a value or simply dismissing (cancelling) the screen programatically.
-
-        This screen will also automatically timeout and return after 8 seconds.
+        Demonstrates binding object properties in and across Widgets using @State and @Binding values.
         """
 
     func widget(_ context: WidgetContext) -> Widget {
@@ -20,7 +26,7 @@ struct DemoDismissibleWidget: WidgetView {
 
             VStackWidget([
 
-                LabelWidget("Dismissible Sample")
+                LabelWidget("Binding Sample")
                     .font(.title1)
                     .color(.white)
                     .alignment(.center),
@@ -31,16 +37,24 @@ struct DemoDismissibleWidget: WidgetView {
                     .numberOfLines(0)
                     .padding(h: 0, v: 15),
 
-                ButtonWidget("Dismiss Returning Value")
+                LabelWidget()
+                    .text($title.asObservable().map { "Parent's page title is '\($0)'."} )
+                    .font(.preferredFont(forTextStyle: .callout))
+                    .alignment(.center)
+                    .color(.white)
+                    .numberOfLines(0)
+                    .padding(h: 0, v: 8),
+
+                ButtonWidget("Update Choice 1")
                     .color(.orange)
                     .onTap { context in
-                        context.navigator?.dismiss(returning: "Return Value")
+                        self.title = "Features - Choice 1"
                     },
 
-                ButtonWidget("Dismiss")
+                ButtonWidget("Update Choice 2")
                     .color(.orange)
                     .onTap { context in
-                        context.navigator?.dismiss()
+                        self.title = "Features - Choice 2"
                     },
 
                 SpacerWidget(),
@@ -52,13 +66,8 @@ struct DemoDismissibleWidget: WidgetView {
                 .padding(h: 40, v: 50)
 
             ]) // ZStackWidget
-            .navigationBar(title: "Dismissible Demo", hidden: true)
+            .navigationBar(title: "Binding Demo", hidden: true)
             .safeArea(false)
-            .onDidAppear { (context) in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
-                    context.navigator?.dismiss(returning: "Automactic Return")
-                }
-            }
         }
 
 }

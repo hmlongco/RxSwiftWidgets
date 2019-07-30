@@ -1,5 +1,5 @@
 //
-//  Published.swift
+//  BindableElement.swift
 //  RxSwiftWidgetsX11
 //
 //  Created by Michael Long on 7/11/19.
@@ -12,40 +12,29 @@ import RxCocoa
 
 // Define Protocols
 
-public protocol WidgetObservable {
-    associatedtype Element
-    func asObservable() -> Observable<Element>
-}
-
-public protocol WidgetBindable: WidgetObservable {
+public protocol BindableElement: ObservableElement {
     func bind(to observable: Observable<Element>) -> Disposable
 }
 
-// Extend RxSwift
-
-extension Observable: WidgetObservable {
-    // just conformance, observables are already observable
-}
-
-extension BehaviorRelay: WidgetBindable {
+extension BehaviorRelay: BindableElement {
     public func bind(to observable: Observable<Element>) -> Disposable {
         observable.bind(to: self)
     }
 }
 
-extension BehaviorSubject: WidgetBindable {
+extension BehaviorSubject: BindableElement {
     public func bind(to observable: Observable<Element>) -> Disposable {
         observable.bind(to: self)
     }
 }
 
-extension PublishRelay: WidgetBindable {
+extension PublishRelay: BindableElement {
     public func bind(to observable: Observable<Element>) -> Disposable {
         observable.bind(to: self)
     }
 }
 
-extension PublishSubject: WidgetBindable {
+extension PublishSubject: BindableElement {
     public func bind(to observable: Observable<Element>) -> Disposable {
         observable.bind(to: self)
     }

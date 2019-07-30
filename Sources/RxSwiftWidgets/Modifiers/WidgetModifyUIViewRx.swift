@@ -14,7 +14,7 @@ import RxCocoa
 
 extension WidgetViewModifying {
 
-    public func hidden<Observable:WidgetObservable>(_ observable: Observable) -> Self where Observable.Element == Bool {
+    public func hidden<Observable:ObservableElement>(_ observable: Observable) -> Self where Observable.Element == Bool {
         return modified(WidgetModifierBlock<UIView> { view, context in
             observable.asObservable().bind(to: view.rx.isHidden).disposed(by: context.disposeBag)
         })

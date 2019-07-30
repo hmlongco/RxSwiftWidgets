@@ -1,8 +1,12 @@
 
 import UIKit
+import RxSwift
+import RxCocoa
 import RxSwiftWidgets
 
 struct FeaturesWidget: WidgetView {
+
+    @State var title: String = "Features"
 
     func widget(_ context: WidgetContext) -> Widget {
 
@@ -14,20 +18,33 @@ struct FeaturesWidget: WidgetView {
 
             VStackWidget([
 
-                LabelWidget("Features")
+                LabelWidget()
+                    .text($title)
                     .font(.title1)
                     .color(.white)
                     .alignment(.center)
                     .padding(20),
+
+                MainMenuItemWidget(text: "Property Binding") { context in
+                    context.navigator?.push(widget: DemoBindingWidget(title: self.$title))
+                },
 
                 MainMenuItemWidget(text: "Dismissible") { context in
                     context.navigator?.push(widget: DemoDismissibleWidget(), onDismiss: { (value: String) in
                         print(value)
                     })
                 },
+                
                 MainMenuItemWidget(text: "Positioning") { context in
                     context.navigator?.push(widget: DemoPositioningWidget())
                 },
+
+                ButtonWidget("Reset Title")
+                    .color(.orange)
+                    .hidden($title.asObservable().map { $0 == "Features" })
+                    .onTap { context in
+                        self.title = "Features"
+                    },
 
                 SpacerWidget(),
                 

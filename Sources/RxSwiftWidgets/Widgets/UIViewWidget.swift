@@ -12,8 +12,11 @@ import RxCocoa
 
 public struct UIViewWidget<View:UIView>
     : Widget
-    , WidgetViewModifying {
-    
+    , WidgetViewModifying
+    , CustomDebugStringConvertible {
+
+    public var debugDescription: String { "UIViewWidget()" }
+
     public var modifiers: WidgetModifiers?
     public var view: View
 
