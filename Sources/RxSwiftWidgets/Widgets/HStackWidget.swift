@@ -15,7 +15,10 @@ public struct HStackWidget
     : WidgetsContaining
     , WidgetViewModifying
     , WidgetContextModifiying
-    , WidgetPadding {
+    , WidgetPadding
+    , CustomDebugStringConvertible {
+
+    public var debugDescription: String { "HStackWidget()" }
 
     public let widgets: [Widget]
 

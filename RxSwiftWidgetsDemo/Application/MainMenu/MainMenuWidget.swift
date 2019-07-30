@@ -27,13 +27,11 @@ struct MainMenuWidget: WidgetView {
                         .position(.centerHorizontally)
                     ),
 
-                MainMenuItemWidget(text: "Sample Widget") { context in
-                    context.navigator?.push(widget: SampleWidget())
+                MainMenuItemWidget(text: "Features") { context in
+                    context.navigator?.push(widget: FeaturesWidget())
                 },
-                MainMenuItemWidget(text: "Dismissible Sample") { context in
-                    context.navigator?.push(widget: DemoDismissibleWidget(), onDismiss: { (value: String) in
-                        print(value)
-                    })
+                MainMenuItemWidget(text: "Sample") { context in
+                    context.navigator?.push(widget: SampleWidget())
                 },
 
                 SpacerWidget(),
@@ -42,7 +40,7 @@ struct MainMenuWidget: WidgetView {
                     .alignment(.center),
 
                 ]) // VStackWidget
-                .spacing(12)
+                .spacing(15)
                 .padding(h: 30, v: 50)
 
             ]) // ZStackWidget

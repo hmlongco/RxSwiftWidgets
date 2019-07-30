@@ -15,8 +15,8 @@ public struct Published<Element>: WidgetBindable {
 
     private let relay: BehaviorRelay<Element>
 
-    public init(initialValue: Element) {
-        relay = BehaviorRelay<Element>(value: initialValue)
+    public init(wrappedValue: Element) {
+        relay = BehaviorRelay<Element>(value: wrappedValue)
     }
 
     public var wrappedValue: Element {

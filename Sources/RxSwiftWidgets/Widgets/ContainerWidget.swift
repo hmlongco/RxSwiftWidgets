@@ -14,8 +14,11 @@ public struct ContainerWidget
     : WidgetContaining
     , WidgetContextModifiying
     , WidgetViewModifying
-    , WidgetPadding {
-    
+    , WidgetPadding
+    , CustomDebugStringConvertible {
+
+    public var debugDescription: String { "ContainerWidget()" }
+
     public var contextModifier: WidgetContextModifier?
     public var modifiers: WidgetModifiers?
     public let widget: Widget

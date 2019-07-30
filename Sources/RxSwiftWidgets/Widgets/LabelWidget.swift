@@ -13,22 +13,24 @@ import RxCocoa
 
 public struct LabelWidget
     : WidgetViewModifying
-    , WidgetPadding {
+    , WidgetPadding
+    , CustomDebugStringConvertible {
 
+    public var debugDescription: String { "LabelWidget(\"\(text ?? "")\")" }
+
+    public var text: String?
     public var modifiers: WidgetModifiers?
     public var padding: UIEdgeInsets?
 
     public init(_ text: String? = nil) {
-        if let text = text {
-            modifiers = [WidgetModifier(keyPath: \UILabel.text, value: text)]
-            modifiers?.reserveCapacity(8)
-        }
+        self.text = text
     }
 
     public func build(with context: WidgetContext) -> UIView {
         let label = WidgetLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.text = text
         label.textInsets = padding
         label.backgroundColor = .clear
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
@@ -60,7 +62,7 @@ public struct LabelWidget
     }
 
     public func text(_ text: String?) -> Self {
-        return modified(WidgetModifier(keyPath: \UILabel.text, value: text))
+        return modified { $0.text = text }
     }
 
     public func text<Observable:WidgetObservable>(_ observable: Observable) -> Self where Observable.Element == String {

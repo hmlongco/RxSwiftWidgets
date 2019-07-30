@@ -8,7 +8,12 @@
 
 import UIKit
 
-public struct SpacerWidget: Widget {
+public struct SpacerWidget: Widget
+    , CustomDebugStringConvertible {
+
+    public var debugDescription: String { "SpacerWidget()" }
+
+    public var modifiers: WidgetModifiers?
 
     public init() {}
 

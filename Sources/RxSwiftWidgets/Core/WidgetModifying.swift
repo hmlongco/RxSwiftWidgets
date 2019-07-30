@@ -34,6 +34,12 @@ extension WidgetModifying {
         }
         return widget
     }
+
+    public func modified(_ modifier: (_ widget: inout Self) -> Void) -> Self {
+        var widget = self
+        modifier(&widget)
+        return widget
+    }
 }
 
 /// A linked list of view modifiers

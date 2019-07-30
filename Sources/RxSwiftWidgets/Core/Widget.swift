@@ -22,3 +22,17 @@ public protocol WidgetContaining: Widget {
 public protocol WidgetsContaining: Widget {
     var widgets: [Widget] { get }
 }
+
+extension Widget {
+    public func walk(_ process: (_ widget: Widget) -> Void ) {
+        func each(_ widget: Widget) {
+            process(widget)
+            if let widget = widget as? WidgetContaining {
+                each(widget)
+            } else if let widget = widget as? WidgetsContaining {
+                widget.widgets.forEach { each($0) }
+            }
+        }
+        each(self)
+    }
+}

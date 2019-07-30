@@ -15,7 +15,10 @@ public struct ZStackWidget
     : WidgetsContaining
     , WidgetViewModifying
     , WidgetContextModifiying
-    , WidgetPadding {
+    , WidgetPadding
+    , CustomDebugStringConvertible {
+
+    public var debugDescription: String { "ZStackWidget()" }
 
     public let widgets: [Widget]
     

@@ -4,6 +4,12 @@ import RxSwiftWidgets
 
 struct DemoDismissibleWidget: WidgetView {
 
+    let desc = """
+        Demonstrates launching a dismissible widget and returning a value or simply dismissing (cancelling) the screen programatically.
+
+        This screen will also automatically timeout and return after 8 seconds.
+        """
+
     func widget(_ context: WidgetContext) -> Widget {
 
         ZStackWidget([
@@ -14,10 +20,16 @@ struct DemoDismissibleWidget: WidgetView {
 
             VStackWidget([
 
-                LabelWidget("Dismissible Sample")
+                LabelWidget("Dismissible")
                     .font(.title1)
                     .color(.white)
                     .alignment(.center),
+
+                LabelWidget(desc)
+                    .font(.preferredFont(forTextStyle: .callout))
+                    .color(.white)
+                    .numberOfLines(0)
+                    .padding(h: 0, v: 15),
 
                 ButtonWidget("Dismiss Returning Value")
                     .color(.orange)
@@ -33,15 +45,14 @@ struct DemoDismissibleWidget: WidgetView {
 
                 SpacerWidget(),
 
-                LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
-                    .alignment(.center),
+                DoneButtonWidget(),
 
                 ]) // VStackWidget
-                .spacing(12)
-                .padding(h: 30, v: 50)
+                .spacing(15)
+                .padding(h: 40, v: 50)
 
             ]) // ZStackWidget
-            .navigationBar(title: "Main Menu", hidden: true)
+            .navigationBar(title: "Dismissible Demo", hidden: true)
             .safeArea(false)
             .onDidAppear { (context) in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 8) {

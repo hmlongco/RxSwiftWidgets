@@ -10,7 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public struct ImageWidget: WidgetViewModifying {
+public struct ImageWidget: WidgetViewModifying
+    , CustomDebugStringConvertible {
+
+    public var debugDescription: String { "ImageWidget()" }
 
     public var modifiers: WidgetModifiers?
 

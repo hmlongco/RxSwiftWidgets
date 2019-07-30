@@ -13,7 +13,10 @@ import RxCocoa
 
 public struct ButtonWidget
     : WidgetViewModifying
-    , WidgetPadding {
+    , WidgetPadding
+    , CustomDebugStringConvertible {
+
+    public var debugDescription: String { "ButtonWidget()" }
 
     public var modifiers: WidgetModifiers?
     public var padding: UIEdgeInsets?
@@ -40,10 +43,8 @@ public struct ButtonWidget
         return button
     }
 
-    public func alignment(_ alignment: NSTextAlignment) -> Self {
-        return modified(WidgetModifierBlock<UIButton> { button, _ in
-            button.titleLabel?.textAlignment = alignment
-        })
+    public func alignment(_ alignment: UIControl.ContentHorizontalAlignment) -> Self {
+        return modified(WidgetModifier(keyPath: \UIButton.contentHorizontalAlignment, value: alignment))
     }
 
     public func color(_ color: UIColor, for state: UIControl.State = .normal) -> Self {

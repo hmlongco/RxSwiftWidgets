@@ -15,7 +15,10 @@ public struct VStackWidget
     : WidgetsContaining
     , WidgetViewModifying
     , WidgetContextModifiying
-    , WidgetPadding {
+    , WidgetPadding
+    , CustomDebugStringConvertible {
+
+    public var debugDescription: String { "VStackWidget()" }
 
     public let widgets: [Widget]
 
