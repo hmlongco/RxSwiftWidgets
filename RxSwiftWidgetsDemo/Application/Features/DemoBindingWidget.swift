@@ -38,7 +38,7 @@ struct DemoBindingWidget: WidgetView {
                     .padding(h: 0, v: 15),
 
                 LabelWidget()
-                    .text($title.asObservable().map { "Parent's page title is '\($0)'."} )
+                    .text($title.map { "Parent page title is '\($0)'."} )
                     .font(.preferredFont(forTextStyle: .callout))
                     .alignment(.center)
                     .color(.white)
@@ -59,7 +59,7 @@ struct DemoBindingWidget: WidgetView {
 
                 SpacerWidget(),
 
-                DoneButtonWidget(),
+                BackButtonWidget(text: "Done"),
 
                 ]) // VStackWidget
                 .spacing(15)

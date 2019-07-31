@@ -12,7 +12,7 @@ import RxCocoa
 
 // Define Protocols
 
-public protocol ObservableElement {
+public protocol ObservableElement: ObservableType {
     associatedtype Element
     func asObservable() -> Observable<Element>
 }

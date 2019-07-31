@@ -51,6 +51,7 @@
 		4C8CCF2C22F0F488008139A3 /* DemoBindingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF2B22F0F488008139A3 /* DemoBindingWidget.swift */; };
 		4C8CCF2F22F0FB20008139A3 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF2D22F0FAFE008139A3 /* Binding.swift */; };
 		4C8CCF3122F0FB7E008139A3 /* BindableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */; };
+		4C8CCF3322F1DB32008139A3 /* DoneButtonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF3222F1DB32008139A3 /* DoneButtonWidget.swift */; };
 		OBJ_341 /* BehaviorRelay+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* BehaviorRelay+Driver.swift */; };
 		OBJ_342 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* Binder.swift */; };
 		OBJ_343 /* ControlEvent+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* ControlEvent+Driver.swift */; };
@@ -551,6 +552,7 @@
 		4C8CCF2B22F0F488008139A3 /* DemoBindingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBindingWidget.swift; sourceTree = "<group>"; };
 		4C8CCF2D22F0FAFE008139A3 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableElement.swift; sourceTree = "<group>"; };
+		4C8CCF3222F1DB32008139A3 /* DoneButtonWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneButtonWidget.swift; sourceTree = "<group>"; };
 		OBJ_100 /* RxScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
 		OBJ_101 /* RxSearchBarDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSearchBarDelegateProxy.swift; sourceTree = "<group>"; };
 		OBJ_102 /* RxSearchControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSearchControllerDelegateProxy.swift; sourceTree = "<group>"; };
@@ -962,6 +964,7 @@
 				4C8CCF2B22F0F488008139A3 /* DemoBindingWidget.swift */,
 				4C15DED722EE341100196894 /* DemoDismissibleWidget.swift */,
 				4C31A0CE22EF7CE9004A3464 /* DemoPositioningWidget.swift */,
+				4C8CCF3222F1DB32008139A3 /* DoneButtonWidget.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -1745,6 +1748,7 @@
 				4C21217222EA5F5000C5D6FB /* SampleWidget.swift in Sources */,
 				4C31A0CD22EF7BCC004A3464 /* FeaturesWidget.swift in Sources */,
 				4C21216E22EA5ED900C5D6FB /* Colors.swift in Sources */,
+				4C8CCF3322F1DB32008139A3 /* DoneButtonWidget.swift in Sources */,
 				4C44C2C522EA4E3600E3CBDD /* AppDelegate.swift in Sources */,
 				4C21216B22EA5ED900C5D6FB /* Styles.swift in Sources */,
 			);

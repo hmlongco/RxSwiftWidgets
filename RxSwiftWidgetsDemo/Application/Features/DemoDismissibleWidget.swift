@@ -45,7 +45,7 @@ struct DemoDismissibleWidget: WidgetView {
 
                 SpacerWidget(),
 
-                DoneButtonWidget(),
+                BackButtonWidget(text: "Done"),
 
                 ]) // VStackWidget
                 .spacing(15)

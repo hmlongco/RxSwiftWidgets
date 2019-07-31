@@ -46,4 +46,8 @@ public struct State<Element>: BindableElement {
         observable.bind(to: relay)
     }
 
+    public func subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Element == Observer.Element {
+        relay.subscribe(observer)
+    }
+
 }

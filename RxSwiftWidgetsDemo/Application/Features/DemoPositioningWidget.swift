@@ -55,7 +55,7 @@ struct DemoPositioningWidget: WidgetView {
 
                 SpacerWidget(),
 
-                DoneButtonWidget(),
+                BackButtonWidget(text: "Done"),
 
                 ]) // VStackWidget
                 .spacing(15)
@@ -72,7 +72,7 @@ struct DemoPositioningWidget: WidgetView {
 
     func borderedStack(_ widgets: [Widget]) -> Widget {
         ZStackWidget(widgets)
-            .borderColor(.white)
+            .borderColor(.lightGray)
             .borderWidth(1.0)
             .padding(10)
             .height(120)

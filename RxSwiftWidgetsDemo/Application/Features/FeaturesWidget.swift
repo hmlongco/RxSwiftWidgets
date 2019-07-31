@@ -6,7 +6,7 @@ import RxSwiftWidgets
 
 struct FeaturesWidget: WidgetView {
 
-    @State var title: String = "Features"
+    @State private var title: String = "Features"
 
     func widget(_ context: WidgetContext) -> Widget {
 
@@ -41,14 +41,14 @@ struct FeaturesWidget: WidgetView {
 
                 ButtonWidget("Reset Title")
                     .color(.orange)
-                    .hidden($title.asObservable().map { $0 == "Features" })
+                    .hidden($title.map { $0 == "Features" })
                     .onTap { context in
                         self.title = "Features"
                     },
 
                 SpacerWidget(),
                 
-                DoneButtonWidget(),
+                BackButtonWidget(text: "Done"),
 
                 ]) // VStackWidget
                 .spacing(15)
@@ -58,19 +58,4 @@ struct FeaturesWidget: WidgetView {
             .navigationBar(title: "Features", hidden: true)
             .safeArea(false)
         }
-}
-
-struct DoneButtonWidget: WidgetView {
-
-    func widget(_ context: WidgetContext) -> Widget {
-        LabelWidget("Done")
-            .alignment(.center)
-            .alpha(0.8)
-            .color(.white)
-            .font(.title3)
-            .onTap{ context in
-                context.navigator?.dismiss()
-            }
-    }
-
 }

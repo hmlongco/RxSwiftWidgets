@@ -94,7 +94,7 @@ struct SampleWidget: WidgetView {
 
                 SpacerWidget(),
 
-                DoneButtonWidget(),
+                BackButtonWidget(text: "Done"),
 
                 ]) // ColumnWidget
                 .padding(20)
