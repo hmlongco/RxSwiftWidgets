@@ -32,7 +32,7 @@ public struct VStackWidget
 
     public func build(with context: WidgetContext) -> UIView {
         let context = contextModifier?(context) ?? context
-        let stack = UIStackView()
+        let stack = WidgetPrivateStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.insetsLayoutMarginsFromSafeArea = false
         stack.axis = .vertical
@@ -52,6 +52,12 @@ public struct VStackWidget
         return modified(WidgetModifier(keyPath: \UIStackView.alignment, value: alignment))
     }
 
+    public func contents<Observable:ObservableElement>(_ observable: Observable) -> Self where Observable.Element == [Widget] {
+        return modified(WidgetModifierBlock({ (stack: WidgetPrivateStackView, context) in
+            stack.subscribe(to: observable.asObservable(), with: context)
+        }))
+    }
+
     public func distribution(_ distribution: UIStackView.Distribution) -> Self {
         return modified(WidgetModifier(keyPath: \UIStackView.distribution, value: distribution))
     }
@@ -62,6 +68,39 @@ public struct VStackWidget
 
     public func with(_ block: @escaping WidgetModifierBlockType<UIStackView>) -> Self {
         return modified(WidgetModifierBlock(block))
+    }
+
+}
+
+
+internal class WidgetPrivateStackView: UIStackView {
+
+    var disposeBag: DisposeBag!
+
+    public func subscribe(to widgets: Observable<[Widget]>, with context: WidgetContext) {
+        widgets
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] (widgets) in
+
+                self.disposeBag = DisposeBag()
+
+                self.subviews.forEach {
+                    $0.removeFromSuperview()
+                }
+
+                var context = context
+                context.disposeBag = self.disposeBag
+
+                widgets.forEach { widget in
+                    let view = widget.build(with: context)
+                    self.addArrangedSubview(view)
+                }
+
+                UIView.animate(withDuration: 0.01, animations: {
+                    self.layoutIfNeeded()
+                })
+            })
+            .disposed(by: context.disposeBag)
     }
 
 }

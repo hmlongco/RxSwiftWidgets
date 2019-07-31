@@ -48,6 +48,11 @@
 		4C44C2F022EA508F00E3CBDD /* RxSwiftWidgets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwiftWidgets::RxSwiftWidgets::Product" /* RxSwiftWidgets.framework */; };
 		4C44C2F122EA508F00E3CBDD /* RxSwiftWidgets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwiftWidgets::RxSwiftWidgets::Product" /* RxSwiftWidgets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C44C2F922EA525300E3CBDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C44C2F722EA525300E3CBDD /* Assets.xcassets */; };
+		4C62D36B22F21CDC0071A51A /* AccountDetailsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36A22F21C700071A51A /* AccountDetailsWidget.swift */; };
+		4C62D37022F21FDC0071A51A /* AccountInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36D22F21FDC0071A51A /* AccountInformation.swift */; };
+		4C62D37122F21FDC0071A51A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36E22F21FDC0071A51A /* User.swift */; };
+		4C62D37222F21FDC0071A51A /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36F22F21FDC0071A51A /* GenericError.swift */; };
+		4C62D37422F220BD0071A51A /* AccountDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D37322F220BD0071A51A /* AccountDetailsViewModel.swift */; };
 		4C8CCF2C22F0F488008139A3 /* DemoBindingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF2B22F0F488008139A3 /* DemoBindingWidget.swift */; };
 		4C8CCF2F22F0FB20008139A3 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF2D22F0FAFE008139A3 /* Binding.swift */; };
 		4C8CCF3122F0FB7E008139A3 /* BindableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */; };
@@ -549,6 +554,11 @@
 		4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		4C44C2F722EA525300E3CBDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C44C2FC22EA550300E3CBDD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C62D36A22F21C700071A51A /* AccountDetailsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsWidget.swift; sourceTree = "<group>"; };
+		4C62D36D22F21FDC0071A51A /* AccountInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInformation.swift; sourceTree = "<group>"; };
+		4C62D36E22F21FDC0071A51A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4C62D36F22F21FDC0071A51A /* GenericError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
+		4C62D37322F220BD0071A51A /* AccountDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsViewModel.swift; sourceTree = "<group>"; };
 		4C8CCF2B22F0F488008139A3 /* DemoBindingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBindingWidget.swift; sourceTree = "<group>"; };
 		4C8CCF2D22F0FAFE008139A3 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableElement.swift; sourceTree = "<group>"; };
@@ -975,6 +985,7 @@
 				4C44C2FC22EA550300E3CBDD /* Info.plist */,
 				4C44C2F522EA51C500E3CBDD /* Application */,
 				4C44C2F622EA51DD00E3CBDD /* Resources */,
+				4C62D36C22F21FDC0071A51A /* Models */,
 				4C21216622EA5ED900C5D6FB /* Styles */,
 			);
 			path = RxSwiftWidgetsDemo;
@@ -991,6 +1002,7 @@
 			isa = PBXGroup;
 			children = (
 				4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */,
+				4C62D36922F21C5D0071A51A /* Account Details */,
 				4C31A0CB22EF7ADD004A3464 /* Features */,
 				4C21217B22EA697300C5D6FB /* MainMenu */,
 			);
@@ -1012,6 +1024,25 @@
 			children = (
 			);
 			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		4C62D36922F21C5D0071A51A /* Account Details */ = {
+			isa = PBXGroup;
+			children = (
+				4C62D37322F220BD0071A51A /* AccountDetailsViewModel.swift */,
+				4C62D36A22F21C700071A51A /* AccountDetailsWidget.swift */,
+			);
+			path = "Account Details";
+			sourceTree = "<group>";
+		};
+		4C62D36C22F21FDC0071A51A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4C62D36D22F21FDC0071A51A /* AccountInformation.swift */,
+				4C62D36E22F21FDC0071A51A /* User.swift */,
+				4C62D36F22F21FDC0071A51A /* GenericError.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		OBJ_156 /* RxCocoaRuntime */ = {
@@ -1740,9 +1771,14 @@
 			files = (
 				4C21217622EA626200C5D6FB /* MainMenuWidget.swift in Sources */,
 				4C31A0CF22EF7CE9004A3464 /* DemoPositioningWidget.swift in Sources */,
+				4C62D36B22F21CDC0071A51A /* AccountDetailsWidget.swift in Sources */,
+				4C62D37422F220BD0071A51A /* AccountDetailsViewModel.swift in Sources */,
 				4C8CCF2C22F0F488008139A3 /* DemoBindingWidget.swift in Sources */,
+				4C62D37122F21FDC0071A51A /* User.swift in Sources */,
+				4C62D37022F21FDC0071A51A /* AccountInformation.swift in Sources */,
 				4C21216D22EA5ED900C5D6FB /* Style.swift in Sources */,
 				4C21217D22EA698900C5D6FB /* MainMenuLabelWidget.swift in Sources */,
+				4C62D37222F21FDC0071A51A /* GenericError.swift in Sources */,
 				4C15DED822EE341100196894 /* DemoDismissibleWidget.swift in Sources */,
 				4C21216C22EA5ED900C5D6FB /* Fonts.swift in Sources */,
 				4C21217222EA5F5000C5D6FB /* SampleWidget.swift in Sources */,

@@ -30,8 +30,8 @@ struct MainMenuWidget: WidgetView {
                 MainMenuItemWidget(text: "Features") { context in
                     context.navigator?.push(widget: FeaturesWidget())
                 },
-                MainMenuItemWidget(text: "Sample") { context in
-                    context.navigator?.push(widget: SampleWidget())
+                MainMenuItemWidget(text: "Account Details") { context in
+                    context.navigator?.push(widget: AccountDetailsWidget())
                 },
 
                 SpacerWidget(),
@@ -44,7 +44,7 @@ struct MainMenuWidget: WidgetView {
                 .padding(h: 30, v: 50)
 
             ]) // ZStackWidget
-            .navigationBar(title: "Main Menu", hidden: true)
+            .navigationBar(title: "Menu", hidden: true)
             .safeArea(false)
         }
 }
