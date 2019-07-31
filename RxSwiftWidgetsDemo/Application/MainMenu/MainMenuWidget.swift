@@ -27,11 +27,12 @@ struct MainMenuWidget: WidgetView {
                         .position(.centerHorizontally)
                     ),
 
-                MainMenuItemWidget(text: "Features") { context in
-                    context.navigator?.push(widget: FeaturesWidget())
-                },
                 MainMenuItemWidget(text: "Account Details") { context in
                     context.navigator?.push(widget: AccountDetailsWidget())
+                },
+
+                MainMenuItemWidget(text: "Features") { context in
+                    context.navigator?.push(widget: FeaturesWidget())
                 },
 
                 SpacerWidget(),

@@ -53,6 +53,7 @@
 		4C62D37122F21FDC0071A51A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36E22F21FDC0071A51A /* User.swift */; };
 		4C62D37222F21FDC0071A51A /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36F22F21FDC0071A51A /* GenericError.swift */; };
 		4C62D37422F220BD0071A51A /* AccountDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D37322F220BD0071A51A /* AccountDetailsViewModel.swift */; };
+		4C62D37722F22F7F0071A51A /* SpinnerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D37522F22F640071A51A /* SpinnerWidget.swift */; };
 		4C8CCF2C22F0F488008139A3 /* DemoBindingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF2B22F0F488008139A3 /* DemoBindingWidget.swift */; };
 		4C8CCF2F22F0FB20008139A3 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF2D22F0FAFE008139A3 /* Binding.swift */; };
 		4C8CCF3122F0FB7E008139A3 /* BindableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */; };
@@ -559,6 +560,7 @@
 		4C62D36E22F21FDC0071A51A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4C62D36F22F21FDC0071A51A /* GenericError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		4C62D37322F220BD0071A51A /* AccountDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsViewModel.swift; sourceTree = "<group>"; };
+		4C62D37522F22F640071A51A /* SpinnerWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerWidget.swift; sourceTree = "<group>"; };
 		4C8CCF2B22F0F488008139A3 /* DemoBindingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBindingWidget.swift; sourceTree = "<group>"; };
 		4C8CCF2D22F0FAFE008139A3 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableElement.swift; sourceTree = "<group>"; };
@@ -1282,6 +1284,7 @@
 				OBJ_34 /* ContainerWidget.swift */,
 				OBJ_35 /* HStackWidget.swift */,
 				OBJ_36 /* ImageWidget.swift */,
+				4C62D37522F22F640071A51A /* SpinnerWidget.swift */,
 				OBJ_37 /* LabelWidget.swift */,
 				OBJ_38 /* SpacerWidget.swift */,
 				OBJ_40 /* UIViewWidget.swift */,
@@ -2128,6 +2131,7 @@
 				OBJ_677 /* VStackWidget.swift in Sources */,
 				OBJ_678 /* UIViewWidget.swift in Sources */,
 				OBJ_679 /* ZStackWidget.swift in Sources */,
+				4C62D37722F22F7F0071A51A /* SpinnerWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

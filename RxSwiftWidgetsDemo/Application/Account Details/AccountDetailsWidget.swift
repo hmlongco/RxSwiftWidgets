@@ -17,16 +17,14 @@ struct AccountDetailsWidget: WidgetView {
 
             VStackWidget([
 
-                LabelWidget("Loading...")
-                    .alignment(.center)
-                    .color(.gray)
+                SpinnerWidget()
                     .hidden(viewModel.loading.map { !$0 }),
 
                 VStackWidget([
                     LabelWidget()
                         .text(viewModel.title)
                         .alignment(.center)
-                        .color(.darkText)
+                        .color(.red)
                         .font(.title2),
 
                     ContainerWidget(
