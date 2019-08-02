@@ -9,45 +9,48 @@ struct AccountDetailsWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        ZStackWidget([
+        ZStack([
 
-            ImageWidget(named: "vector2")
+            Image(named: "vector2")
                 .contentMode(.scaleAspectFill)
                 .safeArea(false),
 
-            VStackWidget([
+            VStack([
 
-                SpinnerWidget()
-                    .hidden(viewModel.loading.map { !$0 }),
+                Container(
+                    Spinner().color(.gray)
+                )
+                .padding(15)
+                .hidden(viewModel.loading.map { !$0 }),
 
-                VStackWidget([
-                    LabelWidget()
+                VStack([
+                    Text()
                         .text(viewModel.title)
                         .alignment(.center)
                         .color(.red)
-                        .font(.title2),
+                        .font(.title1),
 
-                    ContainerWidget(
-                        VStackWidget([])
-                            .contents(viewModel.accountDetails.map { details in
-                                details.map { self.accountDetailsRow($0) }
-                            })
+                    Container(
+                        VStack()
+                            .bind(viewModel.accountDetails) {
+                                self.accountDetailsRow($0)
+                            }
                         )
                         .padding(20)
                         .cornerRadius(20)
                         .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
 
-                    ContainerWidget(
-                        VStackWidget([])
-                            .contents(viewModel.paymentDetails.map { details in
-                                details.map { self.accountDetailsRow($0) }
-                            })
+                    Container(
+                        VStack()
+                             .bind(viewModel.paymentDetails) {
+                                self.accountDetailsRow($0)
+                            }
                         )
                         .padding(20)
                         .cornerRadius(20)
                         .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
 
-                        LabelWidget()
+                        Text()
                             .text(viewModel.footnotes)
                             .color(.gray)
                             .font(.footnote)
@@ -58,7 +61,7 @@ struct AccountDetailsWidget: WidgetView {
                     .hidden(viewModel.loading),
 
 
-                SpacerWidget(),
+                Spacer(),
 
                 ]) // VStackWidget
                 .spacing(15)
@@ -73,11 +76,12 @@ struct AccountDetailsWidget: WidgetView {
         }
 
     func accountDetailsRow(_ detail: AccountInformation.AccountDetails) -> Widget {
-        return HStackWidget([
-            LabelWidget(detail.name)
+        return HStack([
+            Text(detail.name)
+                .font(.body)
                 .color(.gray),
-            SpacerWidget(),
-            LabelWidget(detail.value)
+            Spacer(),
+            Text(detail.value)
                 .color(.darkText),
             ])
     }

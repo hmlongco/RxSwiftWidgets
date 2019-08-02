@@ -26,7 +26,7 @@ public struct HStackWidget
     public var modifiers: WidgetModifiers?
     public var padding: UIEdgeInsets?
 
-    public init(_ widgets: [Widget]) {
+    public init(_ widgets: [Widget] = []) {
         self.widgets = widgets
     }
 
@@ -50,6 +50,18 @@ public struct HStackWidget
 
     public func alignment(_ alignment: UIStackView.Alignment) -> Self {
         return modified(WidgetModifier(keyPath: \UIStackView.alignment, value: alignment))
+    }
+
+    public func bind<Item, Observable:ObservableElement>(_ observable: Observable, transform: @escaping (_ item: Item) -> Widget) -> Self
+        where Observable.Element == [Item] {
+        return bind(observable.asObservable().map { $0.map { transform($0) } })
+    }
+
+
+    public func bind<Observable:ObservableElement>(_ observable: Observable) -> Self where Observable.Element == [Widget] {
+        return modified(WidgetModifierBlock({ (stack: WidgetPrivateStackView, context) in
+            stack.subscribe(to: observable.asObservable(), with: context)
+        }))
     }
 
     public func distribution(_ distribution: UIStackView.Distribution) -> Self {

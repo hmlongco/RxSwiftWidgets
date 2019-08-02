@@ -27,4 +27,8 @@ public struct SpinnerWidget: WidgetViewModifying
         return view
     }
 
+    public func color(_ color: UIColor) -> Self {
+        return modified(WidgetModifier(keyPath: \UIActivityIndicatorView.color, value: color))
+    }
+
 }

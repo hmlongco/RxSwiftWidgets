@@ -6,21 +6,21 @@ struct MainMenuWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        ZStackWidget([
+        ZStack([
 
-            ImageWidget(named: "vector1")
+            Image(named: "vector1")
                 .contentMode(.scaleAspectFill)
                 .safeArea(false),
 
-            VStackWidget([
+            VStack([
 
-                ContainerWidget(
-                    HStackWidget([
-                        ImageWidget(named: "RxSwiftWidgets-Logo-DK")
+                Container(
+                    HStack([
+                        Image(named: "RxSwiftWidgets-Logo-DK")
                             .height(100)
                             .width(100)
                             .contentMode(.scaleAspectFit),
-                        LabelWidget("RxSwiftWidgets")
+                        Text("RxSwiftWidgets")
                             .font(.title2)
                             .color(.white)
                         ])
@@ -35,7 +35,7 @@ struct MainMenuWidget: WidgetView {
                     context.navigator?.push(widget: FeaturesWidget())
                 },
 
-                SpacerWidget(),
+                Spacer(),
 
                 LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
                     .alignment(.center),

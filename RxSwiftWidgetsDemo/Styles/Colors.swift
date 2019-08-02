@@ -1,9 +1,7 @@
 //
 //  Colors.swift
-//  FNB-Beta
 //
 //  Created by Michael Long on 4/17/18.
-//  Copyright © 2018 First National Bank. All rights reserved.
 //
 
 import UIKit

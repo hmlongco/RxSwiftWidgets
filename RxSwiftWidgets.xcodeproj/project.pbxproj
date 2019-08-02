@@ -58,6 +58,7 @@
 		4C8CCF2F22F0FB20008139A3 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF2D22F0FAFE008139A3 /* Binding.swift */; };
 		4C8CCF3122F0FB7E008139A3 /* BindableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */; };
 		4C8CCF3322F1DB32008139A3 /* DoneButtonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF3222F1DB32008139A3 /* DoneButtonWidget.swift */; };
+		4CE3B69C22F49E1400E47F57 /* WidgetSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B69A22F49DFF00E47F57 /* WidgetSwiftUI.swift */; };
 		OBJ_341 /* BehaviorRelay+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* BehaviorRelay+Driver.swift */; };
 		OBJ_342 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* Binder.swift */; };
 		OBJ_343 /* ControlEvent+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* ControlEvent+Driver.swift */; };
@@ -565,6 +566,7 @@
 		4C8CCF2D22F0FAFE008139A3 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableElement.swift; sourceTree = "<group>"; };
 		4C8CCF3222F1DB32008139A3 /* DoneButtonWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneButtonWidget.swift; sourceTree = "<group>"; };
+		4CE3B69A22F49DFF00E47F57 /* WidgetSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSwiftUI.swift; sourceTree = "<group>"; };
 		OBJ_100 /* RxScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
 		OBJ_101 /* RxSearchBarDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSearchBarDelegateProxy.swift; sourceTree = "<group>"; };
 		OBJ_102 /* RxSearchControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSearchControllerDelegateProxy.swift; sourceTree = "<group>"; };
@@ -1284,9 +1286,9 @@
 				OBJ_34 /* ContainerWidget.swift */,
 				OBJ_35 /* HStackWidget.swift */,
 				OBJ_36 /* ImageWidget.swift */,
-				4C62D37522F22F640071A51A /* SpinnerWidget.swift */,
 				OBJ_37 /* LabelWidget.swift */,
 				OBJ_38 /* SpacerWidget.swift */,
+				4C62D37522F22F640071A51A /* SpinnerWidget.swift */,
 				OBJ_40 /* UIViewWidget.swift */,
 				OBJ_39 /* VStackWidget.swift */,
 				OBJ_41 /* ZStackWidget.swift */,
@@ -1526,6 +1528,7 @@
 				OBJ_15 /* WidgetNavigation.swift */,
 				OBJ_16 /* WidgetPadding.swift */,
 				OBJ_17 /* WidgetPositioning.swift */,
+				4CE3B69A22F49DFF00E47F57 /* WidgetSwiftUI.swift */,
 				OBJ_18 /* WidgetView.swift */,
 			);
 			path = Core;
@@ -2124,6 +2127,7 @@
 				OBJ_671 /* ButtonWidget.swift in Sources */,
 				OBJ_672 /* ContainerWidget.swift in Sources */,
 				OBJ_673 /* HStackWidget.swift in Sources */,
+				4CE3B69C22F49E1400E47F57 /* WidgetSwiftUI.swift in Sources */,
 				OBJ_674 /* ImageWidget.swift in Sources */,
 				OBJ_675 /* LabelWidget.swift in Sources */,
 				4C8CCF2F22F0FB20008139A3 /* Binding.swift in Sources */,
