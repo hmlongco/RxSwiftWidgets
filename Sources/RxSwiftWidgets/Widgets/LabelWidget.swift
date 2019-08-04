@@ -65,13 +65,13 @@ public struct LabelWidget
         return modified { $0.text = text }
     }
 
-    public func text<Observable:ObservableElement>(_ observable: Observable) -> Self where Observable.Element == String {
+    public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String {
         return modified(WidgetModifierBlock<UILabel> { label, context in
             observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
         })
     }
 
-    public func text<Observable:ObservableElement>(_ observable: Observable) -> Self where Observable.Element == String? {
+    public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String? {
         return modified(WidgetModifierBlock<UILabel> { label, context in
             observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
         })

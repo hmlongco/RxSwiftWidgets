@@ -14,10 +14,20 @@ import RxCocoa
 
 extension WidgetViewModifying {
 
-    public func hidden<Observable:ObservableElement>(_ observable: Observable) -> Self where Observable.Element == Bool {
+    public func hidden<O:ObservableElement>(_ observable: O) -> Self where O.Element == Bool {
         return modified(WidgetModifierBlock<UIView> { view, context in
             observable.asObservable().bind(to: view.rx.isHidden).disposed(by: context.disposeBag)
         })
     }
-    
+
+    public func onChange<O:ObservableElement, Value>(_ observable: O, handle: @escaping (_ value: Value) -> Void) -> Self where O.Element == Value {
+        return modified(WidgetModifierBlock({ (_, context) in
+            observable.asObservable()
+                .subscribe(onNext: { (value) in
+                    handle(value)
+                })
+                .disposed(by: context.disposeBag)
+        }))
+    }
+
 }

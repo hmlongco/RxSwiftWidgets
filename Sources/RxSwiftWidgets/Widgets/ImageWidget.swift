@@ -55,13 +55,13 @@ public struct ImageWidget: WidgetViewModifying
         })
     }
 
-    public func image<Observable:ObservableElement>(_ observable: Observable) -> Self where Observable.Element == UIImage? {
+    public func image<O:ObservableElement>(_ observable: O) -> Self where O.Element == UIImage? {
         return modified(WidgetModifierBlock<UIImageView> { view, context in
             observable.asObservable().bind(to: view.rx.image).disposed(by: context.disposeBag)
         })
     }
 
-    public func image<Observable:ObservableElement>(_ observable: Observable) -> Self where Observable.Element == String {
+    public func image<O:ObservableElement>(_ observable: O) -> Self where O.Element == String {
         return modified(WidgetModifierBlock<UIImageView> { view, context in
             observable.asObservable().map { UIImage(named: $0) }.bind(to: view.rx.image).disposed(by: context.disposeBag)
         })

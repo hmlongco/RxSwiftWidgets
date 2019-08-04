@@ -52,13 +52,12 @@ public struct VStackWidget
         return modified(WidgetModifier(keyPath: \UIStackView.alignment, value: alignment))
     }
 
-    public func bind<Item, Observable:ObservableElement>(_ observable: Observable, transform: @escaping (_ item: Item) -> Widget) -> Self
-        where Observable.Element == [Item] {
+    public func bind<Item, O:ObservableElement>(_ observable: O, transform: @escaping (_ item: Item) -> Widget) -> Self where O.Element == [Item] {
         return bind(observable.asObservable().map { $0.map { transform($0) } })
     }
 
 
-    public func bind<Observable:ObservableElement>(_ observable: Observable) -> Self where Observable.Element == [Widget] {
+    public func bind<O:ObservableElement>(_ observable: O) -> Self where O.Element == [Widget] {
         return modified(WidgetModifierBlock({ (stack: WidgetPrivateStackView, context) in
             stack.subscribe(to: observable.asObservable(), with: context)
         }))
@@ -85,8 +84,9 @@ internal class WidgetPrivateStackView: UIStackView {
     public func subscribe(to widgets: Observable<[Widget]>, with context: WidgetContext) {
         widgets
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [unowned self] (widgets) in
-
+            .subscribe(onNext: { [weak self] (widgets) in
+                guard let self = self else { return }
+                
                 self.disposeBag = DisposeBag()
 
                 self.subviews.forEach {

@@ -58,7 +58,7 @@ public struct HStackWidget
     }
 
 
-    public func bind<Observable:ObservableElement>(_ observable: Observable) -> Self where Observable.Element == [Widget] {
+    public func bind<O:ObservableElement>(_ observable: O) -> Self where O.Element == [Widget] {
         return modified(WidgetModifierBlock({ (stack: WidgetPrivateStackView, context) in
             stack.subscribe(to: observable.asObservable(), with: context)
         }))
