@@ -37,8 +37,7 @@ struct DemoBindingWidget: WidgetView {
                     .numberOfLines(0)
                     .padding(h: 0, v: 15),
 
-                LabelWidget()
-                    .text($title.map { "Parent page title is '\($0)'."} )
+                LabelWidget($title.map { "Parent page title is '\($0)'."} )
                     .font(.preferredFont(forTextStyle: .callout))
                     .alignment(.center)
                     .color(.white)

@@ -65,21 +65,41 @@ public struct LabelWidget
         return modified { $0.text = text }
     }
 
-    public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String {
-        return modified(WidgetModifierBlock<UILabel> { label, context in
-            observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
-        })
-    }
-
-    public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String? {
-        return modified(WidgetModifierBlock<UILabel> { label, context in
-            observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
-        })
-    }
-
     public func with(_ block: @escaping WidgetModifierBlockType<UILabel>) -> Self {
         return modified(WidgetModifierBlock(block))
     }
+}
+
+extension LabelWidget {
+
+    public init<O:ObservableElement>(_ observable: O) where O.Element == String {
+        self.modifiers = [modifier(for: observable)]
+    }
+
+    public init<O:ObservableElement>(_ observable: O) where O.Element == String? {
+        self.modifiers = [modifier(for: observable)]
+    }
+
+    public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String {
+        return modified(modifier(for: observable))
+    }
+
+    public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String? {
+        return modified(modifier(for: observable))
+    }
+
+    internal func modifier<O:ObservableElement>(for observable: O) -> AnyWidgetModifier where O.Element == String {
+        WidgetModifierBlock<UILabel> { label, context in
+            observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
+        }
+    }
+
+    internal func modifier<O:ObservableElement>(for observable: O) -> AnyWidgetModifier where O.Element == String? {
+        WidgetModifierBlock<UILabel> { label, context in
+            observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
+        }
+    }
+
 }
 
 extension LabelWidget {
