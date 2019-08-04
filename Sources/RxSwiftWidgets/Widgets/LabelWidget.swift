@@ -22,6 +22,7 @@ public struct LabelWidget
     public var modifiers: WidgetModifiers?
     public var padding: UIEdgeInsets?
 
+    /// Sets label text on initialization
     public init(_ text: String? = nil) {
         self.text = text
     }
@@ -41,30 +42,37 @@ public struct LabelWidget
         return label
     }
 
+    /// Sets alignment of label text
     public func alignment(_ alignment: NSTextAlignment) -> Self {
         return modified(WidgetModifier(keyPath: \UILabel.textAlignment, value: alignment))
     }
 
+    /// Sets color of label text
     public func color(_ color: UIColor) -> Self {
         return modified(WidgetModifier(keyPath: \UILabel.textColor, value: color))
     }
 
+    /// Sets font of label text
     public func font(_ font: UIFont) -> Self {
         return modified(WidgetModifier(keyPath: \UILabel.font, value: font))
     }
 
+    /// Sets lineBreakMode for label text
     public func lineBreakMode(_ lineBreakMode: NSLineBreakMode) -> Self {
         return modified(WidgetModifier(keyPath: \UILabel.lineBreakMode, value: lineBreakMode))
     }
 
+    /// Sets number of lines of label text
     public func numberOfLines(_ numberOfLines: Int) -> Self {
         return modified(WidgetModifier(keyPath: \UILabel.numberOfLines, value: numberOfLines))
     }
 
+    /// Sets label text
     public func text(_ text: String?) -> Self {
         return modified { $0.text = text }
     }
 
+    /// Allows modification of generated label
     public func with(_ block: @escaping WidgetModifierBlockType<UILabel>) -> Self {
         return modified(WidgetModifierBlock(block))
     }
@@ -72,18 +80,22 @@ public struct LabelWidget
 
 extension LabelWidget {
 
+    /// Allows initialization of label text with ObservableElement
     public init<O:ObservableElement>(_ observable: O) where O.Element == String {
         self.modifiers = [modifier(for: observable)]
     }
 
+    /// Allows initialization of label text with ObservableElement
     public init<O:ObservableElement>(_ observable: O) where O.Element == String? {
         self.modifiers = [modifier(for: observable)]
     }
 
+    /// Dynamically sets label text from ObservableElement
     public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String {
         return modified(modifier(for: observable))
     }
 
+    /// Dynamically sets label text from ObservableElement
     public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String? {
         return modified(modifier(for: observable))
     }
