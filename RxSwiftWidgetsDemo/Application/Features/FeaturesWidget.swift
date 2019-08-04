@@ -55,7 +55,7 @@ struct FeaturesWidget: WidgetView {
                 ]) // VStackWidget
                 .spacing(15)
                 .padding(h: 30, v: 50)
-                .onChange($title, handle: { (value) in
+                .onEvent($title, handle: { (value) in
                     print(value)
                 })
 
