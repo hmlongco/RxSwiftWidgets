@@ -4,10 +4,12 @@ import RxSwift
 import RxCocoa
 import RxSwiftWidgets
 
-struct MainMenuItemWidget: WidgetView {
+struct MainMenuItemWidget: WidgetView, WidgetViewModifying {
 
     let text: String
     let onTap: (WidgetContext) -> Void
+
+    var modifiers: WidgetModifiers? = []
 
     func widget(_ context: WidgetContext) -> Widget {
         LabelWidget(text)

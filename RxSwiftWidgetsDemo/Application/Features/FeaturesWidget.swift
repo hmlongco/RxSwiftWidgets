@@ -25,25 +25,27 @@ struct FeaturesWidget: WidgetView {
                     .alignment(.center)
                     .padding(20),
 
-                MainMenuItemWidget(text: "Property Binding") { context in
-                    context.navigator?.push(widget: DemoBindingWidget(title: self.$title))
-                },
+                MainMenuItemWidget(text: "Property Binding", onTap: { (context) in
+                     context.navigator?.push(widget: DemoBindingWidget(title: self.$title))
+                }),
 
-                MainMenuItemWidget(text: "Dismissible") { context in
+                MainMenuItemWidget(text: "Dismissible", onTap: { context in
                     context.navigator?.push(widget: DemoDismissibleWidget(), onDismiss: { (value: String) in
                         print(value)
                     })
-                },
+                }),
                 
-                MainMenuItemWidget(text: "Positioning") { context in
+                MainMenuItemWidget(text: "Positioning", onTap: { context in
                     context.navigator?.push(widget: DemoPositioningWidget())
-                },
+                }),
 
                 ButtonWidget("Reset Title")
                     .color(.orange)
                     .hidden($title.map { $0 == "Features" })
                     .onTap { context in
-                        self.title = "Features"
+                        UIView.animate(withDuration: 0.2) {
+                            self.title = "Features"
+                        }
                     },
 
                 SpacerWidget(),
@@ -53,6 +55,9 @@ struct FeaturesWidget: WidgetView {
                 ]) // VStackWidget
                 .spacing(15)
                 .padding(h: 30, v: 50)
+                .onChange($title, handle: { (value) in
+                    print(value)
+                })
 
             ]) // ZStackWidget
             .navigationBar(title: "Features", hidden: true)

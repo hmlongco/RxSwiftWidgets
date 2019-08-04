@@ -16,6 +16,11 @@ public protocol WidgetView: Widget {
 
 public extension WidgetView {
     func build(with context: WidgetContext) -> UIView {
-        return widget(context).build(with: context)
+        let widget = self.widget(context)
+        let view = widget.build(with: context)
+        if let modifing = self as? WidgetModifying {
+            modifing.modifiers?.apply(to: view, with: context)
+        }
+        return view
     }
 }

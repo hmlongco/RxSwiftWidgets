@@ -27,14 +27,14 @@ struct MainMenuWidget: WidgetView {
                         .position(.centerHorizontally)
                     ),
 
-                MainMenuItemWidget(text: "Account Details") { context in
+                MainMenuItemWidget(text: "Account Details", onTap: { context in
                     context.navigator?.push(widget: AccountDetailsWidget())
-                },
+                }),
 
-                MainMenuItemWidget(text: "Features") { context in
+                MainMenuItemWidget(text: "Features", onTap: { context in
                     context.navigator?.push(widget: FeaturesWidget())
-                },
-
+                }),
+                
                 Spacer(),
 
                 LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
