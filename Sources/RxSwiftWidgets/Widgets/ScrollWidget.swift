@@ -22,11 +22,16 @@ public struct ScrollWidget
     public var modifiers: WidgetModifiers?
     public var padding: UIEdgeInsets?
 
+    public init(_ widget: Widget) {
+        self.widget = widget
+    }
+
     public func build(with context: WidgetContext) -> UIView {
         let subview = widget.build(with: context)
 
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
         view.addSubview(subview)
 
         subview.widget.applyConstraints(padding: padding)
