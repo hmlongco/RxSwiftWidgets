@@ -36,9 +36,7 @@ public struct ContainerWidget
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
-        view.addSubview(subview)
-
-        subview.widget.applyConstraints(padding: padding)
+        view.addConstrainedSubview(subview, with: padding)
 
         modifiers?.apply(to: view, with: context)
 

@@ -8,8 +8,24 @@
 
 import UIKit
 
-public protocol WidgetViewExtendable {
+public struct WidgetViewAttributes {
+
+    var position: WidgetPosition = .fill
+    var safeArea = true
+
+}
+
+public protocol WidgetViewExtendable: UIView {
+
     var widget: WidgetViewAttributes { get set }
+
+    func build(widget: Widget, with context: WidgetContext)
+    func addConstrainedSubview(_ subview: UIView, with padding: UIEdgeInsets?)
+
+}
+
+public protocol WidgetViewCustomConstraints {
+    func addCustomConstraints()
 }
 
 extension UIView: WidgetViewExtendable {
@@ -17,48 +33,36 @@ extension UIView: WidgetViewExtendable {
     private static var WidgetViewAttributesKey: UInt8 = 0
 
     public func build(widget: Widget, with context: WidgetContext) {
-        self.widget.buildViews(from: widget, with: context)
+        addConstrainedSubview(widget.build(with: context))
     }
 
-    public func viewWithID<T,V:UIView>(_ id: T) -> V? where T: RawRepresentable, T.RawValue == Int {
-        return viewWithTag(id.rawValue) as? V
+    public func addConstrainedSubview(_ subview: UIView, with padding: UIEdgeInsets? = nil) {
+        let attr = subview.widget
+        let padding = padding ?? UIEdgeInsets.zero
+
+        self.addSubview(subview)
+
+        WidgetPosition.applyConstraints(subview, position: attr.position, padding: padding, safeArea: attr.safeArea)
+
+        if let customView = subview as? WidgetViewCustomConstraints {
+            customView.addCustomConstraints()
+        }
     }
 
-    public var widget: WidgetViewAttributes {
+   public var widget: WidgetViewAttributes {
         get {
             if let attributes = objc_getAssociatedObject( self, &UIView.WidgetViewAttributesKey ) as? WidgetViewAttributes {
                 return attributes
             }
-            return WidgetViewAttributes(view: self)
+            return WidgetViewAttributes()
         }
         set {
             objc_setAssociatedObject(self, &UIView.WidgetViewAttributesKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 
-}
-
-public struct WidgetViewAttributes {
-
-    weak var view: UIView?
-
-    var position: WidgetPosition = .fill
-    var safeArea = true
-
-}
-
-extension WidgetViewAttributes {
-
-    public func buildViews(from widgetTree: Widget, with context: WidgetContext) {
-        let subview = widgetTree.build(with: context)
-        view?.subviews.first?.removeFromSuperview()
-        view?.addSubview(subview)
-        subview.widget.applyConstraints()
-    }
-
-    public func applyConstraints(padding: UIEdgeInsets? = nil) {
-        guard let view = view else { return }
-        WidgetPosition.applyConstraints(view, position: position, padding: padding ?? UIEdgeInsets.zero, safeArea: safeArea)
+    public func viewWithID<T,V:UIView>(_ id: T) -> V? where T: RawRepresentable, T.RawValue == Int {
+        return viewWithTag(id.rawValue) as? V
     }
 
 }

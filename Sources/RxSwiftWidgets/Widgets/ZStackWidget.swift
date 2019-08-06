@@ -40,8 +40,7 @@ public struct ZStackWidget
 
         for widget in widgets {
             let subview = widget.build(with: context)
-            view.addSubview(subview)
-            subview.widget.applyConstraints(padding: padding)
+            view.addConstrainedSubview(subview, with: padding)
         }
 
         modifiers?.apply(to: view, with: context)
