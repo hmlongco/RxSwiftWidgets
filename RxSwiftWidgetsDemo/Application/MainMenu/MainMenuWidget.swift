@@ -12,40 +12,47 @@ struct MainMenuWidget: WidgetView {
                 .contentMode(.scaleAspectFill)
                 .safeArea(false),
 
-            VStack([
+            ScrollWidget(
+                VStack([
+                    Container(
+                        HStack([
+                            Image(named: "RxSwiftWidgets-Logo-DK")
+                                .height(100)
+                                .width(100)
+                                .contentMode(.scaleAspectFit),
+                            Text("RxSwiftWidgets")
+                                .font(.title2)
+                                .color(.white)
+                            ])
+                            .position(.centerHorizontally)
+                        ),
 
-                Container(
-                    HStack([
-                        Image(named: "RxSwiftWidgets-Logo-DK")
-                            .height(100)
-                            .width(100)
-                            .contentMode(.scaleAspectFit),
-                        Text("RxSwiftWidgets")
-                            .font(.title2)
-                            .color(.white)
-                        ])
-                        .position(.centerHorizontally)
-                    ),
+                    MainMenuItemWidget(text: "Account Details", onTap: { context in
+                        context.navigator?.push(widget: AccountDetailsWidget())
+                    }),
 
-                MainMenuItemWidget(text: "Account Details", onTap: { context in
-                    context.navigator?.push(widget: AccountDetailsWidget())
-                }),
+                    MainMenuItemWidget(text: "Features", onTap: { context in
+                        context.navigator?.push(widget: FeaturesWidget())
+                    }),
 
-                MainMenuItemWidget(text: "Features", onTap: { context in
-                    context.navigator?.push(widget: FeaturesWidget())
-                }),
-                
-                Spacer(),
+                    ]) // VStackWidget
+                    .spacing(15)
+                    .padding(h: 30, v: 50)
+                    .safeArea(true)
+                )
+                .safeArea(false),
 
-                LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
-                    .alignment(.center),
-
-                ]) // VStackWidget
-                .spacing(15)
-                .padding(h: 30, v: 50)
+            LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
+                .alignment(.center)
+                .backgroundColor(UIColor(white: 0.0, alpha: 0.4))
+                .contentCompressionResistancePriority(.required, for: .vertical)
+                .padding(h: 20, v: 20)
+                .position(.bottom)
+                .safeArea(true),
 
             ]) // ZStackWidget
             .navigationBar(title: "Menu", hidden: true)
             .safeArea(false)
+
         }
 }

@@ -15,57 +15,63 @@ struct AccountDetailsWidget: WidgetView {
                 .contentMode(.scaleAspectFill)
                 .safeArea(false),
 
-            VStack([
-
-                Container(
-                    Spinner().color(.gray)
-                )
-                .padding(15)
-                .hidden(viewModel.loading.map { !$0 }),
+            ScrollWidget(
 
                 VStack([
-                    Text()
-                        .text(viewModel.title)
-                        .alignment(.center)
-                        .color(.red)
-                        .font(.title1),
 
                     Container(
-                        VStack()
-                            .bind(viewModel.accountDetails) {
-                                self.accountDetailsRow($0)
-                            }
-                        )
-                        .padding(20)
-                        .cornerRadius(20)
-                        .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
+                        Spinner().color(.gray)
+                    )
+                    .padding(15)
+                    .hidden(viewModel.loading.map { !$0 }),
 
-                    Container(
-                        VStack()
-                             .bind(viewModel.paymentDetails) {
-                                self.accountDetailsRow($0)
-                            }
-                        )
-                        .padding(20)
-                        .cornerRadius(20)
-                        .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
+                    VStack([
 
                         Text()
-                            .text(viewModel.footnotes)
-                            .color(.gray)
-                            .font(.footnote)
-                            .numberOfLines(0)
-                            .padding(h: 15, v: 0),
-                    ])
-                    .spacing(20)
-                    .hidden(viewModel.loading),
+                            .text(viewModel.title)
+                            .alignment(.center)
+                            .color(.red)
+                            .font(.title1),
+
+                        Container(
+                            VStack()
+                                .bind(viewModel.accountDetails) {
+                                    self.accountDetailsRow($0)
+                                }
+                            )
+                            .padding(20)
+                            .cornerRadius(20)
+                            .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
+
+                        Container(
+                            VStack()
+                                 .bind(viewModel.paymentDetails) {
+                                    self.accountDetailsRow($0)
+                                }
+                            )
+                            .padding(20)
+                            .cornerRadius(20)
+                            .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
+
+                            Text()
+                                .text(viewModel.footnotes)
+                                .color(.gray)
+                                .font(.footnote)
+                                .numberOfLines(0)
+                                .padding(h: 15, v: 0),
+                        ])
+                        .spacing(20)
+                        .hidden(viewModel.loading),
 
 
-                Spacer(),
+                    Spacer(),
 
-                ]) // VStackWidget
-                .spacing(15)
+                    ]) // VStackWidget
+                    .spacing(15)
+
+                ) // ScrollWidget
                 .padding(h: 30, v: 20)
+                .safeArea(false)
 
             ]) // ZStackWidget
             .navigationBar(title: "Account Details", hidden: false)
