@@ -101,7 +101,7 @@ struct SampleWidget: WidgetView {
 
             ) // ContainerWidget
             .context { $0.put(UIFont.preferredFont(forTextStyle: .title1)) }
-            .onWillAppear { _ in self.viewModel.load() }
+            .onScreenWillAppear { _ in self.viewModel.load() }
             .navigationBar(title: "Sample", hidden: true)
             .backgroundColor(UIColor(white: 0.1, alpha: 1.0))
             .safeArea(false)

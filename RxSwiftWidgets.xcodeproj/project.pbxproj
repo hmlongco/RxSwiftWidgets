@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		4C15DED322ECFA7900196894 /* WidgetLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED122ECF9BD00196894 /* WidgetLifecycle.swift */; };
+		4C15DED322ECFA7900196894 /* WidgetModifyUIViewControllerEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED122ECF9BD00196894 /* WidgetModifyUIViewControllerEvents.swift */; };
 		4C15DED622EDE5BB00196894 /* WidgetDismissible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED422EDE4A900196894 /* WidgetDismissible.swift */; };
 		4C15DED822EE341100196894 /* DemoDismissibleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED722EE341100196894 /* DemoDismissibleWidget.swift */; };
 		4C15DEDA22EE399F00196894 /* WidgetModifyUINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED922EE399F00196894 /* WidgetModifyUINavigation.swift */; };
@@ -543,7 +543,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4C15DED122ECF9BD00196894 /* WidgetLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLifecycle.swift; sourceTree = "<group>"; };
+		4C15DED122ECF9BD00196894 /* WidgetModifyUIViewControllerEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetModifyUIViewControllerEvents.swift; sourceTree = "<group>"; };
 		4C15DED422EDE4A900196894 /* WidgetDismissible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDismissible.swift; sourceTree = "<group>"; };
 		4C15DED722EE341100196894 /* DemoDismissibleWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoDismissibleWidget.swift; sourceTree = "<group>"; };
 		4C15DED922EE399F00196894 /* WidgetModifyUINavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetModifyUINavigation.swift; sourceTree = "<group>"; };
@@ -1271,6 +1271,7 @@
 				4C15DED922EE399F00196894 /* WidgetModifyUINavigation.swift */,
 				OBJ_23 /* WidgetModifyUIView.swift */,
 				OBJ_24 /* WidgetModifyUIViewConstraints.swift */,
+				4C15DED122ECF9BD00196894 /* WidgetModifyUIViewControllerEvents.swift */,
 				OBJ_25 /* WidgetModifyUIViewCustom.swift */,
 				OBJ_26 /* WidgetModifyUIViewGestures.swift */,
 				OBJ_27 /* WidgetModifyUIViewLayer.swift */,
@@ -1537,7 +1538,6 @@
 				4CE3B69D22F4BCBC00E47F57 /* WidgetAnimation.swift */,
 				OBJ_12 /* WidgetContext.swift */,
 				4C15DED422EDE4A900196894 /* WidgetDismissible.swift */,
-				4C15DED122ECF9BD00196894 /* WidgetLifecycle.swift */,
 				OBJ_13 /* WidgetModifier.swift */,
 				OBJ_14 /* WidgetModifying.swift */,
 				OBJ_15 /* WidgetNavigation.swift */,
@@ -2139,7 +2139,7 @@
 				OBJ_668 /* WidgetModifyUIViewRx.swift in Sources */,
 				4CE3B6C522F77C3D00E47F57 /* TextFieldWidget.swift in Sources */,
 				4CE3B69E22F4BCBC00E47F57 /* WidgetAnimation.swift in Sources */,
-				4C15DED322ECFA7900196894 /* WidgetLifecycle.swift in Sources */,
+				4C15DED322ECFA7900196894 /* WidgetModifyUIViewControllerEvents.swift in Sources */,
 				OBJ_669 /* State.swift in Sources */,
 				OBJ_670 /* ObservableElement.swift in Sources */,
 				OBJ_671 /* ButtonWidget.swift in Sources */,

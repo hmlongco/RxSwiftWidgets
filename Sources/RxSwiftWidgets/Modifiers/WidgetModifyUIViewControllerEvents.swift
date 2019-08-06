@@ -1,5 +1,5 @@
 //
-//  WidgetLifecycle.swift
+//  WidgetModifyUIViewControllerEvents.swift
 //  RxSwiftWidgetsDemo
 //
 //  Created by Michael Long on 7/27/19.
@@ -9,7 +9,7 @@ import UIKit
 
 extension WidgetViewModifying {
 
-    public func onWillAppear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
+    public func onScreenWillAppear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
         return modified(WidgetModifierBlock({ (view, context) in
             if let vc = context.viewController {
                 vc.rx.methodInvoked(#selector(UIViewController.viewWillAppear(_:)))
@@ -22,7 +22,7 @@ extension WidgetViewModifying {
         }))
     }
 
-    public func onDidAppear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
+    public func onScreenDidAppear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
         return modified(WidgetModifierBlock({ (view, context) in
             if let vc = context.viewController {
                 vc.rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:)))
@@ -35,7 +35,7 @@ extension WidgetViewModifying {
         }))
     }
 
-    public func onWillDisappear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
+    public func onScreenWillDisappear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
         return modified(WidgetModifierBlock({ (view, context) in
             if let vc = context.viewController {
                 vc.rx.methodInvoked(#selector(UIViewController.viewWillDisappear(_:)))
@@ -48,7 +48,7 @@ extension WidgetViewModifying {
         }))
     }
 
-    public func onDidDisappear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
+    public func onScreenDidDisappear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
         return modified(WidgetModifierBlock({ (view, context) in
             if let vc = context.viewController {
                 vc.rx.methodInvoked(#selector(UIViewController.viewDidDisappear(_:)))
