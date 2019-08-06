@@ -9,32 +9,32 @@ struct AccountDetailsWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        ZStack([
+        ZStackWidget([
 
-            Image(named: "vector2")
+            ImageWidget(named: "vector2")
                 .contentMode(.scaleAspectFill)
                 .safeArea(false),
 
             ScrollWidget(
 
-                VStack([
+                VStackWidget([
 
-                    Container(
-                        Spinner().color(.gray)
+                    ContainerWidget(
+                        SpinnerWidget().color(.gray)
                     )
                     .padding(15)
                     .hidden(viewModel.loading.map { !$0 }),
 
-                    VStack([
+                    VStackWidget([
 
-                        Text()
+                        LabelWidget()
                             .text(viewModel.title)
                             .alignment(.center)
                             .color(.red)
                             .font(.title1),
 
-                        Container(
-                            VStack()
+                        ContainerWidget(
+                            VStackWidget()
                                 .bind(viewModel.accountDetails) {
                                     self.accountDetailsRow($0)
                                 }
@@ -43,8 +43,8 @@ struct AccountDetailsWidget: WidgetView {
                             .cornerRadius(20)
                             .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
 
-                        Container(
-                            VStack()
+                        ContainerWidget(
+                            VStackWidget()
                                  .bind(viewModel.paymentDetails) {
                                     self.accountDetailsRow($0)
                                 }
@@ -53,7 +53,7 @@ struct AccountDetailsWidget: WidgetView {
                             .cornerRadius(20)
                             .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
 
-                            Text()
+                            LabelWidget()
                                 .text(viewModel.footnotes)
                                 .color(.gray)
                                 .font(.footnote)
@@ -64,7 +64,7 @@ struct AccountDetailsWidget: WidgetView {
                         .hidden(viewModel.loading),
 
 
-                    Spacer(),
+                    SpacerWidget(),
 
                     ]) // VStackWidget
                     .spacing(15)
@@ -76,18 +76,18 @@ struct AccountDetailsWidget: WidgetView {
             ]) // ZStackWidget
             .navigationBar(title: "Account Details", hidden: false)
             .safeArea(false)
-            .onDidAppear { _ in
+            .onScreenDidAppear { _ in
                 self.viewModel.load()
             }
         }
 
     func accountDetailsRow(_ detail: AccountInformation.AccountDetails) -> Widget {
-        return HStack([
-            Text(detail.name)
+        return HStackWidget([
+            LabelWidget(detail.name)
                 .font(.body)
                 .color(.gray),
-            Spacer(),
-            Text(detail.value)
+            SpacerWidget(),
+            LabelWidget(detail.value)
                 .color(.darkText),
             ])
     }

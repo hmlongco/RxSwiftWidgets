@@ -6,11 +6,11 @@ struct DemoScrollingWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        let widgets = [Widget].init(repeating: Text("This is a line."), count: 40)
+        let widgets = [Widget].init(repeating: LabelWidget("This is a line."), count: 40)
 
-        return Container(
+        return ContainerWidget(
             ScrollWidget(
-                VStack(widgets)
+                VStackWidget(widgets)
                     .spacing(10)
                     .padding(h: 30, v: 20)
                 )

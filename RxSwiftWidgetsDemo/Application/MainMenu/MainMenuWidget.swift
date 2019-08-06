@@ -6,21 +6,21 @@ struct MainMenuWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        ZStack([
+        ZStackWidget([
 
-            Image(named: "vector1")
+            ImageWidget(named: "vector1")
                 .contentMode(.scaleAspectFill)
                 .safeArea(false),
 
             ScrollWidget(
-                VStack([
-                    Container(
-                        HStack([
-                            Image(named: "RxSwiftWidgets-Logo-DK")
+                VStackWidget([
+                    ContainerWidget(
+                        HStackWidget([
+                            ImageWidget(named: "RxSwiftWidgets-Logo-DK")
                                 .height(100)
                                 .width(100)
                                 .contentMode(.scaleAspectFit),
-                            Text("RxSwiftWidgets")
+                            LabelWidget("RxSwiftWidgets")
                                 .font(.title2)
                                 .color(.white)
                             ])
@@ -52,6 +52,7 @@ struct MainMenuWidget: WidgetView {
 
             ]) // ZStackWidget
             .navigationBar(title: "Menu", hidden: true)
+//            .backgroundColor(UIColor(patternImage: UIImage(named: "vector1")!))
             .safeArea(false)
 
         }
