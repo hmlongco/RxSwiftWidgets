@@ -63,6 +63,7 @@
 		4CE3B6A222F65A6C00E47F57 /* DisclosableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B6A022F65A1300E47F57 /* DisclosableWidget.swift */; };
 		4CE3B6C522F77C3D00E47F57 /* TextFieldWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B6C322F77BFE00E47F57 /* TextFieldWidget.swift */; };
 		4CE3B6CA22F77EF000E47F57 /* ScrollWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B6C922F77EF000E47F57 /* ScrollWidget.swift */; };
+		4CE3B6CC22F89F4300E47F57 /* DemoScrollingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B6CB22F89F4300E47F57 /* DemoScrollingWidget.swift */; };
 		OBJ_341 /* BehaviorRelay+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* BehaviorRelay+Driver.swift */; };
 		OBJ_342 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* Binder.swift */; };
 		OBJ_343 /* ControlEvent+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* ControlEvent+Driver.swift */; };
@@ -575,6 +576,7 @@
 		4CE3B6A022F65A1300E47F57 /* DisclosableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosableWidget.swift; sourceTree = "<group>"; };
 		4CE3B6C322F77BFE00E47F57 /* TextFieldWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWidget.swift; sourceTree = "<group>"; };
 		4CE3B6C922F77EF000E47F57 /* ScrollWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollWidget.swift; sourceTree = "<group>"; };
+		4CE3B6CB22F89F4300E47F57 /* DemoScrollingWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoScrollingWidget.swift; path = RxSwiftWidgetsDemo/Application/Features/DemoScrollingWidget.swift; sourceTree = SOURCE_ROOT; };
 		OBJ_100 /* RxScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
 		OBJ_101 /* RxSearchBarDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSearchBarDelegateProxy.swift; sourceTree = "<group>"; };
 		OBJ_102 /* RxSearchControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSearchControllerDelegateProxy.swift; sourceTree = "<group>"; };
@@ -986,6 +988,7 @@
 				4C8CCF2B22F0F488008139A3 /* DemoBindingWidget.swift */,
 				4C15DED722EE341100196894 /* DemoDismissibleWidget.swift */,
 				4C31A0CE22EF7CE9004A3464 /* DemoPositioningWidget.swift */,
+				4CE3B6CB22F89F4300E47F57 /* DemoScrollingWidget.swift */,
 				4C8CCF3222F1DB32008139A3 /* DoneButtonWidget.swift */,
 			);
 			path = Features;
@@ -1795,6 +1798,7 @@
 				4C62D37122F21FDC0071A51A /* User.swift in Sources */,
 				4C62D37022F21FDC0071A51A /* AccountInformation.swift in Sources */,
 				4C21216D22EA5ED900C5D6FB /* Style.swift in Sources */,
+				4CE3B6CC22F89F4300E47F57 /* DemoScrollingWidget.swift in Sources */,
 				4C21217D22EA698900C5D6FB /* MainMenuLabelWidget.swift in Sources */,
 				4C62D37222F21FDC0071A51A /* GenericError.swift in Sources */,
 				4C15DED822EE341100196894 /* DemoDismissibleWidget.swift in Sources */,
