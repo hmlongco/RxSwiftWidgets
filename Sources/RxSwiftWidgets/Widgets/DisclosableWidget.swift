@@ -17,9 +17,11 @@ public struct DisclosableWidget: Widget, WidgetContaining, WidgetPadding, Widget
     private var color = UIColor.init(white: 0.85, alpha: 1.0)
 
     public func build(with context: WidgetContext) -> UIView {
-        let childView = widget.build(with: context)
 
         let enclosure = UIView()
+        let context = context.set(view: enclosure)
+        let childView = widget.build(with: context)
+
         enclosure.backgroundColor = .clear
         enclosure.addSubview(childView)
 

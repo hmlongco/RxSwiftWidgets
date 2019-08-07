@@ -23,7 +23,7 @@ public struct SpinnerWidget: WidgetViewModifying
         let view = UIActivityIndicatorView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.startAnimating()
-        modifiers?.apply(to: view, with: context)
+        modifiers?.apply(to: view, with: context.set(view: view))
         return view
     }
 

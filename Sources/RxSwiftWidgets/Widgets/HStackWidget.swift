@@ -31,20 +31,26 @@ public struct HStackWidget
     }
 
     public func build(with context: WidgetContext) -> UIView {
-        let context = contextModifier?(context) ?? context
-        let stack = UIStackView()
+
+        let stack = WidgetPrivateStackView()
+        let context = (contextModifier?(context) ?? context).set(view: stack)
+
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.insetsLayoutMarginsFromSafeArea = false
         stack.axis = .horizontal
         stack.spacing = UIStackView.spacingUseSystem
+
         if let insets = padding {
             stack.isLayoutMarginsRelativeArrangement = true
             stack.layoutMargins = insets
         }
+
         for widget in widgets {
             stack.addArrangedSubview(widget.build(with: context))
         }
+
         modifiers?.apply(to: stack, with: context)
+        
         return stack
     }
 

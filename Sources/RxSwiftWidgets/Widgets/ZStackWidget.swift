@@ -31,9 +31,9 @@ public struct ZStackWidget
     }
 
     public func build(with context: WidgetContext) -> UIView {
-        let context = contextModifier?(context) ?? context
-
         let view = UIView()
+        let context = (contextModifier?(context) ?? context).set(view: view)
+
         view.translatesAutoresizingMaskIntoConstraints = false
         view.insetsLayoutMarginsFromSafeArea = false
         view.backgroundColor = .clear

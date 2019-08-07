@@ -33,7 +33,9 @@ extension UIView: WidgetViewExtendable {
     private static var WidgetViewAttributesKey: UInt8 = 0
 
     public func build(widget: Widget, with context: WidgetContext) {
-        addConstrainedSubview(widget.build(with: context))
+        let context = context.set(view: self)
+        let view = widget.build(with: context)
+        addConstrainedSubview(view)
     }
 
     public func addConstrainedSubview(_ subview: UIView, with padding: UIEdgeInsets? = nil) {

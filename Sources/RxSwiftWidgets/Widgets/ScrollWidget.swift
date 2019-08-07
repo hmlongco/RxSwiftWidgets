@@ -35,10 +35,11 @@ public struct ScrollWidget
 
     public func build(with context: WidgetContext) -> UIView {
 
+        let view = WidgetScrollView()
+        let context = context.set(view: view)
         let contentView = widget.build(with: context)
         let padding = self.padding ?? UIEdgeInsets.zero
 
-        let view = WidgetScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
         view.axis = axis

@@ -30,11 +30,21 @@ public struct WidgetContext {
 
     public struct Keys {}
 
+    public weak var parentView: UIView?
+    public weak var view: UIView?
+
     public var attributes: [String:Any?] = [:]
     public var disposeBag: DisposeBag
 
     public init() {
         self.disposeBag = DisposeBag()
+    }
+
+    public func set(view: UIView) -> WidgetContext {
+        var context = self
+        context.parentView = context.view
+        context.view = view
+        return context
     }
 
     public func get<T>(_ key: String) -> T {

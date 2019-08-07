@@ -30,6 +30,8 @@ public struct ImageWidget: WidgetViewModifying
 
     public func build(with context: WidgetContext) -> UIView {
         let view = UIImageView()
+        let context = context.set(view: view)
+        
         view.translatesAutoresizingMaskIntoConstraints = false
 
         if let name = name {

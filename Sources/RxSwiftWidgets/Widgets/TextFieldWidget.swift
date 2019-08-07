@@ -28,6 +28,8 @@ public struct TextFieldWidget
 
     public func build(with context: WidgetContext) -> UIView {
         let textField = WidgetTextField()
+        let context = context.set(view: textField)
+        
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.preferredFont(forTextStyle: .body)
 //        textField.text = text

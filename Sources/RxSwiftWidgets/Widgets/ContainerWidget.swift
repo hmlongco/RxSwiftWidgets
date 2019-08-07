@@ -30,10 +30,10 @@ public struct ContainerWidget
 
     public func build(with context: WidgetContext) -> UIView {
 
-        let context = contextModifier?(context) ?? context
+        let view = UIView()
+        let context = (contextModifier?(context) ?? context).set(view: view)
         let subview = widget.build(with: context)
 
-        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
         view.addConstrainedSubview(subview, with: padding)
