@@ -9,7 +9,7 @@ import UIKit
 
 extension WidgetViewModifying {
 
-    public func onScreenWillAppear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
+    public func onViewWillAppear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
         return modified(WidgetModifierBlock({ (view, context) in
             if let vc = context.viewController {
                 vc.rx.methodInvoked(#selector(UIViewController.viewWillAppear(_:)))
@@ -22,7 +22,7 @@ extension WidgetViewModifying {
         }))
     }
 
-    public func onScreenDidAppear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
+    public func onViewDidAppear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
         return modified(WidgetModifierBlock({ (view, context) in
             if let vc = context.viewController {
                 vc.rx.methodInvoked(#selector(UIViewController.viewDidAppear(_:)))
@@ -35,7 +35,7 @@ extension WidgetViewModifying {
         }))
     }
 
-    public func onScreenWillDisappear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
+    public func onViewWillDisappear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
         return modified(WidgetModifierBlock({ (view, context) in
             if let vc = context.viewController {
                 vc.rx.methodInvoked(#selector(UIViewController.viewWillDisappear(_:)))
@@ -48,7 +48,7 @@ extension WidgetViewModifying {
         }))
     }
 
-    public func onScreenDidDisappear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
+    public func onViewDidDisappear(_ handler: @escaping (WidgetContext) -> Void) -> Self {
         return modified(WidgetModifierBlock({ (view, context) in
             if let vc = context.viewController {
                 vc.rx.methodInvoked(#selector(UIViewController.viewDidDisappear(_:)))

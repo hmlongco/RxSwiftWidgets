@@ -54,7 +54,7 @@ struct DemoDismissibleWidget: WidgetView {
             ]) // ZStackWidget
             .navigationBar(title: "Dismissible Demo", hidden: true)
             .safeArea(false)
-            .onScreenDidAppear { (context) in
+            .onViewDidAppear { (context) in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
                     context.navigator?.dismiss(returning: "Automactic Return")
                 }

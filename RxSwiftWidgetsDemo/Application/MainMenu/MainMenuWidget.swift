@@ -39,21 +39,18 @@ struct MainMenuWidget: WidgetView {
                     .spacing(15)
                     .padding(h: 30, v: 50)
                     .safeArea(true)
-                )
+                ) // ScrollWidget
                 .safeArea(false),
 
             LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
                 .alignment(.center)
                 .backgroundColor(UIColor(white: 0.0, alpha: 0.4))
-                .contentCompressionResistancePriority(.required, for: .vertical)
                 .padding(h: 20, v: 20)
                 .position(.bottom)
                 .safeArea(true),
 
             ]) // ZStackWidget
             .navigationBar(title: "Menu", hidden: true)
-//            .backgroundColor(UIColor(patternImage: UIImage(named: "vector1")!))
             .safeArea(false)
-
         }
 }

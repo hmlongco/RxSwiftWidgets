@@ -76,7 +76,7 @@ struct AccountDetailsWidget: WidgetView {
             ]) // ZStackWidget
             .navigationBar(title: "Account Details", hidden: false)
             .safeArea(false)
-            .onScreenDidAppear { _ in
+            .onViewDidAppear { _ in
                 self.viewModel.load()
             }
         }
