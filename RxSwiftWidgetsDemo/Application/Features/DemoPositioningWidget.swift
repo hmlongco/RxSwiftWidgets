@@ -72,8 +72,7 @@ struct DemoPositioningWidget: WidgetView {
 
     func borderedStack(_ widgets: [Widget]) -> Widget {
         ZStackWidget(widgets)
-            .borderColor(.lightGray)
-            .borderWidth(1.0)
+            .border(color: .lightGray)
             .padding(10)
             .height(120)
     }

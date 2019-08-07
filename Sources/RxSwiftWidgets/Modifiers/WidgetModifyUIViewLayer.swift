@@ -15,6 +15,15 @@ import RxCocoa
 
 extension WidgetViewModifying {
 
+    public func border(color: UIColor = .gray, width: CGFloat = 1, radius: CGFloat = 0) -> Self {
+        return modified(WidgetModifierBlock({ (view, context) in
+            view.layer.borderColor = color.cgColor
+            view.layer.borderWidth = width
+            view.layer.cornerRadius = radius
+            view.clipsToBounds = true
+        }))
+    }
+
     public func borderColor(_ borderColor: UIColor) -> Self {
         return modified(WidgetModifier(keyPath: \UIView.layer.borderColor, value: borderColor.cgColor))
     }
@@ -24,23 +33,19 @@ extension WidgetViewModifying {
     }
 
     public func cornerRadius(_ cornerRadius: CGFloat) -> Self {
-        return modified(WidgetModifier(keyPath: \UIView.layer.cornerRadius, value: cornerRadius))
+        return modified(WidgetModifierBlock({ (view, context) in
+            view.layer.cornerRadius = cornerRadius
+            view.clipsToBounds = true
+        }))
     }
 
-    public func shadowRadius(_ shadowRadius: CGFloat) -> Self {
-        return modified(WidgetModifier(keyPath: \UIView.layer.shadowRadius, value: shadowRadius))
+    public func shadow(offset: CGSize, color: UIColor = .gray, opacity: Float = 0.5, radius: CGFloat = 0) -> Self {
+        return modified(WidgetModifierBlock({ (view, context) in
+            view.layer.shadowOffset = offset
+            view.layer.shadowColor = color.cgColor
+            view.layer.shadowOpacity = opacity
+            view.layer.shadowRadius = radius
+        }))
     }
-
-    public func shadowOpacity(_ shadowOpacity: Float) -> Self {
-        return modified(WidgetModifier(keyPath: \UIView.layer.shadowOpacity, value: shadowOpacity))
-    }
-
-    public func shadowOffset(_ shadowOffset: CGSize) -> Self {
-        return modified(WidgetModifier(keyPath: \UIView.layer.shadowOffset, value: shadowOffset))
-    }
-
-    public func shadowColor(_ shadowColor: UIColor) -> Self {
-        return modified(WidgetModifier(keyPath: \UIView.layer.shadowColor, value: shadowColor.cgColor))
-    }
-
+    
 }
