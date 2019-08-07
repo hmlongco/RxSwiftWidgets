@@ -21,9 +21,10 @@ public struct SpinnerWidget: WidgetViewModifying
 
     public func build(with context: WidgetContext) -> UIView {
         let view = UIActivityIndicatorView(frame: .zero)
+        let context = context.set(view: view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.startAnimating()
-        modifiers?.apply(to: view, with: context.set(view: view))
+        modifiers?.apply(to: view, with: context)
         return view
     }
 
