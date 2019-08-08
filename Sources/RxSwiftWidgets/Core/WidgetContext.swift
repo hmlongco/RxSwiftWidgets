@@ -30,6 +30,8 @@ public struct WidgetContext {
 
     public struct Keys {}
 
+    public weak var viewController: UIViewController?
+
     public weak var parentView: UIView?
     public weak var view: UIView?
 

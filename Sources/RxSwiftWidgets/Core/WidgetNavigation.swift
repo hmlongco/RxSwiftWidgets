@@ -88,16 +88,14 @@ extension WidgetContext {
         return context
     }
 
-    public var viewController: UIViewController? {
-        return get(UIViewControllerBox.self).viewController
+    public func set(viewController: UIViewController) -> WidgetContext {
+        var context = self
+        context.viewController = viewController
+        return context
     }
 
     public var dismissible: WidgetDismissibleType? {
         return get(WidgetDismissibleType.self)
-    }
-
-    public func set(viewController: UIViewController) -> WidgetContext {
-        return put(UIViewControllerBox(viewController: viewController))
     }
 
     public func set(dismissible: WidgetDismissibleType?) -> WidgetContext {
