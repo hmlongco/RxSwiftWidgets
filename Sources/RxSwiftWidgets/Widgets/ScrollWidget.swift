@@ -56,6 +56,44 @@ public struct ScrollWidget
         return view
     }
 
+    public func automaticallyAdjustForKeyboard() -> Self {
+        return modified(WidgetModifierBlock<WidgetScrollView> { scrollView, context in
+            NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+                .asObservable()
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { [weak scrollView] (notification) in
+                    guard let scrollView = scrollView, let window = scrollView.window else { return }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        let info: NSDictionary = notification.userInfo! as NSDictionary
+                        // get keyboard frame in window coordinate space
+                        let keyboardFrameInWindow = ((info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue)!
+                        // get scrollview frame in window coordinate space
+                        let scrollViewFrameInWindow = scrollView.convert(scrollView.frame, to: window)
+                        // compute intersection
+                        let intersection = scrollViewFrameInWindow.intersection(keyboardFrameInWindow)
+                        // if intersects, inset scrollview by that amount
+                        if intersection.height > 0 {
+                            let contentInsets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: intersection.height, right: 0)
+                            scrollView.contentInset = contentInsets
+                            scrollView.scrollIndicatorInsets = contentInsets
+                        }
+                    }
+                })
+                .disposed(by: context.disposeBag)
+
+            NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
+                .asObservable()
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { [weak scrollView] _ in
+                    if let scrollView = scrollView, scrollView.contentInset.bottom > 0 {
+                        scrollView.contentInset = UIEdgeInsets.zero
+                        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+                    }
+                })
+                .disposed(by: context.disposeBag)
+        })
+    }
+
     public func axis(_ axis: WidgetScrollAxis) -> Self {
         return modified { $0.axis = axis }
     }
