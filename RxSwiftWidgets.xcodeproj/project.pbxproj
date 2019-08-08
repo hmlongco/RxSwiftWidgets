@@ -48,6 +48,7 @@
 		4C44C2F022EA508F00E3CBDD /* RxSwiftWidgets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwiftWidgets::RxSwiftWidgets::Product" /* RxSwiftWidgets.framework */; };
 		4C44C2F122EA508F00E3CBDD /* RxSwiftWidgets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwiftWidgets::RxSwiftWidgets::Product" /* RxSwiftWidgets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C44C2F922EA525300E3CBDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C44C2F722EA525300E3CBDD /* Assets.xcassets */; };
+		4C585DD822FB7BD7007E4F5F /* ObservableListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C585DD722FB7BD7007E4F5F /* ObservableListBuilder.swift */; };
 		4C62D36B22F21CDC0071A51A /* AccountDetailsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36A22F21C700071A51A /* AccountDetailsWidget.swift */; };
 		4C62D37022F21FDC0071A51A /* AccountInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36D22F21FDC0071A51A /* AccountInformation.swift */; };
 		4C62D37122F21FDC0071A51A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36E22F21FDC0071A51A /* User.swift */; };
@@ -561,6 +562,7 @@
 		4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		4C44C2F722EA525300E3CBDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C44C2FC22EA550300E3CBDD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C585DD722FB7BD7007E4F5F /* ObservableListBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableListBuilder.swift; sourceTree = "<group>"; };
 		4C62D36A22F21C700071A51A /* AccountDetailsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsWidget.swift; sourceTree = "<group>"; };
 		4C62D36D22F21FDC0071A51A /* AccountInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInformation.swift; sourceTree = "<group>"; };
 		4C62D36E22F21FDC0071A51A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -1019,6 +1021,7 @@
 				4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */,
 				4C62D36922F21C5D0071A51A /* Account Details */,
 				4C31A0CB22EF7ADD004A3464 /* Features */,
+				4C585DD922FB9CBB007E4F5F /* Login */,
 				4C21217B22EA697300C5D6FB /* MainMenu */,
 			);
 			path = Application;
@@ -1039,6 +1042,13 @@
 			children = (
 			);
 			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		4C585DD922FB9CBB007E4F5F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		4C62D36922F21C5D0071A51A /* Account Details */ = {
@@ -1286,6 +1296,7 @@
 				4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */,
 				4C8CCF2D22F0FAFE008139A3 /* Binding.swift */,
 				OBJ_31 /* ObservableElement.swift */,
+				4C585DD722FB7BD7007E4F5F /* ObservableListBuilder.swift */,
 				OBJ_30 /* State.swift */,
 			);
 			path = Rx;
@@ -2138,6 +2149,7 @@
 				OBJ_667 /* WidgetModifyUIViewLayer.swift in Sources */,
 				OBJ_668 /* WidgetModifyUIViewRx.swift in Sources */,
 				4CE3B6C522F77C3D00E47F57 /* TextFieldWidget.swift in Sources */,
+				4C585DD822FB7BD7007E4F5F /* ObservableListBuilder.swift in Sources */,
 				4CE3B69E22F4BCBC00E47F57 /* WidgetAnimation.swift in Sources */,
 				4C15DED322ECFA7900196894 /* WidgetModifyUIViewControllerEvents.swift in Sources */,
 				OBJ_669 /* State.swift in Sources */,

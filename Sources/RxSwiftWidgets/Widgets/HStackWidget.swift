@@ -30,6 +30,17 @@ public struct HStackWidget
         self.widgets = widgets
     }
 
+    public init<Item>(_ builder: ObservableListBuilder<Item>) {
+        self.widgets = []
+        self.modifiers = [bindingModifier(for: builder)]
+    }
+
+    private func bindingModifier<Item>(for builder: ObservableListBuilder<Item>) -> AnyWidgetModifier {
+        return WidgetModifierBlock<WidgetPrivateStackView>({ (stack, context) in
+            stack.subscribe(to: AnyObservableListBuilder(builder), with: context)
+        })
+    }
+
     public func build(with context: WidgetContext) -> UIView {
 
         let stack = WidgetPrivateStackView()
@@ -58,16 +69,8 @@ public struct HStackWidget
         return modified(WidgetModifier(keyPath: \UIStackView.alignment, value: alignment))
     }
 
-    public func bind<Item, Observable:ObservableElement>(_ observable: Observable, transform: @escaping (_ item: Item) -> Widget) -> Self
-        where Observable.Element == [Item] {
-        return bind(observable.asObservable().map { $0.map { transform($0) } })
-    }
-
-
-    public func bind<O:ObservableElement>(_ observable: O) -> Self where O.Element == [Widget] {
-        return modified(WidgetModifierBlock({ (stack: WidgetPrivateStackView, context) in
-            stack.subscribe(to: observable.asObservable(), with: context)
-        }))
+    public func bind<Item>(_ builder: ObservableListBuilder<Item>) -> Self {
+        return modified(bindingModifier(for: builder))
     }
 
     public func distribution(_ distribution: UIStackView.Distribution) -> Self {

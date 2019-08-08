@@ -30,6 +30,17 @@ public struct VStackWidget
         self.widgets = widgets
     }
 
+    public init<Item>(_ builder: ObservableListBuilder<Item>) {
+        self.widgets = []
+        self.modifiers = [bindingModifier(for: builder)]
+    }
+
+    private func bindingModifier<Item>(for builder: ObservableListBuilder<Item>) -> AnyWidgetModifier {
+        return WidgetModifierBlock<WidgetPrivateStackView>({ (stack, context) in
+            stack.subscribe(to: AnyObservableListBuilder(builder), with: context)
+        })
+    }
+
     public func build(with context: WidgetContext) -> UIView {
         
         let stack = WidgetPrivateStackView()
@@ -58,15 +69,8 @@ public struct VStackWidget
         return modified(WidgetModifier(keyPath: \UIStackView.alignment, value: alignment))
     }
 
-    public func bind<Item, O:ObservableElement>(_ observable: O, transform: @escaping (_ item: Item) -> Widget) -> Self where O.Element == [Item] {
-        return bind(observable.asObservable().map { $0.map { transform($0) } })
-    }
-
-
-    public func bind<O:ObservableElement>(_ observable: O) -> Self where O.Element == [Widget] {
-        return modified(WidgetModifierBlock({ (stack: WidgetPrivateStackView, context) in
-            stack.subscribe(to: observable.asObservable(), with: context)
-        }))
+    public func bind<Item>(_ builder: ObservableListBuilder<Item>) -> Self {
+        return modified(bindingModifier(for: builder))
     }
 
     public func distribution(_ distribution: UIStackView.Distribution) -> Self {
@@ -87,12 +91,12 @@ internal class WidgetPrivateStackView: UIStackView {
 
     var disposeBag: DisposeBag!
 
-    public func subscribe(to widgets: Observable<[Widget]>, with context: WidgetContext) {
-        widgets
+    public func subscribe(to builder: AnyObservableListBuilder, with context: WidgetContext) {
+        builder.items
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] (widgets) in
+            .subscribe(onNext: { [weak self] (items) in
                 guard let self = self else { return }
-                
+
                 self.disposeBag = DisposeBag()
 
                 self.subviews.forEach {
@@ -102,9 +106,11 @@ internal class WidgetPrivateStackView: UIStackView {
                 var context = context
                 context.disposeBag = self.disposeBag
 
-                widgets.forEach { widget in
-                    let view = widget.build(with: context)
-                    self.addArrangedSubview(view)
+                items.forEach { item in
+                    if let widget = builder.widget(for: item) {
+                        let view = widget.build(with: context)
+                        self.addArrangedSubview(view)
+                    }
                 }
 
                 UIView.animate(withDuration: 0.01, animations: {

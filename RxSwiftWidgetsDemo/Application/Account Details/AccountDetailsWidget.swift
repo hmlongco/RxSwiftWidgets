@@ -35,9 +35,9 @@ struct AccountDetailsWidget: WidgetView {
 
                         ContainerWidget(
                             VStackWidget()
-                                .bind(viewModel.accountDetails) {
+                                .bind(ObservableListBuilder(viewModel.accountDetails, builder: {
                                     self.accountDetailsRow($0)
-                                }
+                                }))
                             )
                             .padding(20)
                             .cornerRadius(20)
@@ -45,9 +45,9 @@ struct AccountDetailsWidget: WidgetView {
 
                         ContainerWidget(
                             VStackWidget()
-                                 .bind(viewModel.paymentDetails) {
+                                .bind(ObservableListBuilder(viewModel.paymentDetails, builder: {
                                     self.accountDetailsRow($0)
-                                }
+                                }))
                             )
                             .padding(20)
                             .cornerRadius(20)
