@@ -55,15 +55,15 @@ struct LoginFormWidget: WidgetView {
                 LabelWidget.footnote("Username"),
                 TextFieldWidget("Michael Long")
                     .font(.title2)
-                    .color(.white)
+                    .color(.black)
                     .with { textField, _ in
                         textField.isSecureTextEntry = false
                         textField.keyboardAppearance = .dark
                     }
                 ])
+                .spacing(0)
             )
-            .backgroundColor(.black)
-            .shadow(offset: CGSize(width: 0, height: 0), color: .darkGray, radius: 5)
+            .backgroundColor(UIColor(white: 1.0, alpha: 0.8))
             .padding(h: 30, v: 10)
     }
 
@@ -73,15 +73,15 @@ struct LoginFormWidget: WidgetView {
                 LabelWidget.footnote("Password"),
                 TextFieldWidget("")
                     .font(.title2)
-                    .color(.white)
+                    .color(.black)
                     .with { textField, _ in
                         textField.isSecureTextEntry = true
                         textField.keyboardAppearance = .dark
                     }
                 ])
+                .spacing(0)
             )
-            .backgroundColor(.black)
-            .shadow(offset: CGSize(width: 0, height: 0), color: .darkGray, radius: 5)
+            .backgroundColor(UIColor(white: 1.0, alpha: 0.8))
             .padding(h: 30, v: 10)
     }
 
@@ -90,9 +90,9 @@ struct LoginFormWidget: WidgetView {
             .backgroundColor(UIColor(red: 0.8, green: 0.0, blue: 0.4, alpha: 0.7))
             .font(.title2)
             .color(.white)
-            .padding(h: 30, v: 10)
-            .onTap(handler: { (_) in
-                print("Logged in...")
+            .padding(h: 30, v: 15)
+            .onTap(handler: { (context) in
+                context.navigator?.dismiss()
             })
     }
 

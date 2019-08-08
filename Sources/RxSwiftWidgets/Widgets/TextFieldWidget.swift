@@ -19,12 +19,13 @@ public struct TextFieldWidget
     public var debugDescription: String { "TextFieldWidget()" }
 
     public var modifiers: WidgetModifiers?
-//    public var padding: UIEdgeInsets?
+    public var padding: UIEdgeInsets?
+    public var text: String?
 
     /// Sets label text on initialization
-//    public init(_ text: String? = nil) {
-//        self.text = text
-//    }
+    public init(_ text: String? = nil) {
+        self.text = text
+    }
 
     public func build(with context: WidgetContext) -> UIView {
         let textField = WidgetTextField()
@@ -32,7 +33,7 @@ public struct TextFieldWidget
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.preferredFont(forTextStyle: .body)
-//        textField.text = text
+        textField.text = text
 //        label.textInsets = padding
         textField.backgroundColor = .clear
 

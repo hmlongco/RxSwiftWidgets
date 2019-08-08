@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
         window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController()
-//        let wt = DemoScrollingWidget()
+//        let wt = LoginFormWidget()
         let wt = MainMenuWidget()
         let vc = UIWidgetHostController(wt)
         navigationController.addChild(vc)

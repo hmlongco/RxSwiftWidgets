@@ -36,6 +36,7 @@
 		4C21217D22EA698900C5D6FB /* MainMenuLabelWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21217C22EA698900C5D6FB /* MainMenuLabelWidget.swift */; };
 		4C31A0CD22EF7BCC004A3464 /* FeaturesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C31A0CC22EF7AEF004A3464 /* FeaturesWidget.swift */; };
 		4C31A0CF22EF7CE9004A3464 /* DemoPositioningWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C31A0CE22EF7CE9004A3464 /* DemoPositioningWidget.swift */; };
+		4C3EFF1522FC7A2F007F909A /* LoginFormWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EFF1422FC7A2F007F909A /* LoginFormWidget.swift */; };
 		4C44C2C522EA4E3600E3CBDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */; };
 		4C44C2E022EA508F00E3CBDD /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwift::RxCocoa::Product" /* RxCocoa.framework */; };
 		4C44C2E122EA508F00E3CBDD /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwift::RxCocoa::Product" /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -558,6 +559,7 @@
 		4C21217C22EA698900C5D6FB /* MainMenuLabelWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuLabelWidget.swift; sourceTree = "<group>"; };
 		4C31A0CC22EF7AEF004A3464 /* FeaturesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesWidget.swift; sourceTree = "<group>"; };
 		4C31A0CE22EF7CE9004A3464 /* DemoPositioningWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPositioningWidget.swift; sourceTree = "<group>"; };
+		4C3EFF1422FC7A2F007F909A /* LoginFormWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFormWidget.swift; sourceTree = "<group>"; };
 		4C44C2C222EA4E3600E3CBDD /* RxSwiftWidgetsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftWidgetsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		4C44C2F722EA525300E3CBDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1047,6 +1049,7 @@
 		4C585DD922FB9CBB007E4F5F /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				4C3EFF1422FC7A2F007F909A /* LoginFormWidget.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1810,6 +1813,7 @@
 				4C62D37022F21FDC0071A51A /* AccountInformation.swift in Sources */,
 				4C21216D22EA5ED900C5D6FB /* Style.swift in Sources */,
 				4CE3B6CC22F89F4300E47F57 /* DemoScrollingWidget.swift in Sources */,
+				4C3EFF1522FC7A2F007F909A /* LoginFormWidget.swift in Sources */,
 				4C21217D22EA698900C5D6FB /* MainMenuLabelWidget.swift in Sources */,
 				4C62D37222F21FDC0071A51A /* GenericError.swift in Sources */,
 				4C15DED822EE341100196894 /* DemoDismissibleWidget.swift in Sources */,

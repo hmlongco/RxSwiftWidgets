@@ -31,6 +31,10 @@ struct MainMenuWidget: WidgetView {
                         context.navigator?.push(widget: AccountDetailsWidget())
                     }),
 
+                    MainMenuItemWidget(text: "Login Form", onTap: { context in
+                        context.navigator?.push(widget: LoginFormWidget())
+                    }),
+
                     MainMenuItemWidget(text: "Features", onTap: { context in
                         context.navigator?.push(widget: FeaturesWidget())
                     }),
