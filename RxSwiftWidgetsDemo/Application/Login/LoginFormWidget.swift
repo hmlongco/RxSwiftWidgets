@@ -4,6 +4,9 @@ import RxSwiftWidgets
 
 struct LoginFormWidget: WidgetView {
 
+    @State var username: String = "Michael Long"
+    @State var password: String = ""
+
     func widget(_ context: WidgetContext) -> Widget {
         ZStackWidget([
 
@@ -53,7 +56,7 @@ struct LoginFormWidget: WidgetView {
         ContainerWidget(
             VStackWidget([
                 LabelWidget.footnote("Username"),
-                TextFieldWidget("Michael Long")
+                TextFieldWidget($username)
                     .font(.title2)
                     .color(.black)
                     .with { textField, _ in
@@ -71,7 +74,7 @@ struct LoginFormWidget: WidgetView {
         ContainerWidget(
             VStackWidget([
                 LabelWidget.footnote("Password"),
-                TextFieldWidget("")
+                TextFieldWidget($password)
                     .font(.title2)
                     .color(.black)
                     .with { textField, _ in
@@ -92,6 +95,8 @@ struct LoginFormWidget: WidgetView {
             .color(.white)
             .padding(h: 30, v: 15)
             .onTap(handler: { (context) in
+                print(self.username)
+                print(self.password)
                 context.navigator?.dismiss()
             })
     }
