@@ -84,6 +84,11 @@ public struct LabelWidget
         return modified(WidgetModifier(keyPath: \UILabel.numberOfLines, value: numberOfLines))
     }
 
+    /// Placeholder text
+    public func placeholder(_ text: String) -> Self {
+        return modified(WidgetModifier(keyPath: \UILabel.text, value: text))
+    }
+
     /// Allows modification of generated label
     public func with(_ block: @escaping WidgetModifierBlockType<UILabel>) -> Self {
         return modified(WidgetModifierBlock(block))
