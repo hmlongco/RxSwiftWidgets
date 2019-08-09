@@ -16,15 +16,30 @@ public struct LabelWidget
     , WidgetPadding
     , CustomDebugStringConvertible {
 
-    public var debugDescription: String { "LabelWidget(\"\(text ?? "")\")" }
+    public var debugDescription: String { "LabelWidget()" }
 
-    public var text: String?
+    public var textModifier: AnyWidgetModifier
+
     public var modifiers: WidgetModifiers?
     public var padding: UIEdgeInsets?
 
     /// Sets label text on initialization
     public init(_ text: String? = nil) {
-        self.text = text
+        textModifier = WidgetModifier(keyPath: \UILabel.text, value: text)
+    }
+
+    /// Allows initialization of label text with ObservableElement
+    public init<O:ObservableElement>(_ observable: O) where O.Element == String {
+        textModifier = WidgetModifierBlock<UILabel> { label, context in
+            observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
+        }
+    }
+
+    /// Allows initialization of label text with ObservableElement
+    public init<O:ObservableElement>(_ observable: O) where O.Element == String? {
+        textModifier = WidgetModifierBlock<UILabel> { label, context in
+            observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
+        }
     }
 
     public func build(with context: WidgetContext) -> UIView {
@@ -33,12 +48,12 @@ public struct LabelWidget
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.text = text
         label.textInsets = padding
         label.backgroundColor = .clear
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
+        textModifier.apply(to: label, with: context)
         modifiers?.apply(to: label, with: context)
         
         return label
@@ -69,51 +84,10 @@ public struct LabelWidget
         return modified(WidgetModifier(keyPath: \UILabel.numberOfLines, value: numberOfLines))
     }
 
-    /// Sets label text
-    public func text(_ text: String?) -> Self {
-        return modified { $0.text = text }
-    }
-
     /// Allows modification of generated label
     public func with(_ block: @escaping WidgetModifierBlockType<UILabel>) -> Self {
         return modified(WidgetModifierBlock(block))
     }
-}
-
-extension LabelWidget {
-
-    /// Allows initialization of label text with ObservableElement
-    public init<O:ObservableElement>(_ observable: O) where O.Element == String {
-        self.modifiers = [modifier(for: observable)]
-    }
-
-    /// Allows initialization of label text with ObservableElement
-    public init<O:ObservableElement>(_ observable: O) where O.Element == String? {
-        self.modifiers = [modifier(for: observable)]
-    }
-
-    /// Dynamically sets label text from ObservableElement
-    public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String {
-        return modified(modifier(for: observable))
-    }
-
-    /// Dynamically sets label text from ObservableElement
-    public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String? {
-        return modified(modifier(for: observable))
-    }
-
-    internal func modifier<O:ObservableElement>(for observable: O) -> AnyWidgetModifier where O.Element == String {
-        WidgetModifierBlock<UILabel> { label, context in
-            observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
-        }
-    }
-
-    internal func modifier<O:ObservableElement>(for observable: O) -> AnyWidgetModifier where O.Element == String? {
-        WidgetModifierBlock<UILabel> { label, context in
-            observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
-        }
-    }
-
 }
 
 extension LabelWidget {

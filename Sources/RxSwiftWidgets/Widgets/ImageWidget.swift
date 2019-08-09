@@ -18,14 +18,15 @@ public struct ImageWidget: WidgetViewModifying
     public var modifiers: WidgetModifiers?
 
     public var image: UIImage?
-    public var name: String?
-
-    public init(named name: String? = nil) {
-        self.name = name
-    }
 
     public init(_ image: UIImage) {
         self.image = image
+    }
+
+    public init(named name: String? = nil) {
+        if let name = name {
+            self.image = UIImage(named: name)
+        }
     }
 
     public func build(with context: WidgetContext) -> UIView {
@@ -34,27 +35,13 @@ public struct ImageWidget: WidgetViewModifying
         
         view.translatesAutoresizingMaskIntoConstraints = false
 
-        if let name = name {
-            view.image = UIImage(named: name)
-        } else if let image = image {
+        if let image = image {
             view.image = image
         }
 
         modifiers?.apply(to: view, with: context)
         
         return view
-    }
-
-    public func image(_ image: UIImage?) -> Self {
-        return modified(WidgetModifierBlock<UIImageView> { view, context in
-            view.image = image
-        })
-    }
-
-    public func image(named name: String) -> Self {
-        return modified(WidgetModifierBlock<UIImageView> { view, context in
-            view.image = UIImage(named: name)
-        })
     }
 
     public func image<O:ObservableElement>(_ observable: O) -> Self where O.Element == UIImage? {

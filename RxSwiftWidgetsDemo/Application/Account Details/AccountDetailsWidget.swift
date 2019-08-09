@@ -27,16 +27,14 @@ struct AccountDetailsWidget: WidgetView {
 
                     VStackWidget([
 
-                        LabelWidget()
-                            .text(viewModel.title)
+                        LabelWidget(viewModel.title)
                             .alignment(.center)
                             .color(.red)
                             .font(.title1),
 
                         ContainerWidget(
-                            VStackWidget()
-                                .bind(ObservableListBuilder(viewModel.accountDetails, builder: {
-                                    self.accountDetailsRow($0)
+                            VStackWidget(ObservableListBuilder(viewModel.accountDetails, builder: {
+                                self.accountDetailsRow($0)
                                 }))
                             )
                             .padding(20)
@@ -44,17 +42,15 @@ struct AccountDetailsWidget: WidgetView {
                             .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
 
                         ContainerWidget(
-                            VStackWidget()
-                                .bind(ObservableListBuilder(viewModel.paymentDetails, builder: {
-                                    self.accountDetailsRow($0)
+                            VStackWidget(ObservableListBuilder(viewModel.paymentDetails, builder: {
+                                self.accountDetailsRow($0)
                                 }))
                             )
                             .padding(20)
                             .cornerRadius(20)
                             .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
 
-                            LabelWidget()
-                                .text(viewModel.footnotes)
+                            LabelWidget(viewModel.footnotes)
                                 .color(.gray)
                                 .font(.footnote)
                                 .numberOfLines(0)

@@ -35,6 +35,8 @@ public class UIWidgetHostController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        view.clipsToBounds = true
         build()
     }
 

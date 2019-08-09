@@ -20,7 +20,8 @@ public struct HStackWidget
 
     public var debugDescription: String { "HStackWidget()" }
 
-    public let widgets: [Widget]
+    public var widgets: [Widget]
+    public var widgetsBuilder: AnyObservableListBuilder?
 
     public var contextModifier: WidgetContextModifier?
     public var modifiers: WidgetModifiers?
@@ -32,14 +33,8 @@ public struct HStackWidget
 
     public init<Item>(_ builder: ObservableListBuilder<Item>) {
         self.widgets = []
-        self.modifiers = [bindingModifier(for: builder)]
-    }
-
-    private func bindingModifier<Item>(for builder: ObservableListBuilder<Item>) -> AnyWidgetModifier {
-        return WidgetModifierBlock<WidgetPrivateStackView>({ (stack, context) in
-            stack.subscribe(to: AnyObservableListBuilder(builder), with: context)
-        })
-    }
+        self.widgetsBuilder = AnyObservableListBuilder(builder)
+     }
 
     public func build(with context: WidgetContext) -> UIView {
 
@@ -60,6 +55,10 @@ public struct HStackWidget
             stack.addArrangedSubview(widget.build(with: context))
         }
 
+        if let builder = widgetsBuilder {
+            stack.subscribe(to: builder, with: context)
+        }
+
         modifiers?.apply(to: stack, with: context)
         
         return stack
@@ -69,12 +68,12 @@ public struct HStackWidget
         return modified(WidgetModifier(keyPath: \UIStackView.alignment, value: alignment))
     }
 
-    public func bind<Item>(_ builder: ObservableListBuilder<Item>) -> Self {
-        return modified(bindingModifier(for: builder))
-    }
-
     public func distribution(_ distribution: UIStackView.Distribution) -> Self {
         return modified(WidgetModifier(keyPath: \UIStackView.distribution, value: distribution))
+    }
+
+    public func placeholder(_ widgets: [Widget]) -> Self {
+        return modified { $0.widgets = widgets }
     }
 
     public func spacing(_ spacing: CGFloat) -> Self {

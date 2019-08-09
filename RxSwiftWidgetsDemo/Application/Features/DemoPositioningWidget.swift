@@ -78,3 +78,13 @@ struct DemoPositioningWidget: WidgetView {
     }
 
 }
+
+extension LabelWidget {
+    static func title3(_ text: String) -> LabelWidget {
+        LabelWidget(text)
+            .color(.white)
+            .font(.preferredFont(forTextStyle: .title3))
+            .contentHuggingPriority(.defaultHigh, for: .horizontal)
+            .padding(h: 0, v: 4)
+    }
+}

@@ -111,8 +111,7 @@ struct SampleWidget: WidgetView {
 struct TitleWidgetView: WidgetView {
     var title: String
     func widget(_ context: WidgetContext) -> Widget {
-        LabelWidget("Initial Value")
-            .text(title)
+        LabelWidget(title)
             .color(.white)
             .font(context.get()) // note context extraction of font
             .contentHuggingPriority(.defaultHigh, for: .horizontal)

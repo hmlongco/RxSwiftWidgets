@@ -20,8 +20,7 @@ struct FeaturesWidget: WidgetView {
 
                 VStackWidget([
 
-                    LabelWidget()
-                        .text($title)
+                    LabelWidget($title)
                         .font(.title1)
                         .color(.white)
                         .alignment(.center)
