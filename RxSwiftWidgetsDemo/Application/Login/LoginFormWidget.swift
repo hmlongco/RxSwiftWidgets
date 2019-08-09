@@ -6,6 +6,7 @@ struct LoginFormWidget: WidgetView {
 
     @State var username: String = "Michael Long"
     @State var password: String = ""
+    @State var error: String = ""
 
     func widget(_ context: WidgetContext) -> Widget {
         ZStackWidget([
@@ -16,12 +17,13 @@ struct LoginFormWidget: WidgetView {
 
             ScrollWidget(
                 VStackWidget([
-                    logoWidget,
-                    usernameFieldWidget,
-                    passwordFieldWidget,
+                    logoSection,
+                    errorSection,
+                    usernameSection,
+                    passwordSection,
                     VStackWidget([
-                        loginButtonWidget,
-                        footnoteWidget,
+                        loginButtonSection,
+                        footnoteSection,
                         ])
                         .padding(h: 0, v: 10)
                         .spacing(5)
@@ -37,7 +39,7 @@ struct LoginFormWidget: WidgetView {
             .safeArea(false)
         }
 
-    var logoWidget: Widget {
+    var logoSection: Widget {
         ContainerWidget(
         HStackWidget([
             ImageWidget(named: "RxSwiftWidgets-Logo-DK")
@@ -48,15 +50,25 @@ struct LoginFormWidget: WidgetView {
                 .font(.title2)
                 .color(.white)
             ])
+            .padding(10)
             .position(.centerHorizontally)
         )
     }
 
-    var usernameFieldWidget: Widget {
+    var errorSection: Widget {
+        LabelWidget($error)
+            .color(.white)
+            .numberOfLines(0)
+            .padding(h: 30, v: 0)
+            .hidden($error.map { $0.isEmpty })
+    }
+
+    var usernameSection: Widget {
         ContainerWidget(
             VStackWidget([
                 LabelWidget.footnote("Username"),
                 TextFieldWidget($username)
+                    .placeholder("Username / Email Address")
                     .font(.title2)
                     .color(.black)
                     .with { textField, _ in
@@ -67,10 +79,10 @@ struct LoginFormWidget: WidgetView {
                 .spacing(0)
             )
             .backgroundColor(UIColor(white: 1.0, alpha: 0.8))
-            .padding(h: 30, v: 10)
+            .padding(h: 30, v: 8)
     }
 
-    var passwordFieldWidget: Widget {
+    var passwordSection: Widget {
         ContainerWidget(
             VStackWidget([
                 LabelWidget.footnote("Password"),
@@ -85,23 +97,27 @@ struct LoginFormWidget: WidgetView {
                 .spacing(0)
             )
             .backgroundColor(UIColor(white: 1.0, alpha: 0.8))
-            .padding(h: 30, v: 10)
+            .padding(h: 30, v: 8)
     }
 
-    var loginButtonWidget: Widget {
+    var loginButtonSection: Widget {
         ButtonWidget("Login")
-            .backgroundColor(UIColor(red: 0.8, green: 0.0, blue: 0.4, alpha: 0.7))
+            .backgroundColor(UIColor(red: 0.8, green: 0.0, blue: 0.4, alpha: 0.8))
             .font(.title2)
             .color(.white)
-            .padding(h: 30, v: 15)
+            .padding(h: 30, v: 14)
             .onTap(handler: { (context) in
-                print(self.username)
-                print(self.password)
+                guard !self.username.isEmpty && !self.password.isEmpty else {
+                    UIView.animate(withDuration: 0.2) {
+                        self.error = "Username and password is required."
+                    }
+                    return
+                }
                 context.navigator?.dismiss()
             })
     }
 
-    var footnoteWidget: Widget {
+    var footnoteSection: Widget {
         LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
             .alignment(.center)
             .padding(h: 20, v: 20)

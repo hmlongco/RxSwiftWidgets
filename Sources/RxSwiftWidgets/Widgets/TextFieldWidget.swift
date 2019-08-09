@@ -12,31 +12,33 @@ import RxCocoa
 
 
 public struct TextFieldWidget
-    : WidgetViewModifying
+    : WidgetControlModifying
     , CustomDebugStringConvertible {
 
     public var debugDescription: String { "TextFieldWidget()" }
+
+    public var bindingModifier: AnyWidgetModifier
 
     public var modifiers: WidgetModifiers?
     public var padding: UIEdgeInsets?
 
     /// Sets field text on initialization
     public init<B:BindableElement>(_ bindable: B) where B.Element == String {
-        modifiers = [WidgetModifierBlock<UITextField> { view, context in
+        bindingModifier = WidgetModifierBlock<UITextField> { view, context in
             context.disposeBag.insert(
                 bindable.asObservable().bind(to: view.rx.text),
                 bindable.bind(to: view.rx.text.orEmpty.asObservable())
             )
-        }]
+        }
     }
 
     public init<B:BindableElement>(_ bindable: B) where B.Element == String? {
-        modifiers = [WidgetModifierBlock<UITextField> { view, context in
+        bindingModifier = WidgetModifierBlock<UITextField> { view, context in
             context.disposeBag.insert(
                 bindable.asObservable().bind(to: view.rx.text),
                 bindable.bind(to: view.rx.text.asObservable())
             )
-        }]
+        }
     }
 
     public func build(with context: WidgetContext) -> UIView {
@@ -47,6 +49,7 @@ public struct TextFieldWidget
         textField.font = UIFont.preferredFont(forTextStyle: .body)
         textField.backgroundColor = .clear
 
+        bindingModifier.apply(to: textField, with: context)
         modifiers?.apply(to: textField, with: context)
         
         return textField
@@ -57,74 +60,35 @@ public struct TextFieldWidget
         return modified(WidgetModifier(keyPath: \UITextField.textAlignment, value: alignment))
     }
 
-    public func bind<B:BindableElement>(_ bindable: B) -> Self where B.Element == String {
-        return modified(WidgetModifierBlock<UITextField> { view, context in
-            context.disposeBag.insert(
-                bindable.asObservable().bind(to: view.rx.text),
-                bindable.bind(to: view.rx.text.orEmpty.asObservable())
-            )
-        })
+    /// Sets borderStyle for text field
+    public func borderStyle(_ borderStyle: UITextField.BorderStyle) -> Self {
+        return modified(WidgetModifier(keyPath: \UITextField.borderStyle, value: borderStyle))
     }
 
-    public func bind<B:BindableElement>(_ bindable: B) -> Self where B.Element == String? {
-        return modified(WidgetModifierBlock<UITextField> { view, context in
-            context.disposeBag.insert(
-                bindable.asObservable().bind(to: view.rx.text),
-                bindable.bind(to: view.rx.text.asObservable())
-            )
-        })
-    }
-
-    /// Sets color of field text
+    /// Sets color of text field
     public func color(_ color: UIColor) -> Self {
         return modified(WidgetModifier(keyPath: \UITextField.textColor, value: color))
     }
 
-    /// Sets font of field text
+    /// Sets font of text field
     public func font(_ font: UIFont) -> Self {
         return modified(WidgetModifier(keyPath: \UITextField.font, value: font))
+    }
+
+    /// Sets placeholder for text field
+    public func placeholder(_ placeholder: String?) -> Self {
+        return modified(WidgetModifier(keyPath: \UITextField.placeholder, value: placeholder))
+    }
+
+    /// Sets secureTextEntry for text field
+    public func secureTextEntry(_ isSecureTextEntry: Bool) -> Self {
+        return modified(WidgetModifier(keyPath: \UITextField.isSecureTextEntry, value: isSecureTextEntry))
     }
 
     /// Allows modification of generated field
     public func with(_ block: @escaping WidgetModifierBlockType<UITextField>) -> Self {
         return modified(WidgetModifierBlock(block))
     }
-}
-
-extension TextFieldWidget {
-
-//    /// Allows initialization of label text with ObservableElement
-//    public init<O:ObservableElement>(_ observable: O) where O.Element == String {
-//        self.modifiers = [modifier(for: observable)]
-//    }
-//
-//    /// Allows initialization of label text with ObservableElement
-//    public init<O:ObservableElement>(_ observable: O) where O.Element == String? {
-//        self.modifiers = [modifier(for: observable)]
-//    }
-//
-//    /// Dynamically sets label text from ObservableElement
-//    public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String {
-//        return modified(modifier(for: observable))
-//    }
-//
-//    /// Dynamically sets label text from ObservableElement
-//    public func text<O:ObservableElement>(_ observable: O) -> Self where O.Element == String? {
-//        return modified(modifier(for: observable))
-//    }
-//
-//    internal func modifier<O:ObservableElement>(for observable: O) -> AnyWidgetModifier where O.Element == String {
-//        WidgetModifierBlock<UILabel> { label, context in
-//            observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
-//        }
-//    }
-//
-//    internal func modifier<O:ObservableElement>(for observable: O) -> AnyWidgetModifier where O.Element == String? {
-//        WidgetModifierBlock<UILabel> { label, context in
-//            observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
-//        }
-//    }
-
 }
 
 fileprivate class WidgetTextField: UITextField {

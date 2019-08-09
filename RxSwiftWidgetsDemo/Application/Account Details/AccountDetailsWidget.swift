@@ -63,7 +63,6 @@ struct AccountDetailsWidget: WidgetView {
                         .spacing(20)
                         .hidden(viewModel.loading),
 
-
                     SpacerWidget(),
 
                     ]) // VStackWidget

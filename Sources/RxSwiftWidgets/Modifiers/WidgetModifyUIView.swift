@@ -52,10 +52,6 @@ extension WidgetViewModifying {
         return modified(WidgetModifier(keyPath: \UIView.tag, value: tag))
     }
 
-    public func tintColor(_ tintColor: UIColor) -> Self {
-        return modified(WidgetModifier(keyPath: \UIView.tintColor, value: tintColor))
-    }
-
     public func userInteractionEnabled (_ isUserInteractionEnabled: Bool) -> Self {
         return modified(WidgetModifier(keyPath: \UIView.isUserInteractionEnabled, value: isUserInteractionEnabled))
     }
