@@ -20,11 +20,11 @@ extension WidgetViewModifying {
         })
     }
 
-    public func onEvent<O:ObservableElement, Value>(_ observable: O, handle: @escaping (_ value: Value) -> Void) -> Self where O.Element == Value {
+    public func onEvent<O:ObservableElement, Value>(_ observable: O, handle: @escaping (_ value: Value, _ context: WidgetContext) -> Void) -> Self where O.Element == Value {
         return modified(WidgetModifierBlock({ (_, context) in
             observable.asObservable()
                 .subscribe(onNext: { (value) in
-                    handle(value)
+                    handle(value, context)
                 })
                 .disposed(by: context.disposeBag)
         }))

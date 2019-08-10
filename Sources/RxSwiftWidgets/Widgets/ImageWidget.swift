@@ -23,8 +23,10 @@ public struct ImageWidget: WidgetViewModifying
     }
 
     public init(named name: String) {
-        if let image = UIImage(named: name) {
-            self.imageModifier = WidgetModifier(keyPath: \UIImageView.image, value: image)
+        self.imageModifier = WidgetModifierBlock<UIImageView> { view, context in
+            if let image = UIImage(named: name) {
+                view.image = image
+            }
         }
     }
 

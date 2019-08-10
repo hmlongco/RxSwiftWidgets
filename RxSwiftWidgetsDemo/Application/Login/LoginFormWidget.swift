@@ -18,7 +18,9 @@ struct LoginFormWidget: WidgetView {
             ScrollWidget(
                 VStackWidget([
                     logoSection,
-                    errorSection,
+                    LabelWidget.error($error)
+                        .color(.white)
+                        .padding(h: 30, v: 0),
                     usernameSection,
                     passwordSection,
                     VStackWidget([
@@ -33,6 +35,9 @@ struct LoginFormWidget: WidgetView {
                 ) // ScrollWidget
                 .automaticallyAdjustForKeyboard()
                 .safeArea(false),
+
+                BackButtonWidget(text: "X"),
+
 
             ]) // ZStackWidget
             .navigationBar(title: "Login", hidden: true)
@@ -53,14 +58,6 @@ struct LoginFormWidget: WidgetView {
             .padding(10)
             .position(.centerHorizontally)
         )
-    }
-
-    var errorSection: Widget {
-        LabelWidget($error)
-            .color(.white)
-            .numberOfLines(0)
-            .padding(h: 30, v: 0)
-            .hidden($error.map { $0.isEmpty })
     }
 
     var usernameSection: Widget {
@@ -108,9 +105,7 @@ struct LoginFormWidget: WidgetView {
             .padding(h: 30, v: 14)
             .onTap(handler: { (context) in
                 guard !self.username.isEmpty && !self.password.isEmpty else {
-                    UIView.animate(withDuration: 0.2) {
-                        self.error = "Username and password is required."
-                    }
+                    self.error = "Username and password is required."
                     return
                 }
                 context.navigator?.dismiss()
@@ -123,4 +118,20 @@ struct LoginFormWidget: WidgetView {
             .padding(h: 20, v: 20)
     }
 
+}
+
+extension LabelWidget {
+    static func error(_ message: Binding<String>) -> LabelWidget {
+        LabelWidget()
+            .numberOfLines(0)
+            .hidden(true)
+            .onEvent(message) { (value, context) in
+                guard let label = context.view as? UILabel else { return }
+                UIView.animate(withDuration: 0.2) {
+                    label.text = value
+                    label.isHidden = value.isEmpty
+                    label.superview?.layoutIfNeeded()
+                }
+            }
+    }
 }

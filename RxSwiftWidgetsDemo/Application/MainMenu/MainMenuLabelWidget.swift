@@ -18,7 +18,7 @@ struct MainMenuItemWidget: WidgetView, WidgetViewModifying {
             .cornerRadius(10)
             .color(.white)
             .font(.preferredFont(forTextStyle: .title3))
-            .padding(h: 20, v: 8)
+            .padding(h: 20, v: 10)
             .onTap(handler: onTap)
     }
 

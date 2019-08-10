@@ -14,6 +14,8 @@ struct BackButtonWidget: WidgetView {
             .alpha(0.8)
             .color(.white)
             .font(.title3)
+            .padding(h: 30, v: 10)
+            .position(.topRight)
             .onTap{ context in
                 context.navigator?.dismiss()
             }
