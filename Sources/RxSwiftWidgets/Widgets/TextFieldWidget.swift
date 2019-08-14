@@ -27,7 +27,7 @@ public struct TextFieldWidget
         bindingModifier = WidgetModifierBlock<UITextField> { view, context in
             context.disposeBag.insert(
                 bindable.asObservable().bind(to: view.rx.text),
-                bindable.bind(to: view.rx.text.orEmpty.asObservable())
+                bindable.bidirectionalBind(view.rx.text.orEmpty.asObservable())
             )
         }
     }
@@ -36,7 +36,7 @@ public struct TextFieldWidget
         bindingModifier = WidgetModifierBlock<UITextField> { view, context in
             context.disposeBag.insert(
                 bindable.asObservable().bind(to: view.rx.text),
-                bindable.bind(to: view.rx.text.asObservable())
+                bindable.bidirectionalBind(view.rx.text.asObservable())
             )
         }
     }
