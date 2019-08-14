@@ -11,15 +11,13 @@ import RxSwift
 import RxCocoa
 
 /// Protocol defines view capable of supporting custom padding
-public protocol WidgetPadding: WidgetModifying {
-    var padding: UIEdgeInsets? { get set }
-}
+public protocol WidgetPadding: WidgetModifying {}
 
 extension WidgetPadding {
 
     public func padding(insets: UIEdgeInsets) -> Self {
         var widget = self
-        widget.padding = insets
+        widget.modifiers.padding = insets
         return widget
     }
 

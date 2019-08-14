@@ -19,7 +19,7 @@ public extension WidgetView {
         let widget = self.widget(context)
         let view = widget.build(with: context)
         if let modifing = self as? WidgetModifying {
-            modifing.modifiers?.apply(to: view, with: context)
+            modifing.modifiers.apply(to: view, with: context)
         }
         return view
     }

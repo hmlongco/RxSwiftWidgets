@@ -9,7 +9,7 @@ struct MainMenuItemWidget: WidgetView, WidgetViewModifying {
     let text: String
     let onTap: (WidgetContext) -> Void
 
-    var modifiers: WidgetModifiers? = []
+    var modifiers = WidgetModifiers()
 
     func widget(_ context: WidgetContext) -> Widget {
         LabelWidget(text)

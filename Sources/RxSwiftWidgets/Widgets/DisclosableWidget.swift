@@ -11,8 +11,7 @@ public struct DisclosableWidget: Widget, WidgetContaining, WidgetPadding, Widget
         self.widget = widget
     }
 
-    public var modifiers: WidgetModifiers? = []
-    public var padding: UIEdgeInsets?
+    public var modifiers = WidgetModifiers()
 
     private var color = UIColor.init(white: 0.85, alpha: 1.0)
 
@@ -33,7 +32,7 @@ public struct DisclosableWidget: Widget, WidgetContaining, WidgetPadding, Widget
         label.backgroundColor = .clear
         enclosure.addSubview(label)
 
-        let padding = self.padding ?? UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+        let padding = self.modifiers.padding ?? UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
 
         childView.topAnchor.constraint(equalTo: enclosure.topAnchor, constant: padding.top).isActive = true
         childView.bottomAnchor.constraint(equalTo: enclosure.bottomAnchor, constant: -padding.bottom).isActive = true
@@ -48,7 +47,7 @@ public struct DisclosableWidget: Widget, WidgetContaining, WidgetPadding, Widget
         label.setContentHuggingPriority(.required, for: .horizontal)
         label.setContentHuggingPriority(.required, for: .vertical)
 
-        modifiers?.apply(to: enclosure, with: context)
+        modifiers.apply(to: enclosure, with: context)
 
         return enclosure
     }

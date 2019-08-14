@@ -13,7 +13,7 @@ public struct SpacerWidget: Widget
 
     public var debugDescription: String { "SpacerWidget()" }
 
-    public var modifiers: WidgetModifiers?
+    public var modifiers = WidgetModifiers()
 
     public init() {}
 

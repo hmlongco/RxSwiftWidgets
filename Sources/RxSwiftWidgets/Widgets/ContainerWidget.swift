@@ -20,9 +20,8 @@ public struct ContainerWidget
     public var debugDescription: String { "ContainerWidget()" }
 
     public var contextModifier: WidgetContextModifier?
-    public var modifiers: WidgetModifiers?
+    public var modifiers = WidgetModifiers()
     public let widget: Widget
-    public var padding: UIEdgeInsets?
 
     public init(_ widget: Widget) {
         self.widget = widget
@@ -36,9 +35,9 @@ public struct ContainerWidget
 
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
-        view.addConstrainedSubview(subview, with: padding)
+        view.addConstrainedSubview(subview, with: modifiers.padding)
 
-        modifiers?.apply(to: view, with: context)
+        modifiers.apply(to: view, with: context)
 
         return view
     }

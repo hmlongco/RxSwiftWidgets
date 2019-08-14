@@ -10,9 +10,29 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+/// List of view modifiers
+public struct WidgetModifiers {
+    /// List of additional modifiers
+    public var list: Array<AnyWidgetModifier>?
+    /// Modifier for primary view data binding, if any
+    public var binding: AnyWidgetModifier? = nil
+    /// Used if WiddgetPadding is supported
+    public var padding: UIEdgeInsets? = nil
+    /// Public initialization
+    public init() {}
+}
+
+extension WidgetModifiers {
+    public func apply(to view: UIView, with context: WidgetContext) {
+        self.binding?.apply(to: view, with: context)
+        self.list?.forEach { $0.apply(to: view, with: context) }
+    }
+}
+
+
 /// Defines a widget capable of supporting view modifiers
 public protocol WidgetModifying: Widget {
-    var modifiers: WidgetModifiers? { get set }
+    var modifiers: WidgetModifiers { get set }
 }
 
 extension WidgetModifying {
@@ -26,11 +46,11 @@ extension WidgetModifying {
     /// exponentially and would also have improved performance iterating through the array.
     public func modified(_ modifier: AnyWidgetModifier) -> Self {
         var widget = self
-        if widget.modifiers == nil {
-            widget.modifiers = [modifier]
-            widget.modifiers?.reserveCapacity(8)
+        if widget.modifiers.list == nil {
+            widget.modifiers.list = [modifier]
+            widget.modifiers.list?.reserveCapacity(8)
         } else {
-            widget.modifiers?.append(modifier)
+            widget.modifiers.list?.append(modifier)
         }
         return widget
     }
@@ -39,15 +59,5 @@ extension WidgetModifying {
         var widget = self
         modifier(&widget)
         return widget
-    }
-}
-
-/// A linked list of view modifiers
-
-public typealias WidgetModifiers = Array<AnyWidgetModifier>
-
-extension WidgetModifiers {
-    public func apply(to view: UIView, with context: WidgetContext) {
-        self.forEach { $0.apply(to: view, with: context) }
     }
 }

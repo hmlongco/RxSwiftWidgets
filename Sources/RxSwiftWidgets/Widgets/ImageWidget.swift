@@ -15,15 +15,14 @@ public struct ImageWidget: WidgetViewModifying
 
     public var debugDescription: String { "ImageWidget()" }
 
-    public var imageModifier: AnyWidgetModifier?
-    public var modifiers: WidgetModifiers?
+    public var modifiers = WidgetModifiers()
 
     public init(_ image: UIImage) {
-        self.imageModifier = WidgetModifier(keyPath: \UIImageView.image, value: image)
+        self.modifiers.binding = WidgetModifier(keyPath: \UIImageView.image, value: image)
     }
 
     public init(named name: String) {
-        self.imageModifier = WidgetModifierBlock<UIImageView> { view, context in
+        self.modifiers.binding = WidgetModifierBlock<UIImageView> { view, context in
             if let image = UIImage(named: name) {
                 view.image = image
             }
@@ -31,13 +30,13 @@ public struct ImageWidget: WidgetViewModifying
     }
 
     public init<O:ObservableElement>(_ observable: O) where O.Element == UIImage? {
-        self.imageModifier = WidgetModifierBlock<UIImageView> { view, context in
+        self.modifiers.binding = WidgetModifierBlock<UIImageView> { view, context in
             observable.asObservable().bind(to: view.rx.image).disposed(by: context.disposeBag)
         }
     }
 
     public init<O:ObservableElement>(_ observable: O) where O.Element == String {
-        self.imageModifier = WidgetModifierBlock<UIImageView> { view, context in
+        self.modifiers.binding = WidgetModifierBlock<UIImageView> { view, context in
             observable.asObservable().map { UIImage(named: $0) }.bind(to: view.rx.image).disposed(by: context.disposeBag)
         }
     }
@@ -49,9 +48,7 @@ public struct ImageWidget: WidgetViewModifying
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true // fixes transition animation bug with full screen background images
 
-        imageModifier?.apply(to: view, with: context)
-
-        modifiers?.apply(to: view, with: context)
+        modifiers.apply(to: view, with: context)
         
         return view
     }

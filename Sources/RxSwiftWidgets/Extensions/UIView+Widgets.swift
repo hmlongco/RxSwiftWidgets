@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+/// Associated data which MAY exist on explicitly positioned subviews
 public struct WidgetViewAttributes {
 
     var position: WidgetPosition = .fill
@@ -39,12 +41,12 @@ extension UIView: WidgetViewExtendable {
     }
 
     public func addConstrainedSubview(_ subview: UIView, with padding: UIEdgeInsets? = nil) {
-        let attr = subview.widget
+        let attributes = subview.widget
         let padding = padding ?? UIEdgeInsets.zero
 
         self.addSubview(subview)
 
-        WidgetPosition.applyConstraints(subview, position: attr.position, padding: padding, safeArea: attr.safeArea)
+        attributes.position.apply(to: subview, padding: padding, safeArea: attributes.safeArea)
 
         if let customView = subview as? WidgetViewCustomConstraints {
             customView.addCustomConstraints()

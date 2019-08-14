@@ -15,7 +15,7 @@ public struct SpinnerWidget: WidgetViewModifying
 
     public var debugDescription: String { "SpinnerWidget()" }
 
-    public var modifiers: WidgetModifiers?
+    public var modifiers = WidgetModifiers()
 
     public init() {}
 
@@ -24,7 +24,7 @@ public struct SpinnerWidget: WidgetViewModifying
         let context = context.set(view: view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.startAnimating()
-        modifiers?.apply(to: view, with: context)
+        modifiers.apply(to: view, with: context)
         return view
     }
 

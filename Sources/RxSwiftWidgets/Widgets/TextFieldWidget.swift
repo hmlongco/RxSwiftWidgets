@@ -17,14 +17,11 @@ public struct TextFieldWidget
 
     public var debugDescription: String { "TextFieldWidget()" }
 
-    public var bindingModifier: AnyWidgetModifier
-
-    public var modifiers: WidgetModifiers?
-    public var padding: UIEdgeInsets?
+    public var modifiers = WidgetModifiers()
 
     /// Sets field text on initialization
     public init<B:BindableElement>(_ bindable: B) where B.Element == String {
-        bindingModifier = WidgetModifierBlock<UITextField> { view, context in
+        modifiers.binding = WidgetModifierBlock<UITextField> { view, context in
             context.disposeBag.insert(
                 bindable.asObservable().bind(to: view.rx.text),
                 bindable.bidirectionalBind(view.rx.text.orEmpty.asObservable())
@@ -33,7 +30,7 @@ public struct TextFieldWidget
     }
 
     public init<B:BindableElement>(_ bindable: B) where B.Element == String? {
-        bindingModifier = WidgetModifierBlock<UITextField> { view, context in
+        modifiers.binding = WidgetModifierBlock<UITextField> { view, context in
             context.disposeBag.insert(
                 bindable.asObservable().bind(to: view.rx.text),
                 bindable.bidirectionalBind(view.rx.text.asObservable())
@@ -49,8 +46,7 @@ public struct TextFieldWidget
         textField.font = UIFont.preferredFont(forTextStyle: .body)
         textField.backgroundColor = .clear
 
-        bindingModifier.apply(to: textField, with: context)
-        modifiers?.apply(to: textField, with: context)
+        modifiers.apply(to: textField, with: context)
         
         return textField
     }

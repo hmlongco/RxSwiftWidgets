@@ -24,8 +24,7 @@ public struct VStackWidget
     public var widgetsBuilder: AnyObservableListBuilder?
 
     public var contextModifier: WidgetContextModifier?
-    public var modifiers: WidgetModifiers?
-    public var padding: UIEdgeInsets?
+    public var modifiers = WidgetModifiers()
 
     public init(_ widgets: [Widget] = []) {
         self.widgets = widgets
@@ -46,7 +45,7 @@ public struct VStackWidget
         stack.axis = .vertical
         stack.spacing = UIStackView.spacingUseSystem
 
-        if let insets = padding {
+        if let insets = modifiers.padding {
             stack.isLayoutMarginsRelativeArrangement = true
             stack.layoutMargins = insets
         }
@@ -59,7 +58,7 @@ public struct VStackWidget
             stack.subscribe(to: builder, with: context)
         }
 
-        modifiers?.apply(to: stack, with: context)
+        modifiers.apply(to: stack, with: context)
 
         return stack
     }

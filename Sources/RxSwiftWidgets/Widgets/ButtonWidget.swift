@@ -18,14 +18,13 @@ public struct ButtonWidget
 
     public var debugDescription: String { "ButtonWidget()" }
 
-    public var modifiers: WidgetModifiers?
-    public var padding: UIEdgeInsets?
+    public var modifiers = WidgetModifiers()
 
     public init(_ text: String? = nil, for state: UIControl.State = .normal) {
         if let text = text {
-            modifiers = [WidgetModifierBlock<UIButton> { button, _ in
+            modifiers.binding = WidgetModifierBlock<UIButton> { button, _ in
                 button.setTitle(text, for: state)
-            }]
+            }
         }
     }
 
@@ -36,12 +35,12 @@ public struct ButtonWidget
 
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-        button.contentEdgeInsets = padding ?? button.contentEdgeInsets
+        button.contentEdgeInsets = modifiers.padding ?? button.contentEdgeInsets
         button.backgroundColor = .clear
         button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
-        modifiers?.apply(to: button, with: context)
+        modifiers.apply(to: button, with: context)
         
         return button
     }

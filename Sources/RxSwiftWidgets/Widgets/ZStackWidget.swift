@@ -23,8 +23,7 @@ public struct ZStackWidget
     public let widgets: [Widget]
     
     public var contextModifier: WidgetContextModifier?
-    public var modifiers: WidgetModifiers?
-    public var padding: UIEdgeInsets?
+    public var modifiers = WidgetModifiers()
 
     public init(_ widgets: [Widget]) {
         self.widgets = widgets
@@ -40,10 +39,10 @@ public struct ZStackWidget
 
         for widget in widgets {
             let subview = widget.build(with: context)
-            view.addConstrainedSubview(subview, with: padding)
+            view.addConstrainedSubview(subview, with: modifiers.padding)
         }
 
-        modifiers?.apply(to: view, with: context)
+        modifiers.apply(to: view, with: context)
         
         return view
     }

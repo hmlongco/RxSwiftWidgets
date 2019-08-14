@@ -25,8 +25,7 @@ public struct ScrollWidget
     public var debugDescription: String { "ScrollWidget()" }
 
     public var widget: Widget
-    public var modifiers: WidgetModifiers?
-    public var padding: UIEdgeInsets?
+    public var modifiers = WidgetModifiers()
     public var axis = WidgetScrollAxis.vertical
 
     public init(_ widget: Widget) {
@@ -38,7 +37,7 @@ public struct ScrollWidget
         let view = WidgetScrollView()
         let context = context.set(view: view)
         let contentView = widget.build(with: context)
-        let padding = self.padding ?? UIEdgeInsets.zero
+        let padding = self.modifiers.padding ?? UIEdgeInsets.zero
 
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
@@ -51,7 +50,7 @@ public struct ScrollWidget
         contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding.bottom).isActive = true
         contentView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -padding.right).isActive = true
 
-        modifiers?.apply(to: view, with: context)
+        modifiers.apply(to: view, with: context)
         
         return view
     }

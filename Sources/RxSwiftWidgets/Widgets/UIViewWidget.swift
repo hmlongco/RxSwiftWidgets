@@ -17,7 +17,7 @@ public struct UIViewWidget<View:UIView>
 
     public var debugDescription: String { "UIViewWidget()" }
 
-    public var modifiers: WidgetModifiers?
+    public var modifiers = WidgetModifiers()
     public var view: View
 
     public init(_ view: View) {
@@ -26,7 +26,7 @@ public struct UIViewWidget<View:UIView>
 
     public func build(with context: WidgetContext) -> UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
-        modifiers?.apply(to: view, with: context.set(view: view))
+        modifiers.apply(to: view, with: context.set(view: view))
         return view
     }
 

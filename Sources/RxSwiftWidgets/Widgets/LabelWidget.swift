@@ -18,26 +18,23 @@ public struct LabelWidget
 
     public var debugDescription: String { "LabelWidget()" }
 
-    public var textModifier: AnyWidgetModifier
-
-    public var modifiers: WidgetModifiers?
-    public var padding: UIEdgeInsets?
+    public var modifiers = WidgetModifiers()
 
     /// Sets label text on initialization
     public init(_ text: String? = nil) {
-        textModifier = WidgetModifier(keyPath: \UILabel.text, value: text)
+        modifiers.binding = WidgetModifier(keyPath: \UILabel.text, value: text)
     }
 
     /// Allows initialization of label text with ObservableElement
     public init<O:ObservableElement>(_ observable: O) where O.Element == String {
-        textModifier = WidgetModifierBlock<UILabel> { label, context in
+        modifiers.binding = WidgetModifierBlock<UILabel> { label, context in
             observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
         }
     }
 
     /// Allows initialization of label text with ObservableElement
     public init<O:ObservableElement>(_ observable: O) where O.Element == String? {
-        textModifier = WidgetModifierBlock<UILabel> { label, context in
+        modifiers.binding = WidgetModifierBlock<UILabel> { label, context in
             observable.asObservable().bind(to: label.rx.text).disposed(by: context.disposeBag)
         }
     }
@@ -48,13 +45,12 @@ public struct LabelWidget
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.textInsets = padding
+        label.textInsets = modifiers.padding
         label.backgroundColor = .clear
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
-        textModifier.apply(to: label, with: context)
-        modifiers?.apply(to: label, with: context)
+        modifiers.apply(to: label, with: context)
         
         return label
     }
