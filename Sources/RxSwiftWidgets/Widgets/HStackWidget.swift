@@ -20,17 +20,19 @@ public struct HStackWidget
     public var debugDescription: String { "HStackWidget()" }
 
     public var widgets: [Widget]
-    public var widgetsBuilder: AnyObservableListBuilder?
     public var modifiers = WidgetModifiers()
 
     public init(_ widgets: [Widget] = []) {
         self.widgets = widgets
     }
 
-    public init<Item>(_ builder: ObservableListBuilder<Item>) {
+    public init<Item, O:ObservableElement>(_ items: O, builder: @escaping (_ item: Item) -> Widget) where O.Element == [Item] {
+        self.modifiers.binding = WidgetModifierBlock<WidgetPrivateStackView> { (stack, context) in
+            let items = items.map { $0.map { builder($0) } }
+            stack.subscribe(to: items, with: context)
+        }
         self.widgets = []
-        self.widgetsBuilder = AnyObservableListBuilder(builder)
-     }
+    }
 
     public func build(with context: WidgetContext) -> UIView {
 
@@ -49,10 +51,6 @@ public struct HStackWidget
 
         for widget in widgets {
             stack.addArrangedSubview(widget.build(with: context))
-        }
-
-        if let builder = widgetsBuilder {
-            stack.subscribe(to: builder, with: context)
         }
 
         modifiers.apply(to: stack, with: context)

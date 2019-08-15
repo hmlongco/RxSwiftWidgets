@@ -33,19 +33,17 @@ struct AccountDetailsWidget: WidgetView {
                             .font(.title1),
 
                         ContainerWidget(
-                            VStackWidget(ObservableListBuilder(viewModel.accountDetails, builder: {
+                            VStackWidget(viewModel.accountDetails) {
                                 self.accountDetailsRow($0)
-                                }))
-                            )
+                            })
                             .padding(20)
                             .cornerRadius(20)
                             .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
 
                         ContainerWidget(
-                            VStackWidget(ObservableListBuilder(viewModel.paymentDetails, builder: {
+                            VStackWidget(viewModel.paymentDetails) {
                                 self.accountDetailsRow($0)
-                                }))
-                            )
+                            })
                             .padding(20)
                             .cornerRadius(20)
                             .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),

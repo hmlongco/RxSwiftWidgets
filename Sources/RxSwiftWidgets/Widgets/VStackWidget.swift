@@ -20,17 +20,19 @@ public struct VStackWidget
     public var debugDescription: String { "VStackWidget()" }
 
     public var widgets: [Widget]
-    public var widgetsBuilder: AnyObservableListBuilder?
     public var modifiers = WidgetModifiers()
 
     public init(_ widgets: [Widget] = []) {
         self.widgets = widgets
     }
 
-    public init<Item>(_ builder: ObservableListBuilder<Item>) {
+    public init<Item, O:ObservableElement>(_ items: O, builder: @escaping (_ item: Item) -> Widget) where O.Element == [Item] {
+        self.modifiers.binding = WidgetModifierBlock<WidgetPrivateStackView> { (stack, context) in
+            let items = items.map { $0.map { builder($0) } }
+            stack.subscribe(to: items, with: context)
+        }
         self.widgets = []
-        self.widgetsBuilder = AnyObservableListBuilder(builder)
-     }
+    }
 
     public func build(with context: WidgetContext) -> UIView {
         
@@ -49,10 +51,6 @@ public struct VStackWidget
 
         for widget in widgets {
             stack.addArrangedSubview(widget.build(with: context))
-        }
-
-        if let builder = widgetsBuilder {
-            stack.subscribe(to: builder, with: context)
         }
 
         modifiers.apply(to: stack, with: context)
@@ -86,10 +84,10 @@ internal class WidgetPrivateStackView: UIStackView {
 
     var disposeBag: DisposeBag!
 
-    public func subscribe(to builder: AnyObservableListBuilder, with context: WidgetContext) {
-        builder.items
+    public func subscribe(to observable: Observable<[Widget]>, with context: WidgetContext) {
+        observable
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] (items) in
+            .subscribe(onNext: { [weak self] (widgets) in
                 guard let self = self else { return }
 
                 self.disposeBag = DisposeBag()
@@ -101,11 +99,9 @@ internal class WidgetPrivateStackView: UIStackView {
                 var context = context
                 context.disposeBag = self.disposeBag
 
-                items.forEach { item in
-                    if let widget = builder.widget(for: item) {
-                        let view = widget.build(with: context)
-                        self.addArrangedSubview(view)
-                    }
+                widgets.forEach { widget in
+                    let view = widget.build(with: context)
+                    self.addArrangedSubview(view)
                 }
 
                 UIView.animate(withDuration: 0.01, animations: {

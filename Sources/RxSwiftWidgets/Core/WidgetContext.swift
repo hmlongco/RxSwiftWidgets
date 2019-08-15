@@ -6,9 +6,9 @@
 //  Copyright © 2019 Michael Long. All rights reserved.
 //
 //    func test1() {
-//        let context = self.put(Navigator())
-//        if let navigator: Navigator = context.find() {
-//            print(navigator.depth())
+//        let context = self.put(MyClass())
+//        if let myClass: MyClass = context.find() {
+//            print(myClass.value)
 //        }
 //    }
 //
