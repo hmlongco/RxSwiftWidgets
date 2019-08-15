@@ -18,7 +18,7 @@ public struct DisclosableWidget: Widget, WidgetContaining, WidgetPadding, Widget
     public func build(with context: WidgetContext) -> UIView {
 
         let enclosure = UIView()
-        let context = context.set(view: enclosure)
+        let context = modifiers.modified(context, for: enclosure)
         let childView = widget.build(with: context)
 
         enclosure.backgroundColor = .clear

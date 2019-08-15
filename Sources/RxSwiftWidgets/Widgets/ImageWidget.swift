@@ -43,7 +43,7 @@ public struct ImageWidget: WidgetViewModifying
 
     public func build(with context: WidgetContext) -> UIView {
         let view = UIImageView()
-        let context = context.set(view: view)
+        let context = modifiers.modified(context, for: view)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true // fixes transition animation bug with full screen background images

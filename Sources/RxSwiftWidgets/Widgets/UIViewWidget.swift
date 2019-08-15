@@ -26,7 +26,8 @@ public struct UIViewWidget<View:UIView>
 
     public func build(with context: WidgetContext) -> UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
-        modifiers.apply(to: view, with: context.set(view: view))
+        let context = modifiers.modified(context, for: view)
+        modifiers.apply(to: view, with: context)
         return view
     }
 

@@ -31,7 +31,7 @@ public struct ButtonWidget
     public func build(with context: WidgetContext) -> UIView {
         
         let button = UIButton()
-        let context = context.set(view: button)
+        let context = modifiers.modified(context, for: button)
 
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)

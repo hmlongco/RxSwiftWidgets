@@ -12,14 +12,12 @@ import RxCocoa
 
 public struct ContainerWidget
     : WidgetContaining
-    , WidgetContextModifiying
     , WidgetViewModifying
     , WidgetPadding
     , CustomDebugStringConvertible {
 
     public var debugDescription: String { "ContainerWidget()" }
 
-    public var contextModifier: WidgetContextModifier?
     public var modifiers = WidgetModifiers()
     public let widget: Widget
 
@@ -30,7 +28,7 @@ public struct ContainerWidget
     public func build(with context: WidgetContext) -> UIView {
 
         let view = UIView()
-        let context = (contextModifier?(context) ?? context).set(view: view)
+        let context = modifiers.modified(context, for: view)
         let subview = widget.build(with: context)
 
         view.translatesAutoresizingMaskIntoConstraints = false

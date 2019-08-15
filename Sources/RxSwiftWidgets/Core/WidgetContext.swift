@@ -90,18 +90,3 @@ public extension WidgetContext.Keys {
 }
 
 public typealias WidgetContextModifier = (WidgetContext) -> WidgetContext
-
-public protocol WidgetContextModifiying {
-    var contextModifier: WidgetContextModifier? { get set }
-    func context(_ modifier: @escaping WidgetContextModifier) -> Self
-}
-
-extension WidgetContextModifiying {
-
-    public func context(_ modifier: @escaping WidgetContextModifier) -> Self {
-        var widget = self
-        widget.contextModifier = modifier
-        return widget
-    }
-
-}

@@ -14,15 +14,12 @@ import RxCocoa
 public struct ZStackWidget
     : WidgetsContaining
     , WidgetViewModifying
-    , WidgetContextModifiying
     , WidgetPadding
     , CustomDebugStringConvertible {
 
     public var debugDescription: String { "ZStackWidget()" }
 
     public let widgets: [Widget]
-    
-    public var contextModifier: WidgetContextModifier?
     public var modifiers = WidgetModifiers()
 
     public init(_ widgets: [Widget]) {
@@ -31,7 +28,7 @@ public struct ZStackWidget
 
     public func build(with context: WidgetContext) -> UIView {
         let view = UIView()
-        let context = (contextModifier?(context) ?? context).set(view: view)
+        let context = modifiers.modified(context, for: view)
 
         view.translatesAutoresizingMaskIntoConstraints = false
         view.insetsLayoutMarginsFromSafeArea = false

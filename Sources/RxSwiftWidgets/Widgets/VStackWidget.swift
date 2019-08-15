@@ -14,7 +14,6 @@ import RxCocoa
 public struct VStackWidget
     : WidgetsContaining
     , WidgetViewModifying
-    , WidgetContextModifiying
     , WidgetPadding
     , CustomDebugStringConvertible {
 
@@ -22,8 +21,6 @@ public struct VStackWidget
 
     public var widgets: [Widget]
     public var widgetsBuilder: AnyObservableListBuilder?
-
-    public var contextModifier: WidgetContextModifier?
     public var modifiers = WidgetModifiers()
 
     public init(_ widgets: [Widget] = []) {
@@ -38,7 +35,7 @@ public struct VStackWidget
     public func build(with context: WidgetContext) -> UIView {
         
         let stack = WidgetPrivateStackView()
-        let context = (contextModifier?(context) ?? context).set(view: stack)
+        let context = modifiers.modified(context, for: stack)
 
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.insetsLayoutMarginsFromSafeArea = false

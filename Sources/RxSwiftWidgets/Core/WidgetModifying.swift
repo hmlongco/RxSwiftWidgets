@@ -14,6 +14,8 @@ import RxCocoa
 public struct WidgetModifiers {
     /// List of additional modifiers
     public var list: Array<AnyWidgetModifier>?
+    /// Support for context modifiers
+    public var contextModifier: WidgetContextModifier?
     /// Modifier for primary view data binding, if any
     public var binding: AnyWidgetModifier? = nil
     /// Used if WiddgetPadding is supported
@@ -23,9 +25,14 @@ public struct WidgetModifiers {
 }
 
 extension WidgetModifiers {
+
     public func apply(to view: UIView, with context: WidgetContext) {
         self.binding?.apply(to: view, with: context)
         self.list?.forEach { $0.apply(to: view, with: context) }
+    }
+
+    public func modified(_ context: WidgetContext, for view: UIView) -> WidgetContext {
+        return (contextModifier?(context) ?? context).set(view: view)
     }
 }
 

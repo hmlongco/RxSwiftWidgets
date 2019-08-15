@@ -41,7 +41,7 @@ public struct LabelWidget
 
     public func build(with context: WidgetContext) -> UIView {
         let label = WidgetLabel()
-        let context = context.set(view: label)
+        let context = modifiers.modified(context, for: label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .body)
