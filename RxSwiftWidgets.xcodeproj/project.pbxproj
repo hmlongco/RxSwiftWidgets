@@ -59,6 +59,7 @@
 		4C8CCF2F22F0FB20008139A3 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF2D22F0FAFE008139A3 /* Binding.swift */; };
 		4C8CCF3122F0FB7E008139A3 /* BindableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */; };
 		4C8CCF3322F1DB32008139A3 /* DoneButtonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF3222F1DB32008139A3 /* DoneButtonWidget.swift */; };
+		4CD6916C2306EFBC00C6FB9C /* DynamicTableViewWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD6916B2306EFBC00C6FB9C /* DynamicTableViewWidget.swift */; };
 		4CE3B69C22F49E1400E47F57 /* WidgetSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B69A22F49DFF00E47F57 /* WidgetSwiftUI.swift */; };
 		4CE3B69E22F4BCBC00E47F57 /* WidgetAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B69D22F4BCBC00E47F57 /* WidgetAnimation.swift */; };
 		4CE3B6A222F65A6C00E47F57 /* DisclosableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B6A022F65A1300E47F57 /* DisclosableWidget.swift */; };
@@ -574,6 +575,7 @@
 		4C8CCF2D22F0FAFE008139A3 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableElement.swift; sourceTree = "<group>"; };
 		4C8CCF3222F1DB32008139A3 /* DoneButtonWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneButtonWidget.swift; sourceTree = "<group>"; };
+		4CD6916B2306EFBC00C6FB9C /* DynamicTableViewWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTableViewWidget.swift; sourceTree = "<group>"; };
 		4CE3B69A22F49DFF00E47F57 /* WidgetSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSwiftUI.swift; sourceTree = "<group>"; };
 		4CE3B69D22F4BCBC00E47F57 /* WidgetAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAnimation.swift; sourceTree = "<group>"; };
 		4CE3B6A022F65A1300E47F57 /* DisclosableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosableWidget.swift; sourceTree = "<group>"; };
@@ -1311,6 +1313,7 @@
 				OBJ_33 /* ButtonWidget.swift */,
 				OBJ_34 /* ContainerWidget.swift */,
 				4CE3B6A022F65A1300E47F57 /* DisclosableWidget.swift */,
+				4CD6916B2306EFBC00C6FB9C /* DynamicTableViewWidget.swift */,
 				OBJ_35 /* HStackWidget.swift */,
 				OBJ_36 /* ImageWidget.swift */,
 				OBJ_37 /* LabelWidget.swift */,
@@ -2148,6 +2151,7 @@
 				OBJ_663 /* WidgetModifyUIView.swift in Sources */,
 				OBJ_664 /* WidgetModifyUIViewConstraints.swift in Sources */,
 				OBJ_665 /* WidgetModifyUIViewCustom.swift in Sources */,
+				4CD6916C2306EFBC00C6FB9C /* DynamicTableViewWidget.swift in Sources */,
 				OBJ_666 /* WidgetModifyUIViewGestures.swift in Sources */,
 				4CE49AB922FCD7080030CD9D /* WidgetModifyUIControl.swift in Sources */,
 				OBJ_667 /* WidgetModifyUIViewLayer.swift in Sources */,
