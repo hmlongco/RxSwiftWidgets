@@ -1,6 +1,6 @@
 //
 //  WidgetModifyUIViewControllerEvents.swift
-//  RxSwiftWidgetsDemo
+//  RxSwiftWidgets
 //
 //  Created by Michael Long on 7/27/19.
 //

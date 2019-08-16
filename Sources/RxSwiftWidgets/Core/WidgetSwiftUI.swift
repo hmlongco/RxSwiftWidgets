@@ -1,6 +1,6 @@
 //
 //  WidgetSwiftUI.swift
-//  RxSwiftWidgetsDemo
+//  RxSwiftWidgets
 //
 //  Created by Michael Long on 8/2/19.
 //

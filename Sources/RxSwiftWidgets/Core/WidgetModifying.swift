@@ -1,6 +1,6 @@
 //
 //  WidgetModifying.swift
-//  RxSwiftWidgetsX11
+//  RxSwiftWidgets
 //
 //  Created by Michael Long on 7/11/19.
 //  Copyright © 2019 Michael Long. All rights reserved.
