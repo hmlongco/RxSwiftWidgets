@@ -20,9 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
         window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController()
-//        let wt = LoginFormWidget()
-        let wt = MainMenuWidget()
-        let vc = UIWidgetHostController(wt)
+        var widget: Widget = MainMenuWidget()
+//        widget = DemoStaticTableViewWidget()
+        let vc = UIWidgetHostController(widget)
         navigationController.addChild(vc)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

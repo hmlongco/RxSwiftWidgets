@@ -44,6 +44,10 @@ struct FeaturesWidget: WidgetView {
                         context.navigator?.push(widget: DemoScrollingWidget())
                     }),
 
+                    MainMenuItemWidget(text: "Static TableView", onTap: { context in
+                        context.navigator?.push(widget: DemoStaticTableViewWidget())
+                    }),
+
                     ButtonWidget("Reset Title")
                         .color(.orange)
                         .hidden($title.map { $0 == "Features" })

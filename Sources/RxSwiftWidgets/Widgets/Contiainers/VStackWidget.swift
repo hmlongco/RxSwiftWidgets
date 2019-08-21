@@ -1,5 +1,5 @@
 //
-//  DynamicTableViewWidget.swift
+//  VStackWidget.swift
 //  RxSwiftWidgets
 //
 //  Created by Michael Long on 7/10/19.
@@ -11,7 +11,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public struct DynamicTableViewWidget
+public struct VStackWidget
     : WidgetsContaining
     , WidgetViewModifying
     , WidgetPadding

@@ -35,6 +35,10 @@ struct MainMenuWidget: WidgetView {
                         context.navigator?.push(widget: LoginFormWidget())
                     }),
 
+                    MainMenuItemWidget(text: "User List (TableView)", onTap: { context in
+                        context.navigator?.push(widget: UserListWidget())
+                    }),
+
                     MainMenuItemWidget(text: "Features", onTap: { context in
                         context.navigator?.push(widget: FeaturesWidget())
                     }),
