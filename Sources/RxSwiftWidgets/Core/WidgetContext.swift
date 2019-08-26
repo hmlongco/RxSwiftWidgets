@@ -61,6 +61,10 @@ public struct WidgetContext {
         // siwftlint:enable force_unwrapping
     }
 
+    public func getWeak<T>(_ type: T.Type = T.self) -> T? {
+        ((attributes[String(describing: type)] as? WeakBox)?.object as? T)
+    }
+
     public func find<T>(_ key: String) -> T? {
         attributes[key] as? T
     }
@@ -75,12 +79,22 @@ public struct WidgetContext {
         return context
     }
 
+    public func putWeak<T:AnyObject>(_ object: T) -> WidgetContext {
+        var context = self
+        context.attributes[String(describing: T.self)] = WeakBox(object: object)
+        return context
+    }
+
     public func set<T>(_ value: T?, for key: String) -> WidgetContext {
         var context = self
         context.attributes[key] = value
         return context
     }
     
+}
+
+fileprivate struct WeakBox {
+    weak var object: AnyObject?
 }
 
 public extension WidgetContext.Keys {

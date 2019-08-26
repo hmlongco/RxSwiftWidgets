@@ -13,30 +13,34 @@ struct DemoStaticTableViewWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        TableViewWidget([
-            SectionWidget([
+        TableWidget([
+            TableSectionWidget([
                 VStackWidget([
                     LabelWidget("This is line 1"),
                     LabelWidget("This is a footnote for line 1")
                         .font(.footnote)
                     ])
                     .spacing(2),
-                RowWidget("This is line 2", subtitle: "This is a subtitle"),
+                TableCellWidget("This is line 2", subtitle: "This is a subtitle"),
+                TableCellWidget("Name", value: "Value"),
                 ]),
-            SectionWidget([
+            TableSectionWidget([
                 HStackWidget([
                     LabelWidget("On or Off"),
                     SpacerWidget(),
                     UIControlWidget(UISwitch())
                     ])
                 ]),
-            SectionWidget([
+            TableSectionWidget([
                 LabelWidget("This is label line 1"),
-                RowWidget("This is row line 2"),
+                TableCellWidget("This is row line 2"),
                 ]),
-            ]) // TableViewWidget
+            ]) // TableWidget
             .navigationBar(title: "Static TableView", hidden: false)
             .safeArea(true)
+            .onSelect { (context, path) in
+                context.tableView?.deselectRow(at: path, animated: true)
+            }
             .onViewDidAppear { _ in
 
             }

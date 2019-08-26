@@ -45,6 +45,7 @@ extension WidgetViewModifying {
             view.layer.shadowColor = color.cgColor
             view.layer.shadowOpacity = opacity
             view.layer.shadowRadius = radius
+            view.clipsToBounds = false
         }))
     }
     

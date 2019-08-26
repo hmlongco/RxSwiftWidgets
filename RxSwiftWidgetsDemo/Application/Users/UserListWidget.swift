@@ -11,18 +11,20 @@ import RxSwiftWidgets
 
 struct UserListWidget: WidgetView {
 
+    @State var users: [User] = User.users
+
     func widget(_ context: WidgetContext) -> Widget {
 
-        TableViewWidget([
-            SectionWidget([
-                LabelWidget("This is line 1"),
-                LabelWidget("This is line 2")
-                ]),
-            SectionWidget([
-                LabelWidget("This is line 1"),
-                LabelWidget("This is line 2")
-                ])
-            ]) // TableViewWidget
+        TableWidget([
+            DynamicTableSectionWidget($users) {
+                TableCellWidget($0.name)
+                    .accessoryType(.disclosureIndicator)
+                }
+                .onSelect { (context, path, user) in
+                    context.navigator?.push(widget: UserDetailsWidget(user: user))
+                    context.tableView?.deselectRow(at: path, animated: true)
+                }
+            ]) // TableWidget
             .navigationBar(title: "User List", hidden: false)
             .safeArea(true)
             .onViewDidAppear { _ in
