@@ -81,7 +81,7 @@ DynamicTableSectionWidgets are just that, dynamic, and here it's bound to an obs
 
 The *DynamicTableSectionWidget* initializer also takes a closure that, when called, constructs the interface needed to display each user. Here it's just a simple *TableCellWidget* that shows the user's name.
 
-It also has an *onSelect* modifier that's called whenever the user taps on a cell. As shown, it uses a *navigatior* instance to push a new *UserDetailsWidget* onto the stack.
+It also has an *onSelect* modifier that's called whenever the user taps on a cell. As shown, it uses a *navigatior* instance to push a new *[UserDetailsWidget](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserDetailsWidget.swift)* onto the stack.
 
 The *TableWidget* itself has an *onRefresh* modifier. Here's the closure fires when the view is initially created as well as whenever the user does a pull-to-refresh.
 
