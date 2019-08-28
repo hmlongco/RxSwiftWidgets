@@ -88,7 +88,7 @@ The *TableWidget* itself has an *onRefresh* modifier. Here's the closure fires w
 
 Finally, we have a couple of modifiers that control the navigation bar title and appearance, in addition to informing the constraint system that we want our tableview to fill the entire screen and ignore the safearea.
 
-That's it. That's all of the code for the entire screen (minus the data loading code in the view model). You didn't create and configure a UITableViewController. No delegates. No datasources.
+That's it. That's all of the code for the entire screen ([minus the data loading code in the view model](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserListWidget.swift)). You didn't create and configure a UITableViewController. No delegates. No datasources.
 
 A complete table view with navigation, dynamic data, and pull-to-refresh, in just 24 lines of code. Interested?
 
