@@ -99,7 +99,7 @@ Just wrap an RxSwiftWidget in a *UIWidgetHostController* and push it onto the na
 
 ```
     let vc = UIWidgetHostController(MyWidget())
-		navigationController?.pushViewController(vc, animated: true)
+    navigationController?.pushViewController(vc, animated: true)
 ```
 
 It's also possible use widgets in existing layouts, and you can also flip things around and use your own custom UIViews and controls within RxSwiftWidget layouts.
@@ -114,9 +114,9 @@ Just instantiate the view, wrap it in a *UIViewWidget*, and insert it into the l
         ...
     ])
 ```
-As shown, you can also manipulate properties on custom views using RxSwiftWidget modifiers.
+As shown, you can also manipulate properties on custom views using standard RxSwiftWidget modifiers. Your view is a UIView, after all.
 
-It's also easy to create your own widget types. Your choice.
+It's also easy to create your own fully integrated widget types. Your choice.
 
 ## WIP
 
