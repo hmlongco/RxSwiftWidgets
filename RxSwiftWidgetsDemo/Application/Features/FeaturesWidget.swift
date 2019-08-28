@@ -73,5 +73,6 @@ struct FeaturesWidget: WidgetView {
             ]) // ZStackWidget
             .navigationBar(title: "Features", hidden: true)
             .safeArea(false)
+        
         }
 }

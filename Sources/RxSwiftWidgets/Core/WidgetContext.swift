@@ -104,3 +104,11 @@ public extension WidgetContext.Keys {
 }
 
 public typealias WidgetContextModifier = (WidgetContext) -> WidgetContext
+
+extension WidgetViewModifying {
+
+    public func context(_ modifier: @escaping WidgetContextModifier) -> Self {
+        return modified { $0.modifiers.contextModifier = modifier }
+    }
+
+}

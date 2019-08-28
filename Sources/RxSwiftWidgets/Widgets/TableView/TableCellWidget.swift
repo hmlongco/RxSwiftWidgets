@@ -64,7 +64,10 @@ public class TableCellWidget: Widget
 
     public func configure(cell: UITableViewCell, with context: WidgetContext) {
         cell.textLabel?.text = title
+        cell.textLabel?.textColor = context.theme.color.text
+        cell.textLabel?.font = context.theme.font.body
         cell.detailTextLabel?.text = detail
+        cell.detailTextLabel?.textColor = context.theme.color.secondaryText
         cell.accessoryType = accessoryType
     }
 

@@ -44,7 +44,10 @@ struct DemoStaticTableViewWidget: WidgetView {
             .onViewDidAppear { _ in
 
             }
-        
+            .theme {
+                $0.color.text = .purple
+            }
+
     }
 
 }

@@ -17,10 +17,17 @@ public class UIWidgetHostController: UIViewController {
 
     // lifecycle
 
-    public init(_ widget: Widget, with context: WidgetContext? = nil, dismissible: WidgetDismissibleType? = nil) {
+    public init(_ widget: Widget, with context: WidgetContext? = nil) {
         super.init(nibName: nil, bundle: nil)
         self.widget = widget
         self.context = (context?.new() ?? WidgetContext())
+            .set(viewController: self)
+    }
+
+    public init(_ widget: Widget, with context: WidgetContext, dismissible: WidgetDismissibleType) {
+        super.init(nibName: nil, bundle: nil)
+        self.widget = widget
+        self.context = context.new()
             .set(viewController: self)
             .set(dismissible: dismissible)
     }

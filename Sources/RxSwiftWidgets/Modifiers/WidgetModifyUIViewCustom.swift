@@ -15,10 +15,6 @@ import RxCocoa
 
 extension WidgetViewModifying {
 
-    public func context(_ modifier: @escaping WidgetContextModifier) -> Self {
-        return modified { $0.modifiers.contextModifier = modifier }
-    }
-
     public func safeArea(_ value: Bool) -> Self {
         return modified(WidgetModifier(keyPath: \UIView.widget.safeArea, value: value))
     }
