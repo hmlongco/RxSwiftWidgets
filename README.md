@@ -102,7 +102,15 @@ This means that up to this point the focus was there and not on simply adding as
 
 Don't worry, they're coming soon.
 
-Though if you're interesting in implementing some, just let me know.
+Though if you're interesting in implementing a widget or two, just let me know.
+
+## Requirements
+
+RxSwiftWidgets requires Xcode 11 as it uses several features from Swift 5.1.
+
+It also depends on the current release of RxSwift and RxCocoa.
+
+That said, and as mentioned above, RxSwiftWidgets currently runs on iOS 11, 12, and 13. (It may well be possible to take it lower, but I used a couple of iOS 11 and up UIKit dependencies here and there.)
 
 ## Author
 
