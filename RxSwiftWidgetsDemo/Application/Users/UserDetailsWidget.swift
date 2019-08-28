@@ -54,6 +54,7 @@ struct UserDetailsWidget: WidgetView {
                 .spacing(20)
             ) // ContainerWidget
             .backgroundColor(.systemBackground)
+            .safeArea(false)
             .padding(20)
             .navigationBar(title: "User Information", hidden: false)
 

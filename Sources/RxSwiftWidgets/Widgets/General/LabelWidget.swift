@@ -44,7 +44,8 @@ public struct LabelWidget
         let context = modifiers.modified(context, for: label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.font = context.theme.font.body
+        label.textColor = context.theme.color.text
         label.textInsets = modifiers.padding
         label.backgroundColor = .clear
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)

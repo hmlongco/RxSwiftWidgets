@@ -34,7 +34,8 @@ public struct ButtonWidget
         let context = modifiers.modified(context, for: button)
 
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        button.titleLabel?.font = context.theme.font.body
+        button.setTitleColor(context.theme.color.link, for: .normal)
         button.contentEdgeInsets = modifiers.padding ?? button.contentEdgeInsets
         button.backgroundColor = .clear
         button.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)

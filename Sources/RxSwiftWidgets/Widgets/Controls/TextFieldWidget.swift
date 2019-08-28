@@ -43,7 +43,8 @@ public struct TextFieldWidget
         let context = modifiers.modified(context, for: textField)
         
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.font = UIFont.preferredFont(forTextStyle: .body)
+        textField.font = context.theme.font.body
+        textField.textColor = context.theme.color.text
         textField.backgroundColor = .clear
 
         modifiers.apply(to: textField, with: context)

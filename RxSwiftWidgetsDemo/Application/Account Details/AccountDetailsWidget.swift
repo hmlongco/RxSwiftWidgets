@@ -34,7 +34,7 @@ struct AccountDetailsWidget: WidgetView {
 
                         ContainerWidget(
                             VStackWidget(viewModel.accountDetails) {
-                                self.accountDetailsRow($0)
+                                AccountDetailsRowWidget(detail: $0)
                             })
                             .padding(20)
                             .cornerRadius(20)
@@ -42,14 +42,14 @@ struct AccountDetailsWidget: WidgetView {
 
                         ContainerWidget(
                             VStackWidget(viewModel.paymentDetails) {
-                                self.accountDetailsRow($0)
+                                AccountDetailsRowWidget(detail: $0)
                             })
                             .padding(20)
                             .cornerRadius(20)
                             .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
 
                             LabelWidget(viewModel.footnotes)
-                                .color(.gray)
+                                .color(context.theme.color.secondaryText)
                                 .font(.footnote)
                                 .numberOfLines(0)
                                 .padding(h: 15, v: 0),
@@ -72,17 +72,22 @@ struct AccountDetailsWidget: WidgetView {
             .onViewDidAppear { _ in
                 self.viewModel.load()
             }
-        }
+    }
 
-    func accountDetailsRow(_ detail: AccountInformation.AccountDetails) -> Widget {
+}
+
+fileprivate struct AccountDetailsRowWidget: WidgetView {
+
+    let detail: AccountInformation.AccountDetails
+
+    func widget(_ context: WidgetContext) -> Widget {
         return HStackWidget([
             LabelWidget(detail.name)
-                .font(.body)
-                .color(.gray),
+                .color(context.theme.color.secondaryText),
             SpacerWidget(),
-            LabelWidget(detail.value)
-                .color(.darkText),
+            LabelWidget(detail.value),
             ])
     }
 
 }
+
