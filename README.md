@@ -30,9 +30,9 @@ SwiftUI is coming, but not yet released. Same for Combine. Perhaps more to the p
 
 So many of us wouldn't see any of the benefits of doing declarative, reactive programming for one or two **years**. That's simply too long.
 
-## Example
+## Sample Table View
 
-Here's a simple table view implemented in RxSwiftUI.
+Here's a simple table view implemented in RxSwiftWidgets.
 
 ```
 struct UserListWidget: WidgetView {
@@ -61,7 +61,9 @@ struct UserListWidget: WidgetView {
 
 }
 ```
-Let's do a quick walkthrough.
+## Walkthrough
+
+Let's take a quick walk through the code.
 
 Our *UserListWidget* is a *WidgetView*, whose job is to return a single widget container that defines the interface for that view.
 
@@ -75,11 +77,11 @@ It also has an *onSelect* modifier that's called whenever the user taps on a cel
 
 The *TableWidget* itself has an *onRefresh* modifier. Here's the closure fires when the view is initially created as well as whenerver they user does a pull-to-refresh.
 
-Finally, we have a couple of modifiers that control the navgiation bar title and appearance, in additoon to informing the constraint system that we want our tableview to fill the entire screen and ignore the safearea.
+Finally, we have a couple of modifiers that control the navgiation bar title and appearance, in addition to informing the constraint system that we want our tableview to fill the entire screen and ignore the safearea.
 
 That's it. That's all of the code for the entire screen (minus the data loading code in the view model). You didn't create and configure a UITableViewController. No delegates. No datasources.
 
-Just 24 lines of code.
+Just 24 lines of code. Interested?
 
 ## WIP
 
