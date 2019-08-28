@@ -26,4 +26,5 @@ extension WidgetViewModifying {
     public func with<View:UIView>(_ block: @escaping WidgetModifierBlockType<View>) -> Self {
         return modified(WidgetModifierBlock(block))
     }
+    
 }

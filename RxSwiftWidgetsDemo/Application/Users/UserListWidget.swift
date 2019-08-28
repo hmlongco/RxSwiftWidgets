@@ -9,14 +9,26 @@ import UIKit
 import RxSwift
 import RxSwiftWidgets
 
+class UserListViewModel {
+
+    @State var users: [User] = []
+
+    func reload() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.users = User.users
+        })
+    }
+
+}
+
 struct UserListWidget: WidgetView {
 
-    @State var users: [User] = User.users
+    var viewModel = UserListViewModel()
 
     func widget(_ context: WidgetContext) -> Widget {
 
         TableWidget([
-            DynamicTableSectionWidget($users) {
+            DynamicTableSectionWidget(viewModel.$users) {
                 TableCellWidget($0.name)
                     .accessoryType(.disclosureIndicator)
                 }
@@ -25,23 +37,12 @@ struct UserListWidget: WidgetView {
                     context.tableView?.deselectRow(at: path, animated: true)
                 }
             ]) // TableWidget
+            .onRefresh(initialRefresh: true, handler: { _ in
+                self.viewModel.reload()
+            })
             .navigationBar(title: "User List", hidden: false)
-            .safeArea(true)
-            .onViewDidAppear { _ in
-
-            }
+            .safeArea(false)
         
     }
-
-//    func accountDetailsRow(_ detail: AccountInformation.AccountDetails) -> Widget {
-//        return HStackWidget([
-//            LabelWidget(detail.name)
-//                .font(.body)
-//                .color(.gray),
-//            SpacerWidget(),
-//            LabelWidget(detail.value)
-//                .color(.darkText),
-//            ])
-//    }
 
 }

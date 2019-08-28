@@ -64,6 +64,8 @@ public class TableWidget
 
     public var grouped: UITableView.Style?
     public var selectionHandler: ((_ context: WidgetContext, _ indexPath: IndexPath) -> Void)?
+    public var initialRefresh: Bool = false
+    public var refreshHandler: ((_ context: WidgetContext) -> Void)?
 
     public init(_ sections: [BaseTableSection] = []) {
         self.sections = sections
@@ -92,11 +94,28 @@ public class TableWidget
             view.insetsContentViewsToSafeArea = false
         } // kill default behavior and left safearea modifier handle things.
 
+        if let refreshHandler = refreshHandler {
+            view.enablePullToRefresh(refreshHandler)
+            if initialRefresh {
+                DispatchQueue.main.async {
+                    view.setContentOffset(CGPoint(x: 0, y: -20), animated: true)
+                    view.refreshControl?.beginRefreshing()
+                    view.refreshControl?.sendActions(for: .valueChanged)
+                }
+            }
+        }
+
         modifiers.apply(to: view, with: self.context)
 
         self.tableView = view
 
         return view
+    }
+
+    public func onRefresh(initialRefresh: Bool = false, handler: @escaping ((_ context: WidgetContext) -> Void)) -> Self {
+        self.initialRefresh = initialRefresh
+        self.refreshHandler = handler
+        return self
     }
 
     public func onSelect(_ selectionHandler: @escaping (_ context: WidgetContext, _ indexPath: IndexPath) -> Void) -> Self {
@@ -110,6 +129,7 @@ public class TableWidget
 
     public func updated() {
         tableView?.reloadData()
+        tableView?.refreshControl?.endRefreshing()
     }
 
 }
@@ -152,6 +172,19 @@ extension WidgetContext {
 fileprivate class WidgetTableView: UITableView {
 
     public var tableViewWidget: TableWidget?
+    public var refresh: ((_ context: WidgetContext) -> Void)?
+
+    open func enablePullToRefresh(_ refresh: @escaping (_ context: WidgetContext) -> Void) {
+        self.refresh = refresh
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(callRefresh(_:)), for: .valueChanged)
+    }
+
+    @objc private func callRefresh(_ sender: Any) {
+        if let widget = tableViewWidget {
+            refresh?(widget.context)
+        }
+    }
 
 }
 
