@@ -359,7 +359,7 @@
 		OBJ_659 /* WidgetPositioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* WidgetPositioning.swift */; };
 		OBJ_660 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* WidgetView.swift */; };
 		OBJ_661 /* UIView+Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* UIView+Widgets.swift */; };
-		OBJ_662 /* UIViewController+Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* UIViewController+Widgets.swift */; };
+		OBJ_662 /* UIWidgetHostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* UIWidgetHostController.swift */; };
 		OBJ_663 /* WidgetModifyUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* WidgetModifyUIView.swift */; };
 		OBJ_664 /* WidgetModifyUIViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* WidgetModifyUIViewConstraints.swift */; };
 		OBJ_665 /* WidgetModifyUIViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* WidgetModifyUIViewCustom.swift */; };
@@ -712,7 +712,7 @@
 		OBJ_207 /* DefaultIfEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultIfEmpty.swift; sourceTree = "<group>"; };
 		OBJ_208 /* Deferred.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deferred.swift; sourceTree = "<group>"; };
 		OBJ_209 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
-		OBJ_21 /* UIViewController+Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Widgets.swift"; sourceTree = "<group>"; };
+		OBJ_21 /* UIWidgetHostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWidgetHostController.swift; sourceTree = "<group>"; };
 		OBJ_210 /* DelaySubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelaySubscription.swift; sourceTree = "<group>"; };
 		OBJ_211 /* Dematerialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dematerialize.swift; sourceTree = "<group>"; };
 		OBJ_212 /* Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deprecated.swift; sourceTree = "<group>"; };
@@ -1344,7 +1344,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_20 /* UIView+Widgets.swift */,
-				OBJ_21 /* UIViewController+Widgets.swift */,
+				OBJ_21 /* UIWidgetHostController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2210,7 +2210,7 @@
 				OBJ_659 /* WidgetPositioning.swift in Sources */,
 				OBJ_660 /* WidgetView.swift in Sources */,
 				OBJ_661 /* UIView+Widgets.swift in Sources */,
-				OBJ_662 /* UIViewController+Widgets.swift in Sources */,
+				OBJ_662 /* UIWidgetHostController.swift in Sources */,
 				4C8CCF3122F0FB7E008139A3 /* BindableElement.swift in Sources */,
 				4C15DEDA22EE399F00196894 /* WidgetModifyUINavigation.swift in Sources */,
 				OBJ_663 /* WidgetModifyUIView.swift in Sources */,

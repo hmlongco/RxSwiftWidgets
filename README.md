@@ -24,8 +24,7 @@ But unlike SwiftUI, with RxSwiftWidgets you also have the power to reach under t
 
 RxSwiftWidgets are also highly performant and non-resource intensive. As with SwiftUI, widget/view "definitions" are typically struct-based value types, and many of the modifiers are little more than key path-based assignments. 
 
-Keeping performance high and overhead low was another core design tenet.
-
+Keeping performance high and overhead low was another core design tenet. This also makes it easy to support another key concept borrowed from SwiftUI: Interface Composition.
 
 ## Why RxSwiftWidgets?
 
@@ -91,6 +90,33 @@ Finally, we have a couple of modifiers that control the navigation bar title and
 That's it. That's all of the code for the entire screen ([minus the data loading code in the view model](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserListWidget.swift)). You didn't create and configure a UITableViewController. No delegates. No datasources.
 
 A complete table view with navigation, dynamic data, and pull-to-refresh, in just 24 lines of code. Interested?
+
+## Integration
+
+As RxSwiftWidgets are UIKit-based, it's easy to integrate RxSwiftWidgets in an existing app.
+
+Just wrap an RxSwiftWidget in a *UIWidgetHostController* and push it onto the navigation stack. RxSwiftWidgets will take over from there.
+
+```
+    let vc = UIWidgetHostController(MyWidget())
+		navigationController?.pushViewController(vc, animated: true)
+```
+
+It's also possible use widgets in existing layouts, and you can also flip things around and use your own custom UIViews and controls within RxSwiftWidget layouts.
+
+Just instantiate the view, wrap it in a *UIViewWidget*, and insert it into the layout where desired.
+
+```
+    VStackWidget([
+        ...
+        UIViewWidget(MyCustomUIView())
+           .hidden(viewModel.customViewIsHidden),
+        ...
+    ])
+```
+As shown, you can also manipulate properties on custom views using RxSwiftWidget modifiers.
+
+It's also easy to create your own widget types. Your choice.
 
 ## WIP
 
