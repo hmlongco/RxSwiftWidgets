@@ -16,15 +16,17 @@ With RxSwiftWidgets, interfaces are composed and described using "widgets" and "
 
 When rendered, each "widget" builds a corresponding UIView which is then modified as needed with the desired properties and behaviors.
 
-Declarative programming using Widgets eliminates the need for Interface Builder Storyboards, Segues, and NIBs, and even custom UIViewControllers. All of those things are still there, of course, lying in wait for the times when they're truly needed for some bit of custom functionality.
+Combine just a few widgets together, and you can achieve some dynamic user interfaces:
+
+> ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-Menu.png)  ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-Login.png)  ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-Account-Details.png) 
+
+Declarative programming using RxSwiftWidgets eliminates the need for Interface Builder Storyboards, Segues, and NIBs, and even custom UIViewControllers. All of those things are still there, of course, lying in wait for the times when they're truly needed for some bit of custom functionality.
 
 Like SwiftUI, the goal behind RxSwiftWidgets is to eliminate much of the hassle behind creating and developing user interfaces. 
 
 But unlike SwiftUI, with RxSwiftWidgets you also have the power to reach under the hood at any point in time and  directly work with the generated views and interface elements and tweak them to your hearts content.
 
-RxSwiftWidgets are also highly performant and non-resource intensive. As with SwiftUI, widget/view "definitions" are typically struct-based value types, and many of the modifiers are little more than key path-based assignments. 
-
-Keeping performance high and overhead low was another core design tenet. This also makes it easy to support another key concept borrowed from SwiftUI: Interface Composition.
+RxSwiftWidgets are also highly performant and non-resource intensive. As with SwiftUI, widget/view "definitions" are typically struct-based value types, and many of the modifiers are little more than key path-based assignments.
 
 ## Why RxSwiftWidgets?
 
@@ -38,9 +40,15 @@ There aren't too many developers who can drop support for earlier versions of iO
 
 That's simply too long.
 
-## Sample Table View
+## Master/Detail Table View
 
-Here's a simple table view implemented in RxSwiftWidgets.
+Here's a simple table view implemented in RxSwiftWidgets, which then links to a detail view.
+
+> ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-User-List.png) ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-User-Details.png) 
+
+## Sample Code
+
+Let's take a quick walk through the code needed to produce the data-driven user list.
 
 ```
 struct UserListWidget: WidgetView {
@@ -69,9 +77,6 @@ struct UserListWidget: WidgetView {
 
 }
 ```
-## Walkthrough
-
-Let's take a quick walk through the code.
 
 Our *UserListWidget* is a *WidgetView*, whose job is to return a single widget container that defines the interface for that view.
 
