@@ -38,7 +38,7 @@ public protocol WidgetUpdatable: class {
     func updated()
 }
 
-public protocol TableViewCellProviding {
+public protocol WidgetTableViewCellProviding {
     func cell(for tableView: UITableView, with context: WidgetContext) -> UITableViewCell
 }
 

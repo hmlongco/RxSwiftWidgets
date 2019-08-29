@@ -22,7 +22,7 @@ extension Widgets {
 }
 
 public class TableCellWidget: Widget
-    , TableViewCellProviding {
+    , WidgetTableViewCellProviding {
 
     public var title: String?
     public var detail: String?

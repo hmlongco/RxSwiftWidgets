@@ -44,6 +44,7 @@ public struct WidgetTheme {
 }
 
 extension WidgetTheme {
+
     public static var defaultTheme: WidgetTheme = {
         if #available(iOS 13, *) {
             let color = WidgetTheme.Color(
@@ -69,6 +70,7 @@ extension WidgetTheme {
             return WidgetTheme(color: color, font: font)
         }
     }()
+    
 }
 
 extension WidgetViewModifying {

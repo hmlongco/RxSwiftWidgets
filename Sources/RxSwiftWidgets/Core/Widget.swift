@@ -13,6 +13,11 @@ public protocol Widget {
     func build(with context: WidgetContext) -> UIView
 }
 
+/// Namespace for many RxSwiftWidget Enumerations and Definitions
+public struct Widgets {
+
+}
+
 /// A widget that contains or wraps another widget
 public protocol WidgetContaining: Widget {
     var widget: Widget { get }
@@ -37,6 +42,3 @@ extension Widget {
     }
 }
 
-public struct Widgets {
-    
-}

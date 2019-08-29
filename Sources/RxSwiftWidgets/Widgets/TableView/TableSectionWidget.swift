@@ -32,7 +32,7 @@ public class BaseTableSection: Widget
         guard let widget = getWidget(at: row) else {
             return UITableViewCell()
         }
-        if let provider = widget as? TableViewCellProviding {
+        if let provider = widget as? WidgetTableViewCellProviding {
             return provider.cell(for: tableView, with: context)
         } else if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WidgetTableViewCell.self)) as? WidgetTableViewCell {
             cell.reset(widget, with: context, padding: defaultCellPadding)

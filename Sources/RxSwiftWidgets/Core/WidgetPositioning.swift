@@ -47,6 +47,7 @@ extension WidgetModifying {
 }
 
 extension Widgets.Position {
+    
     func apply(to view: UIView, padding: UIEdgeInsets, safeArea: Bool) {
         guard let superview = view.superview else { return }
 
