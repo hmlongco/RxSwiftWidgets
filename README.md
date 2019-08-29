@@ -16,7 +16,7 @@ With RxSwiftWidgets, interfaces are composed and described using "widgets" and "
 
 When rendered, each "widget" builds a corresponding UIView which is then modified as needed with the desired properties and behaviors.
 
-Combine just a few widgets together, and you can achieve some dynamic user interfaces:
+Combine just a few widgets together, and you can quickly and easily achieve some dynamic user interfaces:
 
 > ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-Menu.png)  ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-Login.png)  ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-Account-Details.png) 
 
@@ -48,7 +48,7 @@ Here's a simple table view implemented in RxSwiftWidgets, which then links to a 
 
 ## Sample Code
 
-Let's take a quick walk through the code needed to produce the data-driven user list.
+Let's take a quick walk through the code needed to produce the data-driven user list shown above.
 
 ```
 struct UserListWidget: WidgetView {
@@ -86,13 +86,13 @@ DynamicTableSectionWidgets are just that, dynamic, and here it's bound to an obs
 
 The *DynamicTableSectionWidget* initializer also takes a closure that, when called, constructs the interface needed to display each user. Here it's just a simple *TableCellWidget* that shows the user's name.
 
-It also has an *onSelect* modifier that's called whenever the user taps on a cell. As shown, it uses a *navigatior* instance to push a new *[UserDetailsWidget](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserDetailsWidget.swift)* onto the stack.
+It also has an *onSelect* modifier that's called whenever the user taps on a cell. As shown, it uses a *navigatior* instance to push a new *UserDetailsWidget* onto the stack.
 
-The *TableWidget* itself has an *onRefresh* modifier. Here's the closure fires when the view is initially created as well as whenever the user does a pull-to-refresh.
+The *TableWidget* itself has an *onRefresh* modifier. Here the closure is called when the view is initially created as well as whenever the user does a pull-to-refresh.
 
 Finally, we have a couple of modifiers that control the navigation bar title and appearance, in addition to informing the constraint system that we want our tableview to fill the entire screen and ignore the safearea.
 
-That's it. That's all of the code for the entire screen ([minus the data loading code in the view model](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserListWidget.swift)). You didn't create and configure a UITableViewController. No delegates. No datasources.
+That's it. That's all of the code to define the entire screen ([minus the data loading code in the view model](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserListWidget.swift)). You didn't create and configure a UITableViewController. No delegates. No datasources.
 
 A complete table view with navigation, dynamic data, and pull-to-refresh, in just 24 lines of code. Interested?
 
