@@ -36,3 +36,7 @@ extension Widget {
         each(self)
     }
 }
+
+public struct Widgets {
+    
+}

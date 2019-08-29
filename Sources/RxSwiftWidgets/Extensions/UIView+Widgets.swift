@@ -12,7 +12,7 @@ import UIKit
 /// Associated data which MAY exist on explicitly positioned subviews
 public struct WidgetViewAttributes {
 
-    var position: WidgetPosition = .fill
+    var position: Widgets.Position = .fill
     var safeArea = true
 
 }

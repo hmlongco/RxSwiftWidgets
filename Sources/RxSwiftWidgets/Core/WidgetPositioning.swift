@@ -8,33 +8,36 @@
 
 import UIKit
 
-public enum WidgetPosition {
+extension Widgets {
+    public enum Position {
 
-    case fill
+        case fill
 
-    case left
-    case top
-    case bottom
-    case right
+        case left
+        case top
+        case bottom
+        case right
 
-    case topLeft
-    case topRight
-    case bottomLeft
-    case bottomRight
+        case topLeft
+        case topRight
+        case bottomLeft
+        case bottomRight
 
-    case center
-    case centerLeft
-    case centerTop
-    case centerBottom
-    case centerRight
-    case centerHorizontally
-    case centerVertically
-    
+        case center
+        case centerLeft
+        case centerTop
+        case centerBottom
+        case centerRight
+        case centerHorizontally
+        case centerVertically
+
+    }
 }
+
 
 extension WidgetModifying {
 
-    public func position(_ position: WidgetPosition) -> Self {
+    public func position(_ position: Widgets.Position) -> Self {
 //        return modified(WidgetModifierBlock<UIView> { view, _ in
 //            view.widget.position = position
 //        })
@@ -43,7 +46,7 @@ extension WidgetModifying {
 
 }
 
-extension WidgetPosition {
+extension Widgets.Position {
     func apply(to view: UIView, padding: UIEdgeInsets, safeArea: Bool) {
         guard let superview = view.superview else { return }
 

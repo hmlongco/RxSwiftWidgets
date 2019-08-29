@@ -10,10 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public enum WidgetScrollAxis {
-    case both
-    case vertical
-    case horizontal
+extension Widgets {
+    public enum ScrollAxis {
+        case both
+        case vertical
+        case horizontal
+    }
 }
 
 public struct ScrollWidget
@@ -26,7 +28,7 @@ public struct ScrollWidget
 
     public var widget: Widget
     public var modifiers = WidgetModifiers()
-    public var axis = WidgetScrollAxis.vertical
+    public var axis = Widgets.ScrollAxis.vertical
 
     public init(_ widget: Widget) {
         self.widget = widget
@@ -93,7 +95,7 @@ public struct ScrollWidget
         })
     }
 
-    public func axis(_ axis: WidgetScrollAxis) -> Self {
+    public func axis(_ axis: Widgets.ScrollAxis) -> Self {
         return modified { $0.axis = axis }
     }
 
@@ -113,7 +115,7 @@ public struct ScrollWidget
 
 internal class WidgetScrollView: UIScrollView, WidgetViewCustomConstraints {
 
-    var axis: WidgetScrollAxis = .both
+    var axis: Widgets.ScrollAxis = .both
     var delegateReference: UIScrollViewDelegate?
     var padding: UIEdgeInsets!
 

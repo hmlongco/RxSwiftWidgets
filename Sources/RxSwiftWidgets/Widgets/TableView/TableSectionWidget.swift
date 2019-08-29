@@ -63,7 +63,7 @@ public class TableSectionWidget: BaseTableSection {
     }
 
     public var cache: [Int:UITableViewCell] = [:]
-    public var caching = TableCellWidgetCaching.auto
+    public var caching = Widgets.TableCellCaching.auto
     public var selectionHandler: ((_ context: WidgetContext, _ indexPath: IndexPath) -> Void)?
 
     public init(_ widgets: [Widget] = []) {
@@ -101,7 +101,7 @@ public class TableSectionWidget: BaseTableSection {
         return widgets[row]
     }
 
-    public func caching(_ caching: TableCellWidgetCaching) {
+    public func caching(_ caching: Widgets.TableCellCaching) {
         self.caching = caching
     }
 

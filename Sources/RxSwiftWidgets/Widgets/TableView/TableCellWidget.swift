@@ -13,10 +13,12 @@ public protocol Hideable {
 
 }
 
-public enum TableCellWidgetCaching {
-    case auto
-    case cache
-    case none
+extension Widgets {
+    public enum TableCellCaching {
+        case auto
+        case cache
+        case none
+    }
 }
 
 public class TableCellWidget: Widget
@@ -25,7 +27,7 @@ public class TableCellWidget: Widget
     public var title: String?
     public var detail: String?
     public var accessoryType: UITableViewCell.AccessoryType = .none
-    public var caching = TableCellWidgetCaching.auto
+    public var caching = Widgets.TableCellCaching.auto
     public var reusableCellID: String
     public var cellType: AnyClass
 
@@ -76,7 +78,7 @@ public class TableCellWidget: Widget
         return self
     }
 
-    public func caching(_ caching: TableCellWidgetCaching) -> Self {
+    public func caching(_ caching: Widgets.TableCellCaching) -> Self {
         self.caching = caching
         return self
     }
