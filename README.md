@@ -81,7 +81,7 @@ DynamicTableSectionWidgets are just that, dynamic, and here it's bound to an obs
 
 The *DynamicTableSectionWidget* initializer also takes a closure that, when called, constructs the interface needed to display each user. Here it's just a simple *TableCellWidget* that shows the user's name.
 
-It also has an *onSelect* modifier that's called whenever the user taps on a cell. As shown, it uses a *navigatior* instance to push a new *UserDetailsWidget* onto the stack.
+It also has an *onSelect* modifier that's called whenever the user taps on a cell. As shown, it uses a *navigatior* instance to push a new *[UserDetailsWidget](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserDetailsWidget.swift)* onto the stack.
 
 The *TableWidget* itself has an *onRefresh* modifier. Here's the closure fires when the view is initially created as well as whenever the user does a pull-to-refresh.
 
@@ -99,7 +99,7 @@ Just wrap an RxSwiftWidget in a *UIWidgetHostController* and push it onto the na
 
 ```
     let vc = UIWidgetHostController(MyWidget())
-		navigationController?.pushViewController(vc, animated: true)
+    navigationController?.pushViewController(vc, animated: true)
 ```
 
 It's also possible use widgets in existing layouts, and you can also flip things around and use your own custom UIViews and controls within RxSwiftWidget layouts.
@@ -114,9 +114,9 @@ Just instantiate the view, wrap it in a *UIViewWidget*, and insert it into the l
         ...
     ])
 ```
-As shown, you can also manipulate properties on custom views using RxSwiftWidget modifiers.
+As shown, you can also manipulate properties on custom views using standard RxSwiftWidget modifiers. Your view is a UIView, after all.
 
-It's also easy to create your own widget types. Your choice.
+It's also easy to create your own fully integrated widget types. Your choice.
 
 ## WIP
 
