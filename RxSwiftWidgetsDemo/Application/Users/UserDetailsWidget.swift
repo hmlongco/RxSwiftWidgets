@@ -20,17 +20,7 @@ struct UserDetailsWidget: WidgetView {
 
                 ContainerWidget(
                     HStackWidget([
-                        ZStackWidget([
-                            LabelWidget(user.initials)
-                                .font(.title1)
-                                .alignment(.center)
-                                .backgroundColor(.gray)
-                                .color(.white),
-                            ImageWidget(named: "User-\(user.initials ?? "")")
-                            ])
-                            .height(80)
-                            .width(80)
-                            .cornerRadius(40),
+                        UserPhotoWidget(initials: user.initials, size: 80),
                         LabelWidget(user.name)
                             .font(.title1)
                             .color(.red)
@@ -38,20 +28,21 @@ struct UserDetailsWidget: WidgetView {
                         .position(.centerHorizontally)
                     ), // ContainerWidget
 
-                sectionWidget([
-                    nameValueWidget(name: "Address", value: user.address),
-                    nameValueWidget(name: "City", value: user.city),
-                    nameValueWidget(name: "State", value: user.state),
-                    nameValueWidget(name: "Zip", value: user.zip),
+                DetailsSectionWidget(widgets: [
+                    DetailsNameValueWidget(name: "Address", value: user.address),
+                    DetailsNameValueWidget(name: "City", value: user.city),
+                    DetailsNameValueWidget(name: "State", value: user.state),
+                    DetailsNameValueWidget(name: "Zip", value: user.zip),
                     ]),
 
-                sectionWidget([
-                    nameValueWidget(name: "Email", value: user.email),
+                DetailsSectionWidget(widgets: [
+                    DetailsNameValueWidget(name: "Email", value: user.email),
                     ]),
 
                 SpacerWidget()
                 ]) // VStackWidget
                 .spacing(20)
+
             ) // ContainerWidget
             .backgroundColor(.systemBackground)
             .safeArea(false)
@@ -60,8 +51,35 @@ struct UserDetailsWidget: WidgetView {
 
     }
 
-    func sectionWidget(_ widgets: [Widget]) -> Widget {
-        return ContainerWidget(
+}
+
+struct UserPhotoWidget: WidgetView {
+
+    var initials: String?
+    var size: CGFloat
+
+    func widget(_ context: WidgetContext) -> Widget {
+        ZStackWidget([
+            LabelWidget(initials)
+                .font(.title1)
+                .alignment(.center)
+                .backgroundColor(.gray)
+                .color(.white),
+            ImageWidget(named: "User-\(initials ?? "")")
+            ])
+            .height(size)
+            .width(size)
+            .cornerRadius(size/2)
+    }
+
+}
+
+fileprivate struct DetailsSectionWidget: WidgetView {
+
+    var widgets: [Widget]
+
+    func widget(_ context: WidgetContext) -> Widget {
+        ContainerWidget(
                 VStackWidget(widgets)
                     .spacing(2)
             )
@@ -70,8 +88,15 @@ struct UserDetailsWidget: WidgetView {
             .padding(h: 20, v: 15)
     }
 
-    func nameValueWidget(name: String, value: String?) -> Widget {
-        return HStackWidget([
+}
+
+fileprivate struct DetailsNameValueWidget: WidgetView {
+
+    var name: String?
+    var value: String?
+
+    func widget(_ context: WidgetContext) -> Widget {
+        HStackWidget([
             LabelWidget(name)
                 .color(.gray),
             SpacerWidget(),
