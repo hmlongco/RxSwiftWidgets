@@ -11,16 +11,28 @@ import RxSwift
 import RxCocoa
 
 public protocol WidgetView: Widget {
+
     func widget(_ context: WidgetContext) -> Widget
+
+    func onBuild(_ context: WidgetContext)
+
 }
 
-public extension WidgetView {
-    func build(with context: WidgetContext) -> UIView {
+extension WidgetView {
+
+    public func build(with context: WidgetContext) -> UIView {
         let widget = self.widget(context)
         let view = widget.build(with: context)
-        if let modifing = self as? WidgetModifying {
-            modifing.modifiers.apply(to: view, with: context)
+        if let modifying = self as? WidgetModifying {
+            let context = modifying.modifiers.modified(context, for: view)
+            modifying.modifiers.apply(to: view, with: context)
+            onBuild(context)
+        } else {
+            onBuild(context.set(view: view))
         }
         return view
     }
+
+    public func onBuild(_ context: WidgetContext) { }
+
 }
