@@ -22,8 +22,6 @@ Like SwiftUI, the goal behind RxSwiftWidgets is to eliminate much of the hassle 
 
 But unlike SwiftUI, with RxSwiftWidgets you also have the power to reach under the hood at any point in time and  directly work with the generated views and interface elements and tweak them to your hearts content.
 
-RxSwiftWidgets are also highly performant and non-resource intensive. As with SwiftUI, widget/view "definitions" are typically struct-based value types, and many of the modifiers are little more than key path-based assignments.
-
 ## Why RxSwiftWidgets?
 
 With SwiftUI and Combine on the horizon, why use RxSwiftWidgets and RxSwift? Well, the answer to that question actually lies within the question itself: With SwiftUI and Combine **on the horizon**...
@@ -91,6 +89,91 @@ Finally, we have a couple of modifiers that control the navigation bar title and
 That's it. That's all of the code to define the entire screen ([minus the data loading code in the view model](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserListWidget.swift)). You didn't create and configure a UITableViewController. No delegates. No datasources.
 
 A complete table view with navigation, dynamic data, and pull-to-refresh, in just 24 lines of code. Interested?
+
+## The Details
+
+Just for good measure, here's the code for the *UserDetailsWidget*. (42 lines of code)
+
+```
+struct UserDetailsWidget: WidgetView {
+
+    var user: User
+
+    func widget(_ context: WidgetContext) -> Widget {
+        ScrollWidget(
+            VStackWidget([
+
+                ContainerWidget(
+                    HStackWidget([
+                        UserPhotoWidget(initials: user.initials, size: 80),
+                        LabelWidget(user.name)
+                            .font(.title1)
+                            .color(.red)
+                        ]) // HStackWidget
+                        .position(.centerHorizontally)
+                    ), // ContainerWidget
+
+                DetailsSectionWidget(widgets: [
+                    DetailsNameValueWidget(name: "Address", value: user.address),
+                    DetailsNameValueWidget(name: "City", value: user.city),
+                    DetailsNameValueWidget(name: "State", value: user.state),
+                    DetailsNameValueWidget(name: "Zip", value: user.zip),
+                    ]),
+
+                DetailsSectionWidget(widgets: [
+                    DetailsNameValueWidget(name: "Email", value: user.email),
+                    ]),
+
+                SpacerWidget()
+                ]) // VStackWidget
+                .spacing(20)
+
+            ) // ScrollWidget
+            .backgroundColor(.systemBackground)
+            .safeArea(false)
+            .padding(20)
+            .navigationBar(title: "User Information", hidden: false)
+    }
+
+}
+```
+
+## Composition
+
+Like SwiftUI and Flutter, RxSwiftWidgets encourages composition. You might have noticed that our details example uses a *UserPhotoWidget*, a *DetailsSectionWidget*, and a *DetailsNameValueWidget*, which in turn are simply more *WidgetView's*.
+
+Here's the *UserPhotoWidget*.
+
+```
+struct UserPhotoWidget: WidgetView {
+
+    var initials: String?
+    var size: CGFloat
+
+    func widget(_ context: WidgetContext) -> Widget {
+        ZStackWidget([
+            LabelWidget(initials)
+                .font(.title1)
+                .alignment(.center)
+                .backgroundColor(.gray)
+                .color(.white),
+            ImageWidget(named: "User-\(initials ?? "")")
+            ])
+            .height(size)
+            .width(size)
+            .cornerRadius(size/2)
+    }
+
+}
+```
+
+Just an image widget placed directly over a label widget in a z-stack, which lets you visually stack elements on top of one another. The z-stack is constrained to the desired size using *height* and *width* modifiers, and is turned into a circle with the *cornerRadius* modifier.
+
+The downside to interface composition? None.
+
+RxSwiftWidgets are highly performant and non-resource intensive. As with SwiftUI, widget/view "definitions" are typically struct-based value types, and many of the modifiers are little more than key path-based assignments.
+
+The upside? Well, unlike using Storyboards, NIBs, UIViewControllers and UIViews with dozens of IBOUtlets, this approach actively *encourages* breaking your interface down in small, individual, easily understood and easily testable interface elements.
 
 ## Integration
 
