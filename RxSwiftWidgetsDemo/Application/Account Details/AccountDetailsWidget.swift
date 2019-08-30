@@ -32,27 +32,15 @@ struct AccountDetailsWidget: WidgetView {
                             .color(.red)
                             .font(.title1),
 
-                        ContainerWidget(
-                            VStackWidget(viewModel.accountDetails) {
-                                AccountDetailsRowWidget(detail: $0)
-                            })
-                            .padding(20)
-                            .cornerRadius(20)
-                            .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
+                        NameValueSectionWidget(values: viewModel.accountDetails),
 
-                        ContainerWidget(
-                            VStackWidget(viewModel.paymentDetails) {
-                                AccountDetailsRowWidget(detail: $0)
-                            })
-                            .padding(20)
-                            .cornerRadius(20)
-                            .backgroundColor(UIColor(white: 0.9, alpha: 0.6)),
+                        NameValueSectionWidget(values: viewModel.paymentDetails),
 
-                            LabelWidget(viewModel.footnotes)
-                                .color(context.theme.color.secondaryText)
-                                .font(.footnote)
-                                .numberOfLines(0)
-                                .padding(h: 15, v: 0),
+                        LabelWidget(viewModel.footnotes)
+                            .color(.gray)
+                            .font(.footnote)
+                            .numberOfLines(0)
+                            .padding(h: 15, v: 0),
                         ])
                         .spacing(20)
                         .hidden(viewModel.loading),
@@ -76,18 +64,25 @@ struct AccountDetailsWidget: WidgetView {
 
 }
 
-fileprivate struct AccountDetailsRowWidget: WidgetView {
 
-    let detail: AccountInformation.AccountDetails
+fileprivate struct NameValueSectionWidget: WidgetView {
+
+    let values: Observable<[AccountInformation.AccountDetails]>
 
     func widget(_ context: WidgetContext) -> Widget {
-        return HStackWidget([
-            LabelWidget(detail.name)
-                .color(context.theme.color.secondaryText),
-            SpacerWidget(),
-            LabelWidget(detail.value),
-            ])
+        ContainerWidget(
+            VStackWidget(values) {
+                HStackWidget([
+                    LabelWidget($0.name)
+                        .color(.gray),
+                    SpacerWidget(),
+                    LabelWidget($0.value)
+                        .color(.darkText),
+                    ])
+            })
+            .padding(20)
+            .cornerRadius(20)
+            .backgroundColor(UIColor(white: 0.9, alpha: 0.6))
     }
 
 }
-
