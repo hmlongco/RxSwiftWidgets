@@ -1,8 +1,4 @@
-# RxSwiftWidgets 
-
-A Declarative Interface Builder for UIKit using Swift 5.1 and RxSwift.
-
-## Introduction
+![RxSwiftWidgets](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/RxSwiftWidgetsBanner.jpg)
 
 RxSwiftWidgets lets you define your UIKit-based user interfaces using a simple, declarative format similar to that used by SwiftUI and Flutter. RxSwiftWidgets is also based on RxSwift, with means that you have all of the reactive data binding and user interface control and functionality you'd expect from such a marriage.
 
