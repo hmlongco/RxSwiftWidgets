@@ -10,7 +10,7 @@ With RxSwiftWidgets, interfaces are composed and described using "widgets" and "
         .font(.title1)
 ```
 
-When rendered, each "widget" builds a corresponding UIView which is then modified as needed with the desired properties and behaviors.
+When rendered, each "widget" of a given type builds a corresponding UIView which is then modified as needed with the desired properties and behaviors.
 
 Combine just a few widgets together, and you can quickly and easily achieve some dynamic user interfaces:
 
@@ -72,17 +72,19 @@ struct UserListWidget: WidgetView {
 }
 ```
 
-Our *UserListWidget* is a *WidgetView*, whose job is to return a single widget container that defines the interface for that view.
+Our *UserListWidget* is a *WidgetView*, whose job is to return a single widget container that defines the interface for that view. WidgetView's can represent entire screens, as shown here; or the can be used to runder portions of a screen, as shown in the *UserPhotoWidget* sample below.
 
-In this case, our widget is a *TableWidget* which generates a UITableView. TableWidgets contain sections, though here we just have one, a *DynamicTableSectionWidget*.
+In this case, the widget returned is a *TableWidget* which, as you might expect, generates a UITableView. TableWidgets, in turn, can contain multiple static and dynamic Section widgets. Here we just have one, a *DynamicTableSectionWidget*.
 
-DynamicTableSectionWidgets are just that, dynamic, and here it's bound to an observable array in our view model. Whenever the observable fires with a new list of users, the table rows are automatically updated and regenerated.
+DynamicTableSectionWidgets are just that, dynamic, and here it's bound to an observable array in our view model. Whenever the observable sends a new users event the table rows are automatically updated and regenerated.
 
-The *DynamicTableSectionWidget* initializer also takes a closure that, when called, constructs the interface needed to display each user. Here it's just a simple *TableCellWidget* that shows the user's name.
+The *DynamicTableSectionWidget* initializer also takes a closure that, when called, returns the widget needed for each row to display the data for each user. In this case it's just a simple *TableCellWidget* that shows the user's name.
 
-It also has an *onSelect* modifier that's called whenever the user taps on a cell. As shown, it uses a *navigatior* instance to push a new *UserDetailsWidget* onto the stack.
+It also has an *onSelect* modifier that's called whenever the user taps on a cell. As shown, it uses a *navigatior* instance to construct and push a new *UserDetailsWidget* onto the navigation stack.
 
-The *TableWidget* itself has an *onRefresh* modifier. Here the closure is called when the view is initially created as well as whenever the user does a pull-to-refresh.
+The *TableWidget* itself has an *onRefresh* modifier. Here we reload our data when the view is initially created as well as whenever the user does a pull-to-refresh. 
+
+Just like many things in RxSwiftWidgets, just use the *onRefresh* modifier and the pull-to-refresh functionality is enabled automatically.
 
 Finally, we have a couple of modifiers that control the navigation bar title and appearance, in addition to informing the constraint system that we want our tableview to fill the entire screen and ignore the safearea.
 
@@ -138,6 +140,8 @@ struct UserDetailsWidget: WidgetView {
 }
 ```
 
+This code should be equally easy to follow. A *ScrollWidget* builds a UIScrollView. A HStackWidget builds a horizontal UIStackView. And so on...
+
 ## Composition
 
 Like SwiftUI and Flutter, RxSwiftWidgets encourages composition. You might have noticed that our details example uses a *UserPhotoWidget*, a *DetailsSectionWidget*, and a *DetailsNameValueWidget*, which in turn are simply more *WidgetView's*.
@@ -167,13 +171,13 @@ struct UserPhotoWidget: WidgetView {
 }
 ```
 
-Just an image widget placed directly over a label widget in a z-stack, which lets you visually stack elements on top of one another. The z-stack is constrained to the desired size using *height* and *width* modifiers, and is turned into a circle with the *cornerRadius* modifier.
+By now things should be looking pretty familiar. Our photo widget consists of an image widget placed directly over a label widget in a z-stack, used to let you visually stack elements on top of one another. The z-stack is constrained to the desired size using *height* and *width* modifiers, and is turned into a circle with the *cornerRadius* modifier.
 
-The downside to interface composition? None.
+The downside to interface composition? Practically speaking... None.
 
 RxSwiftWidgets are highly performant and non-resource intensive. As with SwiftUI, widget/view "definitions" are typically struct-based value types, and many of the modifiers are little more than key path-based assignments.
 
-The upside? Well, unlike using Storyboards, NIBs, UIViewControllers and UIViews with dozens of IBOUtlets, this approach actively *encourages* breaking your interface down in small, individual, easily understood and easily testable interface elements.
+The upside? Well, unlike using Storyboards and NIBs and binding them to UIViewControllers and UIViews with dozens of IBOUtlets, this approach actively *encourages* breaking your interface down in small, individual, easily understood and easily testable interface elements.
 
 ## Integration
 
