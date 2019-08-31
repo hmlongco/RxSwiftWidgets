@@ -29,7 +29,12 @@ struct UserListWidget: WidgetView {
 
         TableWidget([
             DynamicTableSectionWidget(viewModel.$users) {
-                TableCellWidget($0.name)
+                TableCellWidget(
+                    HStackWidget([
+                        UserPhotoWidget(initials: $0.initials, size: 35),
+                        LabelWidget($0.name)
+                    ])
+                    )
                     .accessoryType(.disclosureIndicator)
                 }
                 .onSelect { (context, path, user) in

@@ -43,7 +43,7 @@ struct UserDetailsWidget: WidgetView {
                 ]) // VStackWidget
                 .spacing(20)
 
-            ) // ContainerWidget
+            ) // ScrollWidget
             .backgroundColor(.systemBackground)
             .safeArea(false)
             .padding(20)
@@ -61,7 +61,7 @@ struct UserPhotoWidget: WidgetView {
     func widget(_ context: WidgetContext) -> Widget {
         ZStackWidget([
             LabelWidget(initials)
-                .font(.title1)
+                .font(size > 40 ? .title1 : .body)
                 .alignment(.center)
                 .backgroundColor(.gray)
                 .color(.white),

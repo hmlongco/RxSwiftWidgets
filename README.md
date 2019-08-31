@@ -38,7 +38,7 @@ That's simply too long.
 
 Here's a simple table view implemented in RxSwiftWidgets, which then links to a detail view.
 
-> ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-User-List.png) ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-User-Details.png) 
+> ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-User-List-2.png) ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-User-Details.png) 
 
 ## Sample Code
 
@@ -52,8 +52,13 @@ struct UserListWidget: WidgetView {
     func widget(_ context: WidgetContext) -> Widget {
 
         TableWidget([
-            DynamicTableSectionWidget(viewModel.$users) {
-                TableCellWidget($0.name)
+            DynamicTableSectionWidget(viewModel.$users)
+                TableCellWidget(
+                    HStackWidget([
+                        UserPhotoWidget(initials: $0.initials, size: 35),
+                        LabelWidget($0.name)
+                    ])
+                    )
                     .accessoryType(.disclosureIndicator)
                 }
                 .onSelect { (context, path, user) in
@@ -72,15 +77,19 @@ struct UserListWidget: WidgetView {
 }
 ```
 
-Our *UserListWidget* is a *WidgetView*, whose job is to return a single widget container that defines the interface for that view. WidgetView's can represent entire screens, as shown here; or the can be used to runder portions of a screen, as shown in the *UserPhotoWidget* sample below.
+Our *UserListWidget* is a *WidgetView*, whose job is to return a single widget container that defines the interface for that view. 
 
-In this case, the widget returned is a *TableWidget* which, as you might expect, generates a UITableView. TableWidgets, in turn, can contain multiple static and dynamic Section widgets. Here we just have one, a *DynamicTableSectionWidget*.
+WidgetView's can represent entire screens, as shown here; or they can be used to render portions of a screen, as done here with the *UserPhotoWidget*. We'll discuss the *UserPhotoWidget* in more detail a bit later.
+
+In this case, our WidgetView returns a *TableWidget* which, as you might expect, generates a UITableView. TableWidgets, in turn, can contain multiple static and dynamic Section widgets. Here we just have one, a *DynamicTableSectionWidget*.
 
 DynamicTableSectionWidgets are just that, dynamic, and here it's bound to an observable array in our view model. Whenever the observable sends a new users event the table rows are automatically updated and regenerated.
 
-The *DynamicTableSectionWidget* initializer also takes a closure that, when called, returns the widget needed for each row to display the data for each user. In this case it's just a simple *TableCellWidget* that shows the user's name.
+The *DynamicTableSectionWidget* initializer also takes a closure that, when called, returns the widget needed for each row to display the data for each user. In this case it's just a simple *TableCellWidget* that shows the user's photo and name.
 
-It also has an *onSelect* modifier that's called whenever the user taps on a cell. As shown, it uses a *navigatior* instance to construct and push a new *UserDetailsWidget* onto the navigation stack.
+Note that while you can use a standard table cell in RxSwiftWidgets, the contents of these cells are also built using widgets! In this case it's a simple horizontal stack showing the user's photo and name. 
+
+Our section also has an *onSelect* modifier that's called whenever the user taps on a cell. As shown, it uses a *navigatior* instance to construct and push a new *UserDetailsWidget* onto the navigation stack.
 
 The *TableWidget* itself has an *onRefresh* modifier. Here we reload our data when the view is initially created as well as whenever the user does a pull-to-refresh. 
 
@@ -90,7 +99,7 @@ Finally, we have a couple of modifiers that control the navigation bar title and
 
 That's it. That's all of the code to define the entire screen ([minus the data loading code in the view model](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserListWidget.swift)). You didn't create and configure a UITableViewController. No delegates. No datasources.
 
-A complete table view with navigation, dynamic data, and pull-to-refresh, in just 24 lines of code. Interested?
+A complete table view with navigation, custom table view cells, dynamic data, and pull-to-refresh, in just under 30 lines of code. Interested?
 
 ## The Details
 
@@ -144,7 +153,9 @@ This code should be equally easy to follow. A *ScrollWidget* builds a UIScrollVi
 
 ## Composition
 
-Like SwiftUI and Flutter, RxSwiftWidgets encourages composition. You might have noticed that our details example uses a *UserPhotoWidget*, a *DetailsSectionWidget*, and a *DetailsNameValueWidget*, which in turn are simply more *WidgetView's*.
+Like SwiftUI and Flutter, RxSwiftWidgets encourages composition. You might have noticed that our details example uses a *DetailsSectionWidget* and a *DetailsNameValueWidget*, and that both the list and the detail screen use a *UserPhotoWidget*.
+
+So what are they? Simply more WidgetView's.
 
 Here's the *UserPhotoWidget*.
 
@@ -157,7 +168,7 @@ struct UserPhotoWidget: WidgetView {
     func widget(_ context: WidgetContext) -> Widget {
         ZStackWidget([
             LabelWidget(initials)
-                .font(.title1)
+                .font(size > 40 ? .title1 : .body)
                 .alignment(.center)
                 .backgroundColor(.gray)
                 .color(.white),
@@ -171,7 +182,11 @@ struct UserPhotoWidget: WidgetView {
 }
 ```
 
-By now things should be looking pretty familiar. Our photo widget consists of an image widget placed directly over a label widget in a z-stack, used to let you visually stack elements on top of one another. The z-stack is constrained to the desired size using *height* and *width* modifiers, and is turned into a circle with the *cornerRadius* modifier.
+By now things should be looking pretty familiar. Our photo widget consists of an image widget placed directly over a label widget in a z-stack, used to let you visually stack elements on top of one another. 
+
+The z-stack is constrained to the desired size using *height* and *width* modifiers, and is turned into a circle with the *cornerRadius* modifier.
+
+Note that the label widget is adjusting the size of the font used based on the size itself. That lets us use the same user-defined widget on both the list and detail screens.
 
 The downside to interface composition? Practically speaking... None.
 

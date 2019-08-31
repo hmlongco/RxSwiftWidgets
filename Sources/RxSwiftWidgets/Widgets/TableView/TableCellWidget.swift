@@ -22,14 +22,18 @@ extension Widgets {
 }
 
 public class TableCellWidget: Widget
-    , WidgetTableViewCellProviding {
+    , WidgetTableViewCellProviding
+    , WidgetViewModifying
+    , WidgetPadding {
 
     public var title: String?
     public var detail: String?
+    public var widget: Widget?
     public var accessoryType: UITableViewCell.AccessoryType = .none
     public var caching = Widgets.TableCellCaching.auto
     public var reusableCellID: String
     public var cellType: AnyClass
+    public var modifiers = WidgetModifiers()
 
     public init(_ title: String?) {
         self.title = title
@@ -51,6 +55,12 @@ public class TableCellWidget: Widget
         self.cellType = RowWidgetValueCell.self
     }
 
+    public init(_ widget: Widget) {
+        self.widget = widget
+        self.reusableCellID = String(describing: WidgetTableViewCell.self)
+        self.cellType = WidgetTableViewCell.self
+    }
+
     public func build(with context: WidgetContext) -> UIView {
         fatalError("")
     }
@@ -65,12 +75,17 @@ public class TableCellWidget: Widget
     }
 
     public func configure(cell: UITableViewCell, with context: WidgetContext) {
-        cell.textLabel?.text = title
-        cell.textLabel?.textColor = context.theme.color.text
-        cell.textLabel?.font = context.theme.font.body
-        cell.detailTextLabel?.text = detail
-        cell.detailTextLabel?.textColor = context.theme.color.secondaryText
+        if let widget = widget, let cell = cell as? WidgetTableViewCell {
+            cell.reset(widget, with: context, padding: modifiers.padding ?? UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20))
+        } else {
+            cell.textLabel?.text = title
+            cell.textLabel?.textColor = context.theme.color.text
+            cell.textLabel?.font = context.theme.font.body
+            cell.detailTextLabel?.text = detail
+            cell.detailTextLabel?.textColor = context.theme.color.secondaryText
+        }
         cell.accessoryType = accessoryType
+        modifiers.apply(to: cell, with: context)
     }
 
     public func accessoryType(_ accessoryType: UITableViewCell.AccessoryType) -> Self {
