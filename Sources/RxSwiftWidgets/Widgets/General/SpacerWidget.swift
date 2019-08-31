@@ -8,20 +8,34 @@
 
 import UIKit
 
+public typealias FlexibleSpaceWidget = SpacerWidget
+
 public struct SpacerWidget: Widget
     , CustomDebugStringConvertible {
 
     public var debugDescription: String { "SpacerWidget()" }
 
-    public var modifiers = WidgetModifiers()
+    private var h: CGFloat?
+    private var w: CGFloat?
 
-    public init() {}
+    public init(h: CGFloat? = nil, w: CGFloat? = nil) {
+        self.h = h
+        self.w = w
+    }
 
     public func build(with context: WidgetContext) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        if let h = h {
+            view.heightAnchor.constraint(equalToConstant: h).isActive = true
+        } else {
+            view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        }
+        if let w = w {
+            view.widthAnchor.constraint(equalToConstant: w).isActive = true
+        } else {
+            view.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        }
         return view
     }
 
