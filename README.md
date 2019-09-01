@@ -52,7 +52,7 @@ struct UserListWidget: WidgetView {
     func widget(_ context: WidgetContext) -> Widget {
 
         TableWidget([
-            DynamicTableSectionWidget(viewModel.$users)
+            DynamicTableSectionWidget(viewModel.$users) {
                 TableCellWidget(
                     HStackWidget([
                         UserPhotoWidget(initials: $0.initials, size: 35),
@@ -81,27 +81,81 @@ Our *UserListWidget* is a *WidgetView*, whose job is to return a single widget c
 
 WidgetView's can represent entire screens, as shown here; or they can be used to render portions of a screen, as done here with the *UserPhotoWidget*. We'll discuss the *UserPhotoWidget* in more detail a bit later.
 
-In this case, our WidgetView returns a *TableWidget* which, as you might expect, generates a UITableView. TableWidgets, in turn, can contain multiple static and dynamic Section widgets. Here we just have one, a *DynamicTableSectionWidget*.
+### TableWidget
 
-DynamicTableSectionWidgets are just that, dynamic, and here it's bound to an observable array in our view model. Whenever the observable sends a new users event the table rows are automatically updated and regenerated.
+In this case, our WidgetView returns a *TableWidget* which, as you might expect from the name, will eventually will generate a UITableView. 
 
-The *DynamicTableSectionWidget* initializer also takes a closure that, when called, returns the widget needed for each row to display the data for each user. In this case it's just a simple *TableCellWidget* that shows the user's photo and name.
+```
+    TableWidget([ ... ])
+```
 
-Note that while you can use a standard table cell in RxSwiftWidgets, the contents of these cells are also built using widgets! In this case it's a simple horizontal stack showing the user's photo and name. 
+TableWidgets, in turn, can contain multiple static and dynamic section widgets. Here we have just one passed into the initializer array, a *DynamicTableSectionWidget*.
 
-Our section also has an *onSelect* modifier that's called whenever the user taps on a cell. As shown, it uses a *navigatior* instance to construct and push a new *UserDetailsWidget* onto the navigation stack.
+### DynamicTableSectionWidget
 
-The *TableWidget* itself has an *onRefresh* modifier. Here we reload our data when the view is initially created as well as whenever the user does a pull-to-refresh. 
+Our dynamic section widget is bound to an observable array in our view model. 
 
-Just like many things in RxSwiftWidgets, just use the *onRefresh* modifier and the pull-to-refresh functionality is enabled automatically.
+```
+    DynamicTableSectionWidget(viewModel.$users) { ... }
+```
 
-Finally, we have a couple of modifiers that control the navigation bar title and appearance, in addition to informing the constraint system that we want our tableview to fill the entire screen and ignore the safearea.
+Whenever the observable sends an event containing a new user array the table rows are dynamically regenerated, one row for each user in our list. The trailing closure is called on demand to map each user into the widget (or widgets) used to display the information for that user.
+
+### TableCellWidget
+
+In this case the widget returned is just a simple *TableCellWidget* that shows the user's photo and name. 
+
+```
+    TableCellWidget(
+        HStackWidget([
+            UserPhotoWidget(initials: $0.initials, size: 35),
+            LabelWidget($0.name)
+            ])
+            )
+            .accessoryType(.disclosureIndicator)
+```
+
+Note that while you can use a standard text-based table cell in RxSwiftWidgets, the contents of these cells are also defined and built using widgets! 
+
+### DynamicTableSectionWidget Modifiers
+
+```
+    .onSelect { (context, path, user) in
+        context.navigator?.push(widget: UserDetailsWidget(user: user))
+        context.tableView?.deselectRow(at: path, animated: true)
+    }
+```
+
+Our dynamic section also has an *onSelect* modifier that's called whenever the user taps on a cell. 
+
+As shown, it uses a *navigatior* instance to construct and push a new *UserDetailsWidget* onto the navigation stack.
+
+### TableWidget Modifiers
+
+The *TableWidget* itself has an *onRefresh* modifier. 
+
+```
+    .onRefresh(initialRefresh: true, handler: { _ in
+        self.viewModel.reload()
+     })
+```
+
+Here we reload our data when the view is initially created as well as whenever the user does a pull-to-refresh. Like many things in RxSwiftWidgets, simply using the modifier embeds and enables the pull-to-refresh functionality automatically.
+
+The table widget also has a couple of modifiers that control the navigation bar title and appearance, in addition to informing the constraint system that we want our tableview to fill the entire screen and ignore the safearea.
+
+```
+    .navigationBar(title: "User List", hidden: false)
+    .safeArea(false)
+```
+
+### Done
 
 That's it. That's all of the code to define the entire screen ([minus the data loading code in the view model](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserListWidget.swift)). You didn't create and configure a UITableViewController. No delegates. No datasources.
 
 A complete table view with navigation, custom table view cells, dynamic data, and pull-to-refresh, in just under 30 lines of code. Interested?
 
-## The Details
+## Want More Details?
 
 Just for good measure, here's the code for the *UserDetailsWidget*. (42 lines of code)
 
@@ -149,13 +203,17 @@ struct UserDetailsWidget: WidgetView {
 }
 ```
 
-This code should be equally easy to follow. A *ScrollWidget* builds a UIScrollView. A HStackWidget builds a horizontal UIStackView. And so on...
+After our first walkthrough this code should be equally easy to follow. A *ScrollWidget* builds a UIScrollView. A HStackWidget builds a horizontal UIStackView, and so on.
+
+There may be a few, however, that look somewhat less than obvious...
 
 ## Composition
 
 Like SwiftUI and Flutter, RxSwiftWidgets encourages composition. You might have noticed that our details example uses a *DetailsSectionWidget* and a *DetailsNameValueWidget*, and that both the list and the detail screen use a *UserPhotoWidget*.
 
-So what are they? Simply more WidgetView's.
+So what are they? 
+
+Simply more WidgetView's.
 
 Here's the *UserPhotoWidget*.
 
@@ -188,7 +246,9 @@ The z-stack is constrained to the desired size using *height* and *width* modifi
 
 Note that the label widget is adjusting the size of the font used based on the size itself. That lets us use the same user-defined widget on both the list and detail screens.
 
-The downside to interface composition? Practically speaking... None.
+In RxSwiftWidgets, screens are composed of widgets that are composed of widgets that are composed of widgets...
+
+The downside to interface composition? Practically speaking... none.
 
 RxSwiftWidgets are highly performant and non-resource intensive. As with SwiftUI, widget/view "definitions" are typically struct-based value types, and many of the modifiers are little more than key path-based assignments.
 
