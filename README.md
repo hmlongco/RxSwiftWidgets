@@ -79,7 +79,7 @@ struct UserListWidget: WidgetView {
 
 Our *UserListWidget* is a *WidgetView*, whose job is to return a single widget container that defines the interface for that view. 
 
-WidgetView's can represent entire screens, as shown here; or they can be used to render portions of a screen, as done here with the *UserPhotoWidget*. We'll discuss the *UserPhotoWidget* in more detail a bit later.
+WidgetView's can represent entire screens, as shown here; or they can be used to render portions of a screen, as done here with the *UserPhotoWidget*. 
 
 ### TableWidget
 
@@ -89,11 +89,11 @@ In this case, our WidgetView returns a *TableWidget* which, as you might expect 
     TableWidget([ ... ])
 ```
 
-TableWidgets, in turn, can contain multiple static and dynamic section widgets. Here we have just one passed into the initializer array, a *DynamicTableSectionWidget*.
+TableWidgets, in turn, can contain multiple static and dynamic section widgets. Here we have just one in the array passed into the widget initializer, a *DynamicTableSectionWidget*.
 
 ### DynamicTableSectionWidget
 
-Our dynamic section widget is bound to an observable array in our view model. 
+Our dynamic section widget is bound to an observable array of users in our view model. 
 
 ```
     DynamicTableSectionWidget(viewModel.$users) { ... }
@@ -151,7 +151,7 @@ The table widget also has a couple of modifiers that control the navigation bar 
 
 ### Done
 
-That's it. That's all of the code to define the entire screen ([minus the data loading code in the view model](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserListWidget.swift)). You didn't create and configure a UITableViewController. No delegates. No datasources.
+That's it. That's all of the code to define the entire screen ([minus the data loading code in the view model](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserListWidget.swift)). You didn't manually create and configure a UITableViewController. No delegates. No datasources.
 
 A complete table view with navigation, custom table view cells, dynamic data, and pull-to-refresh, in just under 30 lines of code. Interested?
 
