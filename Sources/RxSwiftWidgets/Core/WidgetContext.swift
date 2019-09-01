@@ -28,8 +28,6 @@ import RxCocoa
 
 public struct WidgetContext {
 
-    public struct Keys {}
-
     public weak var viewController: UIViewController?
 
     public weak var parentView: UIView?
@@ -95,12 +93,6 @@ public struct WidgetContext {
 
 fileprivate struct WeakBox {
     weak var object: AnyObject?
-}
-
-public extension WidgetContext.Keys {
-    static var accentColor = "accentColor"
-    static var titleFont = "titleFont"
-    static var bodyFont = "bodyFont"
 }
 
 public typealias WidgetContextModifier = (WidgetContext) -> WidgetContext

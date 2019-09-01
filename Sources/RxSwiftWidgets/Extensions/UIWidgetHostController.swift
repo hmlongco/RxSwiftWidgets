@@ -49,9 +49,17 @@ open class UIWidgetHostController: UIViewController {
         view.build(widget: widget, with: context)
     }
 
-    public func regenerate() {
+    public func rebuild() {
         context = context.new()
         build()
+    }
+
+}
+
+extension WidgetContext {
+
+    public func rebuild() {
+        (self.viewController as? UIWidgetHostController)?.rebuild()
     }
 
 }
