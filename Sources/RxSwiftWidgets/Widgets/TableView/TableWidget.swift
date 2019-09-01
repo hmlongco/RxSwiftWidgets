@@ -11,7 +11,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-//public class TableViewTest {
+//open class TableViewTest {
 //
 //    @State var items: [String] = []
 //
@@ -46,7 +46,7 @@ public protocol WidgetTableViewCellProviding {
 //    func cell(for collectionView: UICollectionView, with context: WidgetContext) -> UICollectionViewCell
 //}
 
-public class TableWidget
+open class TableWidget
     : NSObject
     , Widget
     , WidgetViewModifying
@@ -70,7 +70,6 @@ public class TableWidget
     public init(_ sections: [BaseTableSection] = []) {
         self.sections = sections
         super.init()
-        sections.forEach { $0.parent = self }
     }
 
     public func build(with context: WidgetContext) -> UIView {
@@ -82,13 +81,18 @@ public class TableWidget
         self.context = modifiers.modified(context, for: view)
             .putWeak(view)
 
+        sections.forEach {
+            $0.parent = self
+            $0.context = self.context
+        }
+
         view.translatesAutoresizingMaskIntoConstraints = false
         view.insetsLayoutMarginsFromSafeArea = false
         
         view.tableViewWidget = self
         view.dataSource = self
         view.delegate = self
-        view.register(WidgetTableViewCell.self, forCellReuseIdentifier: String(describing: WidgetTableViewCell.self))
+        view.register(RowWidgetCustomCell.self, forCellReuseIdentifier: String(describing: RowWidgetCustomCell.self))
 
         if #available(iOS 11.0, *) {
             view.insetsContentViewsToSafeArea = false
@@ -146,7 +150,7 @@ extension TableWidget: UITableViewDataSource {
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return sections[indexPath.section].cell(for: tableView, at: indexPath.row, with: context)
+        return sections[indexPath.section].cell(for: tableView, at: indexPath.row)
     }
 
 }
@@ -155,7 +159,7 @@ extension TableWidget: UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard sections.indices.contains(indexPath.section) else { return }
-        if !sections[indexPath.section].didSelectRowAt(indexPath: indexPath, with: context) {
+        if !sections[indexPath.section].didSelectRowAt(indexPath: indexPath) {
             selectionHandler?(context, indexPath)
         }
     }
@@ -184,24 +188,6 @@ fileprivate class WidgetTableView: UITableView {
         if let widget = tableViewWidget {
             refresh?(widget.context)
         }
-    }
-
-}
-
-open class WidgetTableViewCell: UITableViewCell {
-
-    var disposeBag = DisposeBag()
-
-    override open func prepareForReuse() {
-        disposeBag = DisposeBag()
-        contentView.subviews.forEach { $0.removeFromSuperview() }
-    }
-
-    open func reset(_ widget: Widget, with context: WidgetContext, padding: UIEdgeInsets) {
-        var context = context
-        context.disposeBag = disposeBag
-        let view = widget.build(with: context)
-        contentView.addConstrainedSubview(view, with: padding)
     }
 
 }

@@ -21,7 +21,7 @@ extension Widgets {
     }
 }
 
-public class TableCellWidget: Widget
+open class TableCellWidget: Widget
     , WidgetTableViewCellProviding
     , WidgetViewModifying
     , WidgetPadding {
@@ -57,8 +57,8 @@ public class TableCellWidget: Widget
 
     public init(_ widget: Widget) {
         self.widget = widget
-        self.reusableCellID = String(describing: WidgetTableViewCell.self)
-        self.cellType = WidgetTableViewCell.self
+        self.reusableCellID = String(describing: RowWidgetCustomCell.self)
+        self.cellType = RowWidgetCustomCell.self
     }
 
     public func build(with context: WidgetContext) -> UIView {
@@ -75,7 +75,7 @@ public class TableCellWidget: Widget
     }
 
     public func configure(cell: UITableViewCell, with context: WidgetContext) {
-        if let widget = widget, let cell = cell as? WidgetTableViewCell {
+        if let widget = widget, let cell = cell as? RowWidgetCustomCell {
             cell.reset(widget, with: context, padding: modifiers.padding ?? UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20))
         } else {
             cell.textLabel?.text = title
@@ -127,4 +127,20 @@ fileprivate class RowWidgetValueCell: UITableViewCell {
     }
 }
 
-struct CustomRowWidget {}
+open class RowWidgetCustomCell: UITableViewCell {
+
+    var disposeBag = DisposeBag()
+
+    override open func prepareForReuse() {
+        disposeBag = DisposeBag()
+        contentView.subviews.forEach { $0.removeFromSuperview() }
+    }
+
+    open func reset(_ widget: Widget, with context: WidgetContext, padding: UIEdgeInsets) {
+        var context = context
+        context.disposeBag = disposeBag
+        let view = widget.build(with: context)
+        contentView.addConstrainedSubview(view, with: padding)
+    }
+
+}

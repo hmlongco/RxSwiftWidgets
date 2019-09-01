@@ -11,11 +11,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public class BaseTableSection: Widget
+open class BaseTableSection: Widget
     , WidgetUpdatable {
 
     public weak var parent: WidgetUpdatable? = nil
 
+    public var context: WidgetContext!
     public var defaultCellPadding = UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20)
 
     fileprivate init() {}
@@ -28,13 +29,13 @@ public class BaseTableSection: Widget
         return 0
     }
 
-    public func cell(for tableView: UITableView, at row: Int, with context: WidgetContext) -> UITableViewCell {
+    public func cell(for tableView: UITableView, at row: Int) -> UITableViewCell {
         guard let widget = getWidget(at: row) else {
             return UITableViewCell()
         }
         if let provider = widget as? WidgetTableViewCellProviding {
             return provider.cell(for: tableView, with: context)
-        } else if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WidgetTableViewCell.self)) as? WidgetTableViewCell {
+        } else if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RowWidgetCustomCell.self)) as? RowWidgetCustomCell {
             cell.reset(widget, with: context, padding: defaultCellPadding)
             return cell
         } else {
@@ -46,7 +47,7 @@ public class BaseTableSection: Widget
         return nil
     }
 
-    public func didSelectRowAt(indexPath: IndexPath, with context: WidgetContext) -> Bool {
+    public func didSelectRowAt(indexPath: IndexPath) -> Bool {
         fatalError("abstract class")
     }
 
@@ -56,7 +57,7 @@ public class BaseTableSection: Widget
 
 }
 
-public class TableSectionWidget: BaseTableSection {
+open class TableSectionWidget: BaseTableSection {
 
     public var widgets: [Widget] {
         didSet { updated() }
@@ -75,24 +76,24 @@ public class TableSectionWidget: BaseTableSection {
         return widgets.count
     }
 
-    public override func cell(for tableView: UITableView, at row: Int, with context: WidgetContext) -> UITableViewCell {
+    public override func cell(for tableView: UITableView, at row: Int) -> UITableViewCell {
         guard let widget = getWidget(at: row) else {
             return UITableViewCell()
         }
         if let widget = widget as? TableCellWidget {
             switch (caching, widget.caching) {
             case (_, .none), (.none, _):
-                return super.cell(for: tableView, at: row, with: context)
+                return super.cell(for: tableView, at: row)
             default:
                 if let cell = cache[row] {
                     return cell
                 }
-                let cell = super.cell(for: tableView, at: row, with: context)
+                let cell = super.cell(for: tableView, at: row)
                 cache[row] = cell
                 return cell
             }
         } else {
-            return super.cell(for: tableView, at: row, with: context)
+            return super.cell(for: tableView, at: row)
         }
     }
 
@@ -110,7 +111,7 @@ public class TableSectionWidget: BaseTableSection {
         return self
     }
 
-    public override func didSelectRowAt(indexPath: IndexPath, with context: WidgetContext) -> Bool {
+    public override func didSelectRowAt(indexPath: IndexPath) -> Bool {
         if let selectionHandler = selectionHandler {
             selectionHandler(context, indexPath)
             return true
@@ -120,7 +121,7 @@ public class TableSectionWidget: BaseTableSection {
 
 }
 
-public class DynamicTableSectionWidget<Item>: BaseTableSection {
+open class DynamicTableSectionWidget<Item>: BaseTableSection {
 
     private var builder: (_ item: Item) -> Widget
     private var items: [Item] = []
@@ -153,7 +154,7 @@ public class DynamicTableSectionWidget<Item>: BaseTableSection {
         return self
     }
 
-    public override func didSelectRowAt(indexPath: IndexPath, with context: WidgetContext) -> Bool {
+    public override func didSelectRowAt(indexPath: IndexPath) -> Bool {
         guard items.indices.contains(indexPath.row) else { return false }
         if let selectionHandler = selectionHandler {
             selectionHandler(context, indexPath, items[indexPath.row])

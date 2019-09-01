@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public class UIWidgetHostController: UIViewController {
+open class UIWidgetHostController: UIViewController {
 
     public var widget: Widget!
     public var context: WidgetContext!
@@ -32,7 +32,7 @@ public class UIWidgetHostController: UIViewController {
             .set(dismissible: dismissible)
     }
 
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -47,6 +47,11 @@ public class UIWidgetHostController: UIViewController {
 
     public func build() {
         view.build(widget: widget, with: context)
+    }
+
+    public func regenerate() {
+        context = context.new()
+        build()
     }
 
 }
