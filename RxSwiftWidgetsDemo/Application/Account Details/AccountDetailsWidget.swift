@@ -70,19 +70,15 @@ fileprivate struct NameValueSectionWidget: WidgetView {
     let values: Observable<[AccountInformation.AccountDetails]>
 
     func widget(_ context: WidgetContext) -> Widget {
-        ContainerWidget(
-            VStackWidget(values) {
-                HStackWidget([
-                    LabelWidget($0.name)
-                        .color(.gray),
-                    SpacerWidget(),
-                    LabelWidget($0.value)
-                        .color(.darkText),
-                    ])
-            })
-            .padding(20)
-            .cornerRadius(20)
-            .backgroundColor(UIColor(white: 0.9, alpha: 0.6))
+        CardWidget(widget: VStackWidget(values) {
+            HStackWidget([
+                LabelWidget($0.name)
+                    .color(.gray),
+                SpacerWidget(),
+                LabelWidget($0.value)
+                    .color(.darkText),
+                ])
+        })
     }
 
 }

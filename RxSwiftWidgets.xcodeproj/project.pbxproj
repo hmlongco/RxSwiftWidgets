@@ -30,6 +30,7 @@
 		4C15DED622EDE5BB00196894 /* WidgetDismissible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED422EDE4A900196894 /* WidgetDismissible.swift */; };
 		4C15DED822EE341100196894 /* DemoDismissibleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED722EE341100196894 /* DemoDismissibleWidget.swift */; };
 		4C15DEDA22EE399F00196894 /* WidgetModifyUINavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15DED922EE399F00196894 /* WidgetModifyUINavigation.swift */; };
+		4C16E8B5231C46CB00A7EAFF /* CardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C16E8B4231C46CB00A7EAFF /* CardWidget.swift */; };
 		4C21216B22EA5ED900C5D6FB /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21216722EA5ED900C5D6FB /* Styles.swift */; };
 		4C21216C22EA5ED900C5D6FB /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21216822EA5ED900C5D6FB /* Fonts.swift */; };
 		4C21216D22EA5ED900C5D6FB /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21216922EA5ED900C5D6FB /* Style.swift */; };
@@ -562,6 +563,7 @@
 		4C15DED422EDE4A900196894 /* WidgetDismissible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDismissible.swift; sourceTree = "<group>"; };
 		4C15DED722EE341100196894 /* DemoDismissibleWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoDismissibleWidget.swift; sourceTree = "<group>"; };
 		4C15DED922EE399F00196894 /* WidgetModifyUINavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetModifyUINavigation.swift; sourceTree = "<group>"; };
+		4C16E8B4231C46CB00A7EAFF /* CardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWidget.swift; sourceTree = "<group>"; };
 		4C21216722EA5ED900C5D6FB /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		4C21216822EA5ED900C5D6FB /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		4C21216922EA5ED900C5D6FB /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
@@ -1034,6 +1036,14 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		4C16E8B3231C46AB00A7EAFF /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4C16E8B4231C46CB00A7EAFF /* CardWidget.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		4C21216622EA5ED900C5D6FB /* Styles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1075,6 +1085,7 @@
 				4C44C2F522EA51C500E3CBDD /* Application */,
 				4C44C2F622EA51DD00E3CBDD /* Resources */,
 				4C62D36C22F21FDC0071A51A /* Models */,
+				4C16E8B3231C46AB00A7EAFF /* Shared */,
 				4C21216622EA5ED900C5D6FB /* Styles */,
 			);
 			path = RxSwiftWidgetsDemo;
@@ -1881,6 +1892,7 @@
 				4C3EFF1522FC7A2F007F909A /* LoginFormWidget.swift in Sources */,
 				4C21217D22EA698900C5D6FB /* MainMenuLabelWidget.swift in Sources */,
 				4C62D37222F21FDC0071A51A /* GenericError.swift in Sources */,
+				4C16E8B5231C46CB00A7EAFF /* CardWidget.swift in Sources */,
 				4C15DED822EE341100196894 /* DemoDismissibleWidget.swift in Sources */,
 				4C12006E23084D3B003B060C /* DemoStaticTableViewWidget.swift in Sources */,
 				4C21216C22EA5ED900C5D6FB /* Fonts.swift in Sources */,

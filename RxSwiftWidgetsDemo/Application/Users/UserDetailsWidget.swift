@@ -28,16 +28,20 @@ struct UserDetailsWidget: WidgetView {
                         .position(.centerHorizontally)
                     ), // ContainerWidget
 
-                DetailsSectionWidget(widgets: [
-                    DetailsNameValueWidget(name: "Address", value: user.address),
-                    DetailsNameValueWidget(name: "City", value: user.city),
-                    DetailsNameValueWidget(name: "State", value: user.state),
-                    DetailsNameValueWidget(name: "Zip", value: user.zip),
-                    ]),
+                CardWidget(widget:
+                    VStackWidget([
+                        DetailsNameValueWidget(name: "Address", value: user.address),
+                        DetailsNameValueWidget(name: "City", value: user.city),
+                        DetailsNameValueWidget(name: "State", value: user.state),
+                        DetailsNameValueWidget(name: "Zip", value: user.zip),
+                        ])
+                    ),
 
-                DetailsSectionWidget(widgets: [
-                    DetailsNameValueWidget(name: "Email", value: user.email),
-                    ]),
+                CardWidget(widget:
+                    VStackWidget([
+                        DetailsNameValueWidget(name: "Email", value: user.email),
+                        ])
+                    ),
 
                 SpacerWidget()
                 ]) // VStackWidget
@@ -70,22 +74,6 @@ struct UserPhotoWidget: WidgetView {
             .height(size)
             .width(size)
             .cornerRadius(size/2)
-    }
-
-}
-
-fileprivate struct DetailsSectionWidget: WidgetView {
-
-    var widgets: [Widget]
-
-    func widget(_ context: WidgetContext) -> Widget {
-        ContainerWidget(
-                VStackWidget(widgets)
-                    .spacing(2)
-            )
-            .backgroundColor(.secondarySystemBackground)
-            .cornerRadius(10)
-            .padding(h: 20, v: 15)
     }
 
 }
