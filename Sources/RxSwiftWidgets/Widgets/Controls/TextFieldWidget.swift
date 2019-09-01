@@ -88,6 +88,50 @@ public struct TextFieldWidget
     }
 }
 
+extension TextFieldWidget {
+
+    public func onChange(_ handler: @escaping (_ textField: UITextField, _ context: WidgetContext) -> Void) -> Self {
+        return modified(WidgetModifierBlock<UITextField>({ (view, context) in
+            view.rx.controlEvent(.editingChanged)
+                .subscribe(onNext: { () in
+                    handler(view, context)
+                })
+                .disposed(by: context.disposeBag)
+        }))
+    }
+
+    public func onEditingDidBegin(_ handler: @escaping (_ textField: UITextField, _ context: WidgetContext) -> Void) -> Self {
+        return modified(WidgetModifierBlock<UITextField>({ (view, context) in
+            view.rx.controlEvent(.editingDidBegin)
+                .subscribe(onNext: { () in
+                    handler(view, context)
+                })
+                .disposed(by: context.disposeBag)
+        }))
+    }
+
+    public func onEditingDidEnd(_ handler: @escaping (_ textField: UITextField, _ context: WidgetContext) -> Void) -> Self {
+        return modified(WidgetModifierBlock<UITextField>({ (view, context) in
+            view.rx.controlEvent(.editingDidEnd)
+                .subscribe(onNext: { () in
+                    handler(view, context)
+                })
+                .disposed(by: context.disposeBag)
+        }))
+    }
+
+    public func onEditingDidEndOnExit(_ handler: @escaping (_ textField: UITextField, _ context: WidgetContext) -> Void) -> Self {
+        return modified(WidgetModifierBlock<UITextField>({ (view, context) in
+            view.rx.controlEvent(.editingDidEndOnExit)
+                .subscribe(onNext: { () in
+                    handler(view, context)
+                })
+                .disposed(by: context.disposeBag)
+        }))
+    }
+
+}
+
 fileprivate class WidgetTextField: UITextField {
 
 }

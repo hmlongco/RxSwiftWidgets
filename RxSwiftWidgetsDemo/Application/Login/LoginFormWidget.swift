@@ -6,6 +6,7 @@ struct LoginFormWidget: WidgetView {
 
     @State var username: String = "Michael Long"
     @State var password: String = ""
+    @State var authenticated: Bool = false
     @State var error: String = ""
 
     func widget(_ context: WidgetContext) -> Widget {
@@ -42,6 +43,10 @@ struct LoginFormWidget: WidgetView {
             ]) // ZStackWidget
             .navigationBar(title: "Login", hidden: true)
             .safeArea(false)
+            .onEvent($authenticated.filter { $0 }) { (_, context) in
+                context.navigator?.dismiss()
+            }
+
         }
 
     var logoSection: Widget {
@@ -90,6 +95,9 @@ struct LoginFormWidget: WidgetView {
                         textField.isSecureTextEntry = true
                         textField.keyboardAppearance = .dark
                     }
+                    .onEditingDidEndOnExit({ (_, context) in
+                        self.login()
+                    })
                 ])
                 .spacing(0)
             )
@@ -103,12 +111,8 @@ struct LoginFormWidget: WidgetView {
             .font(.title2)
             .color(.white)
             .padding(h: 30, v: 14)
-            .onTap(handler: { (context) in
-                guard !self.username.isEmpty && !self.password.isEmpty else {
-                    self.error = "Username and password is required."
-                    return
-                }
-                context.navigator?.dismiss()
+            .onTap(handler: { _ in
+                self.login()
             })
     }
 
@@ -116,6 +120,14 @@ struct LoginFormWidget: WidgetView {
         LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
             .alignment(.center)
             .padding(h: 20, v: 20)
+    }
+
+    func login() {
+        guard !self.username.isEmpty && !self.password.isEmpty else {
+            error = "Username and password is required."
+            return
+        }
+        authenticated = true
     }
 
 }
