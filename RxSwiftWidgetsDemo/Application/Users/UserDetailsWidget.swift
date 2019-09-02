@@ -23,7 +23,6 @@ struct UserDetailsWidget: WidgetView {
                         UserPhotoWidget(initials: user.initials, size: 80),
                         LabelWidget(user.name)
                             .font(.title1)
-                            .color(.red)
                         ]) // HStackWidget
                         .position(.centerHorizontally)
                     ), // ContainerWidget

@@ -18,11 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
         configureStyles()
 
+        WidgetTheme.defaultTheme
+            .update {
+                $0.color.accent = UIColor(red: 1.0, green: 0.0, blue: 0.5, alpha: 1.0)
+            }
+
+        let widget = MainMenuWidget()
+        let vc = UIWidgetHostController(widget)
+
         window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController()
-        let widget = MainMenuWidget()
-//        let widget = DemoStaticTableViewWidget()
-        let vc = UIWidgetHostController(widget)
         navigationController.addChild(vc)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

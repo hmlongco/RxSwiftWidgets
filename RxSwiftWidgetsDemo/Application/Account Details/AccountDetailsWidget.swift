@@ -29,7 +29,7 @@ struct AccountDetailsWidget: WidgetView {
 
                         LabelWidget(viewModel.title)
                             .alignment(.center)
-                            .color(.red)
+                            .color(context.theme.color.accent)
                             .font(.title1),
 
                         NameValueSectionWidget(values: viewModel.accountDetails),

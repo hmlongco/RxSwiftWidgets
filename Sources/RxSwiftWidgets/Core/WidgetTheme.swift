@@ -41,6 +41,10 @@ public struct WidgetTheme {
     public var color: Color
     public var font: Font
 
+    public mutating func update(_ updater: @escaping (_ theme: inout WidgetTheme) -> Void) {
+        updater(&self)
+    }
+
 }
 
 extension WidgetTheme {
