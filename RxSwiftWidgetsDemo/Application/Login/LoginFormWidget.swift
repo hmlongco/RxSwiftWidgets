@@ -1,5 +1,6 @@
 
 import UIKit
+import RxSwift
 import RxSwiftWidgets
 
 struct LoginFormWidget: WidgetView {
@@ -139,10 +140,26 @@ extension LabelWidget {
             .hidden(true)
             .onEvent(message) { (value, context) in
                 guard let label = context.view as? UILabel else { return }
-                UIView.animate(withDuration: 0.2) {
-                    label.text = value
-                    label.isHidden = value.isEmpty
-                    label.superview?.layoutIfNeeded()
+                if label.isHidden {
+                    UIView.animate(withDuration: 0.2) {
+                        label.text = value
+                        label.isHidden = value.isEmpty
+                        label.superview?.layoutIfNeeded()
+                    }
+                } else {
+                    UIView.animate(withDuration: 0.2, animations: {
+                        label.text = ""
+                        label.isHidden = true
+                        label.superview?.layoutIfNeeded()
+                    }) { (completed) in
+                        if completed && !value.isEmpty {
+                            UIView.animate(withDuration: 0.2) {
+                                label.text = value
+                                label.isHidden = value.isEmpty
+                                label.superview?.layoutIfNeeded()
+                            }
+                        }
+                    }
                 }
             }
     }
