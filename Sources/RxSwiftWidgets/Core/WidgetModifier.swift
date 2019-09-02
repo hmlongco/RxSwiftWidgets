@@ -21,6 +21,11 @@ public struct WidgetModifier<View:UIView, Value>: AnyWidgetModifier {
     public let keyPath: WritableKeyPath<View, Value>
     public let value: Value
 
+    public init(keyPath: WritableKeyPath<View, Value>, value: Value) {
+        self.keyPath = keyPath
+        self.value = value
+    }
+
     public func apply(to view: UIView, with context: WidgetContext) {
         if var view = view as? View {
             view[keyPath: keyPath] = value
