@@ -11,13 +11,18 @@ struct BackButtonWidget: WidgetView {
     func widget(_ context: WidgetContext) -> Widget {
         LabelWidget(text)
             .alignment(.center)
-            .alpha(0.8)
+            .alpha(0.0)
             .color(.white)
             .font(.title3)
             .padding(h: 30, v: 10)
             .position(.topRight)
             .onTap{ context in
                 context.navigator?.dismiss()
+            }
+            .with { (view, _) in
+                UIView.animate(withDuration: 1.5) {
+                    view.alpha = 0.8
+                }
             }
     }
 

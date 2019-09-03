@@ -29,6 +29,9 @@ struct DemoStaticTableViewWidget: WidgetView {
                     LabelWidget("On or Off"),
                     SpacerWidget(),
                     UIControlWidget(UISwitch())
+                        .with({ (view, context) in
+                            view.onTintColor = context.theme.color.accent
+                        })
                     ])
                 ]),
             TableSectionWidget([
@@ -45,7 +48,7 @@ struct DemoStaticTableViewWidget: WidgetView {
 
             }
             .theme {
-                $0.color.text = .purple
+                $0.color.text = $0.color.accent
             }
 
     }
