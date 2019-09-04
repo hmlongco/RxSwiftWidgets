@@ -48,13 +48,11 @@ I wanted declarative development *and* I wanted my RxSwift. What can I say? I'm 
 
 There are other "cross-platform" frameworks out there, but I'm an iOS Swift developer at heart and doing iOS development in Dart or JavaScript simply doesn't interest me.
 
-All of which lead me to write RxSwiftWidgets.
+# RxSwiftWidgets
 
-So, all that said, let's dive in!
+In RxSwiftWidgets, screens are composed of widgets that are composed of widgets that are composed of widgets...
 
-## Master/Detail Table View
-
-Here's a simple table view implemented in RxSwiftWidgets, which then links to a detail view.
+Let's look at a simple table view implemented in RxSwiftWidgets, which then links to a detail view. You know, your basic master list / detail view scenario.
 
 > ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-User-List-2.png) ![List](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/Widget-User-Details.png) 
 
@@ -97,11 +95,19 @@ struct UserListWidget: WidgetView {
 
 Our *UserListWidget* is a *WidgetView*, whose job is to return a single widget container that defines the interface for that view. 
 
-WidgetView's can represent entire screens, as shown here; or they can be used to render portions of a screen, as done here with the *UserPhotoWidget*. 
+WidgetView's can represent entire screens, as shown here; or they can be used to render portions of a screen, as done here with the *UserPhotoWidget*. Pretty much every screen and custom view we create in an app will be some form of a WidgetView.
+
+### WidgetContext
+
+You'll note that the widget function is called with a WidgetContext. Contexts are provided to widgets when they're being built and contain information about the current state of the view hierarchy as well as references to the current view controller, the current view, and the parent view. 
+
+They also provide access to system services (like the navigator), themes, style information, and other attributes. You can also add your own information or objects to the current context and that information will be visible to any of that widget's children. 
+
+Finally, every context contains a RxSwift DisposeBag that manages any subscriptions or bindings made by that widget or it's children. 
 
 ### TableWidget
 
-In this case, our WidgetView returns a *TableWidget* which, as you might expect from the name, will eventually will generate a UITableView. 
+Moving on, you'll note that our WidgetView's *widget* function returns a *TableWidget* which, as you might expect from the name, will eventually will generate a UITableView. 
 
 ```
     TableWidget([ ... ])
@@ -129,8 +135,8 @@ In this case the widget returned is just a simple *TableCellWidget* that shows t
             UserPhotoWidget(initials: $0.initials, size: 35),
             LabelWidget($0.name)
             ])
-            )
-            .accessoryType(.disclosureIndicator)
+        )
+        .accessoryType(.disclosureIndicator)
 ```
 
 Note that while you can use a standard text-based table cell in RxSwiftWidgets, the contents of these cells are also defined and built using widgets! 
@@ -169,13 +175,13 @@ The table widget also has a couple of modifiers that control the navigation bar 
 
 ### Done
 
-That's it. That's all of the code to define the entire screen ([minus the data loading code in the view model](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserListWidget.swift)). You didn't manually create and configure a UITableViewController. No delegates. No datasources.
+That's it. Go back up and look at the full code sample again and you'll see *all* of the code to define the entire screen ([minus the data loading code in the view model](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Users/UserListWidget.swift)). You didn't manually create and configure a UITableViewController. No delegates. No datasources.
 
 A complete table view with navigation, custom table view cells, dynamic data, and pull-to-refresh, in just under 30 lines of code. Interested?
 
 ## Want More Details?
 
-Just for good measure, here's the code for the *UserDetailsWidget*. (42 lines of code)
+Just for good measure, here's the code for the *UserDetailsWidget*. (Just 42 lines of code)
 
 ```
 struct UserDetailsWidget: WidgetView {
@@ -258,17 +264,19 @@ struct UserPhotoWidget: WidgetView {
 }
 ```
 
-By now things should be looking pretty familiar. Our photo widget consists of an image widget placed directly over a label widget in a z-stack, used to let you visually stack elements on top of one another. 
+Again, things should be looking pretty familiar. Our photo widget consists of an image widget placed directly over a label widget in a z-stack, used to let you visually stack elements on top of one another. 
 
 The z-stack is constrained to the desired size using *height* and *width* modifiers, and is turned into a circle with the *cornerRadius* modifier.
 
 Note that the label widget is adjusting the size of the font used based on the size itself. That lets us use the same user-defined widget on both the list and detail screens.
 
-In RxSwiftWidgets, screens are composed of widgets that are composed of widgets that are composed of widgets...
+That's interface *composition*.
 
 The downside to interface composition? Practically speaking... none.
 
 RxSwiftWidgets are highly performant and non-resource intensive. As with SwiftUI, widget/view "definitions" are typically struct-based value types, and many of the modifiers are little more than key path-based assignments.
+
+Generating the actual corresponding UIViews *is* more resource intensive, true, but those views need to be created anyway, regardless of whether or not you use RxSwiftWidgets, build them manually, or generate them from Storyboards. 
 
 The upside? Well, unlike using Storyboards and NIBs and binding them to UIViewControllers and UIViews with dozens of IBOUtlets, this approach actively *encourages* breaking your interface down in small, individual, easily understood and easily testable interface elements.
 
