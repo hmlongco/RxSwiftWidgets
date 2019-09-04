@@ -24,6 +24,8 @@ But unlike SwiftUI, with RxSwiftWidgets you also have the power to reach under t
 
 ## Why RxSwiftWidgets?
 
+### SwiftUI
+
 With SwiftUI and Combine on the horizon, why use RxSwiftWidgets and RxSwift? Well, the answer to that question actually lies within the question itself: With SwiftUI and Combine **on the horizon**...
 
 SwiftUI is coming, but not yet released. Same for Combine. 
@@ -33,6 +35,22 @@ Perhaps more to the point, **SwiftUI and Combine both require iOS 13 at a minimu
 There aren't too many developers who can drop support for earlier versions of iOS in their applications and go iOS 13 only. Which in turn means that most of us wouldn't see any of the benefits of doing declarative, reactive programming for another couple of **years**. 
 
 That's simply too long.
+
+### CwlViews
+
+There are a few other declarative frameworks out there, the most notable of which is Matt Gallagher's [CwlViews](https://www.cocoawithlove.com/blog/introducing-cwlviews.html).
+
+While CwlViews has some cool and interesting features, it's biggest drawback lies in its implementation of its own reactive framework. I firmly believe in RxSwift and perhaps more to the point, RxSwift has a large and loyal base of users plus tons of available resources, books, and articles devoted to it.
+
+I wanted declarative development *and* I wanted my RxSwift. What can I say? I'm greedy.
+
+### Flutter, React Native, et. al.
+
+There are other "cross-platform" frameworks out there, but I'm an iOS Swift developer at heart and doing iOS development in Dart or JavaScript simply doesn't interest me.
+
+All of which lead me to write RxSwiftWidgets.
+
+So, all that said, let's dive in!
 
 ## Master/Detail Table View
 
