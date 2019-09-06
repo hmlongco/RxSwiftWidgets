@@ -282,7 +282,7 @@ The upside? Well, unlike using Storyboards and NIBs and binding them to UIViewCo
 
 ## RxSwift PropertyWrappers and Observables
 
-Like SwiftUI, RxSwiftWidgets define State and Binding property wrappers.
+Like SwiftUI, RxSwiftWidgets define State and Binding property wrappers. 
 
 ```
     @State var username: String = "Michael Long"
@@ -306,6 +306,8 @@ You can also "listen" to state changes using the *onEvent* modifier.
         context.navigator?.dismiss()
     }
 ```
+
+The above examples were taken directly from the RxSwiftWidgets' [Login Form demo](https://github.com/hmlongco/RxSwiftWidgets/blob/master/RxSwiftWidgetsDemo/Application/Login/LoginFormWidget.swift).
 
 ## Integration
 
