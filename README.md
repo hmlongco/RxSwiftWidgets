@@ -280,6 +280,33 @@ Generating the actual corresponding UIViews *is* more resource intensive, true, 
 
 The upside? Well, unlike using Storyboards and NIBs and binding them to UIViewControllers and UIViews with dozens of IBOUtlets, this approach actively *encourages* breaking your interface down in small, individual, easily understood and easily testable interface elements.
 
+## RxSwift PropertyWrappers and Observables
+
+Like SwiftUI, RxSwiftWidgets define State and Binding property wrappers.
+
+```
+    @State var username: String = "Michael Long"
+    @State var password: String = ""
+    @State var authenticated: Bool = false
+    @State var error: String = ""
+```
+
+These property wrappers wrap RxSwift observables such that when bound to a specific widget attribute any change to the state will update the widget's generated UIView.
+
+In some cases the binding is bidirectional, such as when the above password string is bould to a TextFieldWidget...
+
+```
+    TextFieldWidget($password)
+````
+
+You can also "listen" to state changes using the *onEvent* modifier.
+
+```
+    .onEvent($authenticated.filter { $0 }) { (_, context) in
+        context.navigator?.dismiss()
+    }
+```
+
 ## Integration
 
 As RxSwiftWidgets are UIKit-based, it's easy to integrate RxSwiftWidgets in an existing app.
@@ -304,6 +331,16 @@ Just instantiate the view, wrap it in a *UIViewWidget*, and insert it into the l
     ])
 ```
 As shown, you can also manipulate properties on custom views using standard RxSwiftWidget modifiers. Your view is a UIView, after all.
+
+With RxSwiftWidgets, it's also possible to directly manipulate a view's attributes using the *with* modifier. Here we're setting the UITextField's keyboardAppearance as that attribute wasn't yet directly available as a RxSwiftWidget modifier.
+
+```
+    TextFieldWidget($username)
+        .placeholder("Username / Email Address")
+        .with { textField, _ in
+            textField.keyboardAppearance = .dark
+        }
+```
 
 It's also easy to create your own fully integrated widget types. Your choice.
 
