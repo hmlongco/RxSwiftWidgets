@@ -991,7 +991,7 @@
 			path = Users;
 			sourceTree = "<group>";
 		};
-		4C12006F23087520003B060C /* Contiainers */ = {
+		4C12006F23087520003B060C /* Containers */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_34 /* ContainerWidget.swift */,
@@ -1002,7 +1002,7 @@
 				OBJ_39 /* VStackWidget.swift */,
 				OBJ_41 /* ZStackWidget.swift */,
 			);
-			path = Contiainers;
+			path = Containers;
 			sourceTree = "<group>";
 		};
 		4C12007023087559003B060C /* Controls */ = {
@@ -1391,7 +1391,7 @@
 		OBJ_32 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				4C12006F23087520003B060C /* Contiainers */,
+				4C12006F23087520003B060C /* Containers */,
 				4C12007023087559003B060C /* Controls */,
 				4C120072230875B7003B060C /* TableView */,
 				4C1200712308758C003B060C /* General */,
