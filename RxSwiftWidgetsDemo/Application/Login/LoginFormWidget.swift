@@ -38,7 +38,7 @@ struct LoginFormWidget: WidgetView {
                 .automaticallyAdjustForKeyboard()
                 .safeArea(false),
 
-                BackButtonWidget(text: "X"),
+            BackButtonWidget(text: "X"),
 
 
             ]) // ZStackWidget
@@ -96,9 +96,9 @@ struct LoginFormWidget: WidgetView {
                         textField.isSecureTextEntry = true
                         textField.keyboardAppearance = .dark
                     }
-                    .onEditingDidEndOnExit({ (_, context) in
+                    .onEditingDidEndOnExit { (_, _) in
                         self.login()
-                    })
+                    }
                 ])
                 .spacing(0)
             )

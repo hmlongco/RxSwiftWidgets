@@ -57,8 +57,6 @@ struct FeaturesWidget: WidgetView {
                             }
                         },
 
-                    SpacerWidget(),
-
                     BackButtonWidget(text: "Done"),
 
                     ]) // VStackWidget
