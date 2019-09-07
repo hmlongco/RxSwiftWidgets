@@ -213,7 +213,6 @@ struct UserDetailsWidget: WidgetView {
                     DetailsNameValueWidget(name: "Email", value: user.email),
                     ]),
 
-                SpacerWidget()
                 ]) // VStackWidget
                 .spacing(20)
 
