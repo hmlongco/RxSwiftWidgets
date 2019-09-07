@@ -16,7 +16,7 @@ struct CardWidget: WidgetView {
         ContainerWidget(widget)
             .padding(h: 20, v: 15)
             .cornerRadius(20)
-            .backgroundColor(UIColor(white: 0.9, alpha: 0.6))
+            .backgroundColor(UIColor(white: 0.5, alpha: 0.15))
     }
 
 }
