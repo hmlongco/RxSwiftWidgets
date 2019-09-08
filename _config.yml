@@ -1,7 +1,0 @@
-clean: true
-theme: jekyll-theme-architect
-module: RxSwiftWidgets
-sources: Sources/RxSwiftWidgets/*/*.swift
-sdk: iphone
-output: Documentation/API
-xcodebuild_arguments: -project,RxSwiftWidgets.xcodeproj,-scheme,RxSwiftWidgets-Package

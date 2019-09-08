@@ -1,0 +1,10 @@
+clean: true
+module: RxSwiftWidgets
+output: Documentation/API
+xcodebuild_arguments:
+- "-project"
+- "RxSwiftWidgets.xcodeproj"
+- "-scheme"
+- "RxSwiftWidgets-Package"
+- "-destination"
+- "platform=iOS Simulator,name=iPhone Xr 13"
