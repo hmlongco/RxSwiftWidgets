@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 @propertyWrapper
 public struct State<Element>: BindableElement {
 
@@ -42,7 +41,7 @@ public struct State<Element>: BindableElement {
         relay.asObservable()
     }
 
-    public func bidirectionalBind(_ observable: Observable<Element>) -> Disposable {
+    public func observe(_ observable: Observable<Element>) -> Disposable {
         observable.bind(to: relay)
     }
 

@@ -13,29 +13,29 @@ import RxCocoa
 // Define Protocols
 
 public protocol BindableElement: ObservableElement {
-    func bidirectionalBind(_ observable: Observable<Element>) -> Disposable
+    func observe(_ observable: Observable<Element>) -> Disposable
 }
 
 extension BehaviorRelay: BindableElement {
-    public func bidirectionalBind(_ observable: Observable<Element>) -> Disposable {
+    public func observe(_ observable: Observable<Element>) -> Disposable {
         observable.bind(to: self)
     }
 }
 
 extension BehaviorSubject: BindableElement {
-    public func bidirectionalBind(_ observable: Observable<Element>) -> Disposable {
+    public func observe(_ observable: Observable<Element>) -> Disposable {
         observable.bind(to: self)
     }
 }
 
 extension PublishRelay: BindableElement {
-    public func bidirectionalBind(_ observable: Observable<Element>) -> Disposable {
+    public func observe(_ observable: Observable<Element>) -> Disposable {
         observable.bind(to: self)
     }
 }
 
 extension PublishSubject: BindableElement {
-    public func bidirectionalBind(_ observable: Observable<Element>) -> Disposable {
+    public func observe(_ observable: Observable<Element>) -> Disposable {
         observable.bind(to: self)
     }
 }

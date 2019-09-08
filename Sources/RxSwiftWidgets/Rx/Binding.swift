@@ -41,7 +41,7 @@ public struct Binding<Element>: BindableElement {
         relay.asObservable()
     }
 
-    public func bidirectionalBind(_ observable: Observable<Element>) -> Disposable {
+    public func observe(_ observable: Observable<Element>) -> Disposable {
         observable.bind(to: relay)
     }
 
