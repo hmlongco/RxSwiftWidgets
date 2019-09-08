@@ -16,27 +16,27 @@ public struct SpacerWidget: Widget
     public var debugDescription: String { "SpacerWidget()" }
 
     private var h: CGFloat?
-    private var w: CGFloat?
+    private var v: CGFloat?
 
-    public init(h: CGFloat? = nil, w: CGFloat? = nil) {
+    public init(h: CGFloat? = nil, v: CGFloat? = nil) {
         self.h = h
-        self.w = w
+        self.v = v
     }
 
     public func build(with context: WidgetContext) -> UIView {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-        view.translatesAutoresizingMaskIntoConstraints = false
-        if let h = h {
-            view.heightAnchor.constraint(equalToConstant: h).isActive = true
-        } else {
-            view.setContentHuggingPriority(.defaultLow, for: .vertical)
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+            view.translatesAutoresizingMaskIntoConstraints = false
+            if let h = h {
+                view.widthAnchor.constraint(equalToConstant: h).isActive = true
+            } else {
+                view.setContentHuggingPriority(.defaultLow, for: .horizontal)
+            }
+            if let v = v {
+                view.heightAnchor.constraint(equalToConstant: v).isActive = true
+            } else {
+                view.setContentHuggingPriority(.defaultLow, for: .vertical)
+            }
+            return view
         }
-        if let w = w {
-            view.widthAnchor.constraint(equalToConstant: w).isActive = true
-        } else {
-            view.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        }
-        return view
-    }
 
 }
