@@ -11,6 +11,7 @@ struct LoginFormWidget: WidgetView {
     @State var error: String = ""
 
     func widget(_ context: WidgetContext) -> Widget {
+
         ZStackWidget([
 
             ImageWidget(named: "vector1")
@@ -20,21 +21,18 @@ struct LoginFormWidget: WidgetView {
             ScrollWidget(
                 VStackWidget([
                     logoSection,
-                    LabelWidget.error($error)
-                        .color(.white)
-                        .padding(h: 30, v: 0),
+                    ErrorMessageWidget(message: $error),
+                    SpacerWidget(v: 20),
                     usernameSection,
+                    SpacerWidget(v: 10),
                     passwordSection,
-                    VStackWidget([
-                        loginButtonSection,
-                        footnoteSection,
-                        ])
-                        .padding(h: 0, v: 10)
-                        .spacing(5)
-                    ]) // VStackWidget
-                    .spacing(20)
+                    SpacerWidget(v: 20),
+                    loginButtonSection,
+                    footnoteSection,
+                    ])
+                    .spacing(5)
                     .padding(h: 0, v: 50)
-                ) // ScrollWidget
+                )
                 .automaticallyAdjustForKeyboard()
                 .safeArea(false),
 
@@ -128,39 +126,11 @@ struct LoginFormWidget: WidgetView {
             error = "Username and password is required."
             return
         }
-        authenticated = true
+        error = ""
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.password = ""
+            self.authenticated = true
+        }
     }
 
-}
-
-extension LabelWidget {
-    static func error(_ message: Binding<String>) -> LabelWidget {
-        LabelWidget()
-            .numberOfLines(0)
-            .hidden(true)
-            .onEvent(message) { (value, context) in
-                guard let label = context.view as? UILabel else { return }
-                if label.isHidden {
-                    UIView.animate(withDuration: 0.2) {
-                        label.text = value
-                        label.isHidden = value.isEmpty
-                        label.superview?.layoutIfNeeded()
-                    }
-                } else {
-                    UIView.animate(withDuration: 0.2, animations: {
-                        label.text = ""
-                        label.isHidden = true
-                        label.superview?.layoutIfNeeded()
-                    }) { (completed) in
-                        if completed && !value.isEmpty {
-                            UIView.animate(withDuration: 0.2) {
-                                label.text = value
-                                label.isHidden = value.isEmpty
-                                label.superview?.layoutIfNeeded()
-                            }
-                        }
-                    }
-                }
-            }
-    }
 }

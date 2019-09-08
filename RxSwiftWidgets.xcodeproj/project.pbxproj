@@ -55,6 +55,7 @@
 		4C44C2F122EA508F00E3CBDD /* RxSwiftWidgets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwiftWidgets::RxSwiftWidgets::Product" /* RxSwiftWidgets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C44C2F922EA525300E3CBDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C44C2F722EA525300E3CBDD /* Assets.xcassets */; };
 		4C585DD822FB7BD7007E4F5F /* ObservableListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C585DD722FB7BD7007E4F5F /* ObservableListBuilder.swift */; };
+		4C60AC04232437C7002EA1BD /* ErrorMessageWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C60AC03232437C7002EA1BD /* ErrorMessageWidget.swift */; };
 		4C62D36B22F21CDC0071A51A /* AccountDetailsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36A22F21C700071A51A /* AccountDetailsWidget.swift */; };
 		4C62D37022F21FDC0071A51A /* AccountInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36D22F21FDC0071A51A /* AccountInformation.swift */; };
 		4C62D37122F21FDC0071A51A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62D36E22F21FDC0071A51A /* User.swift */; };
@@ -579,6 +580,7 @@
 		4C44C2F722EA525300E3CBDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C44C2FC22EA550300E3CBDD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C585DD722FB7BD7007E4F5F /* ObservableListBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableListBuilder.swift; sourceTree = "<group>"; };
+		4C60AC03232437C7002EA1BD /* ErrorMessageWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessageWidget.swift; sourceTree = "<group>"; };
 		4C62D36A22F21C700071A51A /* AccountDetailsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsWidget.swift; sourceTree = "<group>"; };
 		4C62D36D22F21FDC0071A51A /* AccountInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInformation.swift; sourceTree = "<group>"; };
 		4C62D36E22F21FDC0071A51A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -1040,6 +1042,7 @@
 			isa = PBXGroup;
 			children = (
 				4C16E8B4231C46CB00A7EAFF /* CardWidget.swift */,
+				4C60AC03232437C7002EA1BD /* ErrorMessageWidget.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1901,6 +1904,7 @@
 				4C21216E22EA5ED900C5D6FB /* Colors.swift in Sources */,
 				4C8CCF3322F1DB32008139A3 /* DoneButtonWidget.swift in Sources */,
 				4C44C2C522EA4E3600E3CBDD /* AppDelegate.swift in Sources */,
+				4C60AC04232437C7002EA1BD /* ErrorMessageWidget.swift in Sources */,
 				4C21216B22EA5ED900C5D6FB /* Styles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
