@@ -345,6 +345,14 @@ With RxSwiftWidgets, it's also possible to directly manipulate a view's attribut
 
 It's also easy to create your own fully integrated widget types. Your choice.
 
+## Getting Started
+
+Gettings started is simple, just download the project and run the RxSwiftWidgets Demo app. 
+
+Look at each screen and then examine the code used to build it. You should also note that pretty much each and every screen has some feature or attribute that's different from the others and that was used to test out that particular feature.
+
+Like the *onEvent($authenticated.filter { $0 })* feature mentioned above in the login screen.
+
 ## WIP
 
 RxSwiftWidgets is a *beta* release. 
