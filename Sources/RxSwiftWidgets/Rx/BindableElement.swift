@@ -18,7 +18,9 @@ public protocol BindableElement: ObservableElement {
 
 extension BehaviorRelay: BindableElement {
     public func observe(_ observable: Observable<Element>) -> Disposable {
-        observable.bind(to: self)
+        observable.subscribe(onNext: { [weak self] (element) in
+            self?.accept(element) // only forward onNext events
+        })
     }
 }
 

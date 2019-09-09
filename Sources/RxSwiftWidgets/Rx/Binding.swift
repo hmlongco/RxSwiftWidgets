@@ -42,7 +42,9 @@ public struct Binding<Element>: BindableElement {
     }
 
     public func observe(_ observable: Observable<Element>) -> Disposable {
-        observable.bind(to: relay)
+        observable.subscribe(onNext: { (element) in
+            self.relay.accept(element) // only forward onNext events
+        })
     }
 
     public func subscribe<Observer: ObserverType>(_ observer: Observer) -> Disposable where Element == Observer.Element {
