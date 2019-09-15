@@ -27,7 +27,7 @@ struct ErrorMessageWidget: WidgetView {
                     return
                 }
                 let baseAnimation = { (_ value: String) in
-                    label.text = value
+                    label.text = value.isEmpty ? nil : value
                     label.isHidden = value.isEmpty
                     label.superview?.layoutIfNeeded()
                 }

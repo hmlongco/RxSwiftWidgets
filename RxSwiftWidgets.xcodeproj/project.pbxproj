@@ -41,6 +41,7 @@
 		4C21217D22EA698900C5D6FB /* MainMenuLabelWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21217C22EA698900C5D6FB /* MainMenuLabelWidget.swift */; };
 		4C31A0CD22EF7BCC004A3464 /* FeaturesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C31A0CC22EF7AEF004A3464 /* FeaturesWidget.swift */; };
 		4C31A0CF22EF7CE9004A3464 /* DemoPositioningWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C31A0CE22EF7CE9004A3464 /* DemoPositioningWidget.swift */; };
+		4C3B618D2327D7F5001253D0 /* UIColor+Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B618B2327D773001253D0 /* UIColor+Widgets.swift */; };
 		4C3EFF1522FC7A2F007F909A /* LoginFormWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EFF1422FC7A2F007F909A /* LoginFormWidget.swift */; };
 		4C44C2C522EA4E3600E3CBDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */; };
 		4C44C2E022EA508F00E3CBDD /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "RxSwift::RxCocoa::Product" /* RxCocoa.framework */; };
@@ -574,6 +575,7 @@
 		4C21217C22EA698900C5D6FB /* MainMenuLabelWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuLabelWidget.swift; sourceTree = "<group>"; };
 		4C31A0CC22EF7AEF004A3464 /* FeaturesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesWidget.swift; sourceTree = "<group>"; };
 		4C31A0CE22EF7CE9004A3464 /* DemoPositioningWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoPositioningWidget.swift; sourceTree = "<group>"; };
+		4C3B618B2327D773001253D0 /* UIColor+Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Widgets.swift"; sourceTree = "<group>"; };
 		4C3EFF1422FC7A2F007F909A /* LoginFormWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFormWidget.swift; sourceTree = "<group>"; };
 		4C44C2C222EA4E3600E3CBDD /* RxSwiftWidgetsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftWidgetsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C44C2C422EA4E3600E3CBDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
@@ -1357,6 +1359,7 @@
 		OBJ_19 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4C3B618B2327D773001253D0 /* UIColor+Widgets.swift */,
 				OBJ_20 /* UIView+Widgets.swift */,
 				OBJ_21 /* UIWidgetHostController.swift */,
 			);
@@ -2234,6 +2237,7 @@
 				4C8F4E34231470C5001997C8 /* WidgetTheme.swift in Sources */,
 				OBJ_665 /* WidgetModifyUIViewCustom.swift in Sources */,
 				4CD6916C2306EFBC00C6FB9C /* TableWidget.swift in Sources */,
+				4C3B618D2327D7F5001253D0 /* UIColor+Widgets.swift in Sources */,
 				OBJ_666 /* WidgetModifyUIViewGestures.swift in Sources */,
 				4CE49AB922FCD7080030CD9D /* WidgetModifyUIControl.swift in Sources */,
 				OBJ_667 /* WidgetModifyUIViewLayer.swift in Sources */,
@@ -2437,7 +2441,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/RxSwiftWidgetsDemo/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/RxSwiftWidgetsDemo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2497,7 +2501,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/RxSwiftWidgetsDemo/Info.plist";
 				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/RxSwiftWidgetsDemo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

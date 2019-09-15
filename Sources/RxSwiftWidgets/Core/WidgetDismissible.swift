@@ -20,3 +20,8 @@ public struct WidgetDismissibleReturn<Value>: WidgetDismissibleType {
     }
 
 }
+
+public enum WidgetDismissiblePresentationType {
+    case presented
+    case pushed
+}

@@ -31,7 +31,7 @@ struct FeaturesWidget: WidgetView {
                     }),
 
                     MainMenuItemWidget(text: "Dismissible", onTap: { context in
-                        context.navigator?.push(widget: DemoDismissibleWidget(), onDismiss: { (value: String) in
+                        context.navigator?.present(widget: DemoDismissibleWidget(), onDismiss: { (value: String) in
                             print(value)
                         })
                     }),
