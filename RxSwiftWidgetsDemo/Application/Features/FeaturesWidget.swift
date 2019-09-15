@@ -32,14 +32,7 @@ struct FeaturesWidget: WidgetView {
 
                     MainMenuItemWidget(text: "Dismissible", onTap: { context in
                         context.navigator?.present(DemoDismissibleWidget(), onDismiss: { (value: String) in
-                            OperationQueue.main.addOperation {
-                                context.navigator?.present(
-                                    AlertWidget(title: "Returned", message: value)
-                                        .addAction(title: "Okay") { (context) in
-                                            context.navigator?.dismiss()
-                                        }
-                                )
-                            }
+                            self.showAlert(value, with: context)
                         })
                     }),
 
@@ -80,4 +73,16 @@ struct FeaturesWidget: WidgetView {
             .safeArea(false)
         
         }
+
+    func showAlert(_ value: String, with context: WidgetContext) {
+        OperationQueue.main.addOperation {
+            let alert = AlertWidget(title: "Returned", message: value)
+                .addAction(title: "Okay") { _ in
+                    self.showAlert("Onward!", with: context)
+                }
+                .addAction(title: "Cancel", style: .cancel)
+            context.navigator?.present(alert)
+        }
+    }
+    
 }

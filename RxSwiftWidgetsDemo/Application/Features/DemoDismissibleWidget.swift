@@ -7,8 +7,12 @@ struct DemoDismissibleWidget: WidgetView {
     let desc = """
         Demonstrates launching a dismissible widget and returning a value or simply dismissing (cancelling) the screen programatically.
 
-        This screen will also automatically timeout and return after 8 seconds.
+        If a value is returned it will be shown using an AlertWidget.
+
+        This screen will also automatically timeout after 8 seconds.
         """
+
+    @State var dismissed = false
 
     func widget(_ context: WidgetContext) -> Widget {
 
@@ -34,12 +38,14 @@ struct DemoDismissibleWidget: WidgetView {
                 ButtonWidget("Return Random Number")
                     .color(.orange)
                     .onTap { context in
+                        self.dismissed = true
                         context.navigator?.dismiss(returning: "\(Int.random(in: 1..<1000))")
                     },
 
                 ButtonWidget("Dismiss")
                     .color(.orange)
                     .onTap { context in
+                        self.dismissed = true
                         context.navigator?.dismiss()
                     },
 
@@ -56,7 +62,9 @@ struct DemoDismissibleWidget: WidgetView {
             .safeArea(false)
             .onViewDidAppear { (context) in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
-                    context.navigator?.dismiss(returning: "Automactic Return")
+                    if !self.dismissed {
+                        context.navigator?.dismiss()
+                    }
                 }
             }
         }

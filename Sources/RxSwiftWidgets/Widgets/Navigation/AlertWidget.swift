@@ -28,13 +28,13 @@ public struct AlertWidget: WidgetController {
         let context = context.set(viewController: alert)
         for action in actions {
             alert.addAction(UIAlertAction(title: action.title, style: action.style, handler: { (_) in
-                action.handler(context)
+                action.handler?(context)
             }))
         }
         return alert
     }
 
-    public func addAction(title: String?, style: UIAlertAction.Style = .default, handler: @escaping (_ context: WidgetContext) -> Void) -> Self {
+    public func addAction(title: String?, style: UIAlertAction.Style = .default, handler: ((_ context: WidgetContext) -> Void)? = nil) -> Self {
         var widget = self
         widget.actions.append(WidgetAlertAction(title: title, style: style, handler: handler))
         return widget
@@ -45,5 +45,5 @@ public struct AlertWidget: WidgetController {
 internal struct WidgetAlertAction {
     let title: String?
     let style: UIAlertAction.Style
-    let handler: (_ context: WidgetContext) -> Void
+    let handler: ((_ context: WidgetContext) -> Void)?
 }
