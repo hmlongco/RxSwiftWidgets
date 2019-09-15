@@ -77,6 +77,7 @@
 		4CE3B6CA22F77EF000E47F57 /* ScrollWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B6C922F77EF000E47F57 /* ScrollWidget.swift */; };
 		4CE3B6CC22F89F4300E47F57 /* DemoScrollingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B6CB22F89F4300E47F57 /* DemoScrollingWidget.swift */; };
 		4CE49AB922FCD7080030CD9D /* WidgetModifyUIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE49AB822FCD7080030CD9D /* WidgetModifyUIControl.swift */; };
+		4CF7B65C232EB609009484AE /* AlertWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7B65B232EB609009484AE /* AlertWidget.swift */; };
 		OBJ_341 /* BehaviorRelay+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* BehaviorRelay+Driver.swift */; };
 		OBJ_342 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* Binder.swift */; };
 		OBJ_343 /* ControlEvent+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* ControlEvent+Driver.swift */; };
@@ -603,6 +604,7 @@
 		4CE3B6C922F77EF000E47F57 /* ScrollWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollWidget.swift; sourceTree = "<group>"; };
 		4CE3B6CB22F89F4300E47F57 /* DemoScrollingWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoScrollingWidget.swift; path = RxSwiftWidgetsDemo/Application/Features/DemoScrollingWidget.swift; sourceTree = SOURCE_ROOT; };
 		4CE49AB822FCD7080030CD9D /* WidgetModifyUIControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetModifyUIControl.swift; sourceTree = "<group>"; };
+		4CF7B65B232EB609009484AE /* AlertWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWidget.swift; sourceTree = "<group>"; };
 		OBJ_100 /* RxScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
 		OBJ_101 /* RxSearchBarDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSearchBarDelegateProxy.swift; sourceTree = "<group>"; };
 		OBJ_102 /* RxSearchControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSearchControllerDelegateProxy.swift; sourceTree = "<group>"; };
@@ -1160,6 +1162,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		4CF7B65A232EB5E0009484AE /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				4CF7B65B232EB609009484AE /* AlertWidget.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		OBJ_156 /* RxCocoaRuntime */ = {
 			isa = PBXGroup;
 			children = (
@@ -1399,8 +1409,9 @@
 			children = (
 				4C12006F23087520003B060C /* Containers */,
 				4C12007023087559003B060C /* Controls */,
-				4C120072230875B7003B060C /* TableView */,
+				4CF7B65A232EB5E0009484AE /* Navigation */,
 				4C1200712308758C003B060C /* General */,
+				4C120072230875B7003B060C /* TableView */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -2243,6 +2254,7 @@
 				OBJ_667 /* WidgetModifyUIViewLayer.swift in Sources */,
 				OBJ_668 /* WidgetModifyUIViewRx.swift in Sources */,
 				4CE3B6C522F77C3D00E47F57 /* TextFieldWidget.swift in Sources */,
+				4CF7B65C232EB609009484AE /* AlertWidget.swift in Sources */,
 				4C585DD822FB7BD7007E4F5F /* ObservableListBuilder.swift in Sources */,
 				4C120077230A15C6003B060C /* TableCellWidget.swift in Sources */,
 				4CE3B69E22F4BCBC00E47F57 /* WidgetAnimation.swift in Sources */,

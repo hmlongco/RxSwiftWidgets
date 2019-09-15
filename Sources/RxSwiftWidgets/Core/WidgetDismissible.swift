@@ -22,6 +22,8 @@ public struct WidgetDismissibleReturn<Value>: WidgetDismissibleType {
 }
 
 public enum WidgetDismissiblePresentationType {
+    case alert
     case presented
     case pushed
+    case sheet
 }

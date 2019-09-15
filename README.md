@@ -78,7 +78,7 @@ struct UserListWidget: WidgetView {
                     .accessoryType(.disclosureIndicator)
                 }
                 .onSelect { (context, path, user) in
-                    context.navigator?.push(widget: UserDetailsWidget(user: user))
+                    context.navigator?.push(UserDetailsWidget(user: user))
                     context.tableView?.deselectRow(at: path, animated: true)
                 }
             ])
@@ -145,7 +145,7 @@ Note that while you can use a standard text-based table cell in RxSwiftWidgets, 
 
 ```
     .onSelect { (context, path, user) in
-        context.navigator?.push(widget: UserDetailsWidget(user: user))
+        context.navigator?.push(UserDetailsWidget(user: user))
         context.tableView?.deselectRow(at: path, animated: true)
     }
 ```

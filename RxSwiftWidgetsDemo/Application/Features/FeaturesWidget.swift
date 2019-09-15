@@ -27,25 +27,32 @@ struct FeaturesWidget: WidgetView {
                         .padding(20),
 
                     MainMenuItemWidget(text: "Property Binding", onTap: { (context) in
-                         context.navigator?.push(widget: DemoBindingWidget(title: self.$title))
+                         context.navigator?.push(DemoBindingWidget(title: self.$title))
                     }),
 
                     MainMenuItemWidget(text: "Dismissible", onTap: { context in
-                        context.navigator?.present(widget: DemoDismissibleWidget(), onDismiss: { (value: String) in
-                            print(value)
+                        context.navigator?.present(DemoDismissibleWidget(), onDismiss: { (value: String) in
+                            OperationQueue.main.addOperation {
+                                context.navigator?.present(
+                                    AlertWidget(title: "Returned", message: value)
+                                        .addAction(title: "Okay") { (context) in
+                                            context.navigator?.dismiss()
+                                        }
+                                )
+                            }
                         })
                     }),
 
                     MainMenuItemWidget(text: "Positioning", onTap: { context in
-                        context.navigator?.push(widget: DemoPositioningWidget())
+                        context.navigator?.push(DemoPositioningWidget())
                     }),
 
                     MainMenuItemWidget(text: "Scrolling", onTap: { context in
-                        context.navigator?.push(widget: DemoScrollingWidget())
+                        context.navigator?.push(DemoScrollingWidget())
                     }),
 
                     MainMenuItemWidget(text: "Static TableView", onTap: { context in
-                        context.navigator?.push(widget: DemoStaticTableViewWidget())
+                        context.navigator?.push(DemoStaticTableViewWidget())
                     }),
 
                     ButtonWidget("Reset Title")

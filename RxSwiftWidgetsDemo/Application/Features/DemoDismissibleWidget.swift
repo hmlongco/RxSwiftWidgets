@@ -31,10 +31,10 @@ struct DemoDismissibleWidget: WidgetView {
                     .numberOfLines(0)
                     .padding(h: 0, v: 15),
 
-                ButtonWidget("Dismiss Returning Value")
+                ButtonWidget("Return Random Number")
                     .color(.orange)
                     .onTap { context in
-                        context.navigator?.dismiss(returning: "Return Value")
+                        context.navigator?.dismiss(returning: "\(Int.random(in: 1..<1000))")
                     },
 
                 ButtonWidget("Dismiss")

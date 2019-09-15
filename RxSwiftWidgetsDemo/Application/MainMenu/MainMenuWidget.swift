@@ -28,19 +28,19 @@ struct MainMenuWidget: WidgetView {
                         ),
 
                     MainMenuItemWidget(text: "Account Details", onTap: { context in
-                        context.navigator?.push(widget: AccountDetailsWidget())
+                        context.navigator?.push(AccountDetailsWidget())
                     }),
 
                     MainMenuItemWidget(text: "Login Form", onTap: { context in
-                        context.navigator?.push(widget: LoginFormWidget())
+                        context.navigator?.push(LoginFormWidget())
                     }),
 
                     MainMenuItemWidget(text: "User List", onTap: { context in
-                        context.navigator?.push(widget: UserListWidget())
+                        context.navigator?.push(UserListWidget())
                     }),
 
                     MainMenuItemWidget(text: "Features", onTap: { context in
-                        context.navigator?.push(widget: FeaturesWidget())
+                        context.navigator?.push(FeaturesWidget())
                     }),
 
                     ]) // VStackWidget
