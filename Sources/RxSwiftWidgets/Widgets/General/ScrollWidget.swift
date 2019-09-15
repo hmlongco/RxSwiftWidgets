@@ -42,7 +42,6 @@ public struct ScrollWidget
         let padding = self.modifiers.padding ?? UIEdgeInsets.zero
 
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .clear
         view.axis = axis
         view.padding = padding
         view.addSubview(contentView)

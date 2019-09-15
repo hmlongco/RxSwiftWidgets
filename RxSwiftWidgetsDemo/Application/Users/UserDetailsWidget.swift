@@ -46,7 +46,7 @@ struct UserDetailsWidget: WidgetView {
                 .spacing(20)
 
             ) // ScrollWidget
-            .backgroundColor(.systemBackground)
+            .backgroundColor(.semanticSystemBackground)
             .safeArea(false)
             .padding(20)
             .navigationBar(title: "User Information", hidden: false)
