@@ -24,14 +24,6 @@ open class UIWidgetHostController: UIViewController {
             .set(viewController: self)
     }
 
-    public init(_ widget: Widget, with context: WidgetContext, dismissible: WidgetDismissibleType) {
-        super.init(nibName: nil, bundle: nil)
-        self.widget = widget
-        self.context = context.new()
-            .set(viewController: self)
-            .set(dismissible: dismissible)
-    }
-
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

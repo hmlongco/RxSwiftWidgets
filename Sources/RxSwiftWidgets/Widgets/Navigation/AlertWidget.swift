@@ -7,11 +7,9 @@
 
 import UIKit
 
-public protocol WidgetController {
-    func build(with context: WidgetContext) -> UIViewController
-}
-
-public struct AlertWidget: WidgetController {
+public struct AlertWidget
+    : WidgetControllerType
+{
 
     internal let title: String?
     internal let message: String?
@@ -23,7 +21,7 @@ public struct AlertWidget: WidgetController {
         self.message = message
     }
 
-    public func build(with context: WidgetContext) -> UIViewController {
+    public func controller(with context: WidgetContext) -> UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let context = context.set(viewController: alert)
         for action in actions {

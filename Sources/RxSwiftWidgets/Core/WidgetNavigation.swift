@@ -26,38 +26,34 @@ public struct WidgetNavigator {
     // dismissible functionality
 
     /// Pushes the widget onto the navigation stack in a new UIWidgetHostController.
-    public func push(_ widget: Widget, animated: Bool = true) {
+    public func push(_ widget: WidgetControllerType, animated: Bool = true) {
         let context = self.context.set(presentation: .pushed)
-        let viewController = UIWidgetHostController(widget, with: context)
+        let viewController = widget.controller(with: context)
         navigationController?.pushViewController(viewController, animated: animated)
     }
 
     /// Pushes the widget onto the navigation stack in a new UIWidgetHostController with a return value handler.
-    public func push<ReturnType>(_ widget: Widget, animated: Bool = true, onDismiss handler: @escaping WidgetDismissibleReturnHandler<ReturnType>) {
-        let context = self.context.set(presentation: .pushed)
+    public func push<ReturnType>(_ widget: WidgetControllerType, animated: Bool = true,
+                                 onDismiss handler: @escaping WidgetDismissibleReturnHandler<ReturnType>) {
         let dismissible = WidgetDismissibleReturn<ReturnType>(handler)
-        let viewController = UIWidgetHostController(widget, with: context, dismissible: dismissible)
+        let context = self.context.set(presentation: .pushed).set(dismissible: dismissible)
+        let viewController = widget.controller(with: context)
         navigationController?.pushViewController(viewController, animated: animated)
     }
 
     /// Presents a widget on the navigation stack in a new UIWidgetHostController.
-    public func present(_ widget: Widget, animated: Bool = true) {
+    public func present(_ widget: WidgetControllerType, animated: Bool = true) {
         let context = self.context.set(presentation: .presented)
-        let viewController = UIWidgetHostController(widget, with: context)
+        let viewController = widget.controller(with: context)
         navigationController?.present(viewController, animated: animated, completion: nil)
     }
 
     /// Presents a widget on the navigation stack in a new UIWidgetHostController with a return value handler.
-    public func present<ReturnType>(_ widget: Widget, animated: Bool = true, onDismiss handler: @escaping WidgetDismissibleReturnHandler<ReturnType>) {
-        let context = self.context.set(presentation: .presented)
+    public func present<ReturnType>(_ widget: WidgetControllerType, animated: Bool = true,
+                                    onDismiss handler: @escaping WidgetDismissibleReturnHandler<ReturnType>) {
         let dismissible = WidgetDismissibleReturn<ReturnType>(handler)
-        let viewController = UIWidgetHostController(widget, with: context, dismissible: dismissible)
-        navigationController?.present(viewController, animated: animated, completion: nil)
-    }
-
-    public func present(_ widget: WidgetController, animated: Bool = true) {
-        let context = self.context.set(presentation: .alert)
-        let viewController = widget.build(with: context)
+        let context = self.context.set(presentation: .presented).set(dismissible: dismissible)
+        let viewController = widget.controller(with: context)
         navigationController?.present(viewController, animated: animated, completion: nil)
     }
 
