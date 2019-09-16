@@ -48,7 +48,7 @@ public protocol WidgetTableViewCellProviding {
 
 open class TableWidget
     : NSObject
-    , Widget
+    , WidgetViewType
     , WidgetViewModifying
     , WidgetPadding
     , WidgetUpdatable {

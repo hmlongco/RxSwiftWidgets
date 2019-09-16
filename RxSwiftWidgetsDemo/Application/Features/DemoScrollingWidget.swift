@@ -4,9 +4,9 @@ import RxSwiftWidgets
 
 struct DemoScrollingWidget: WidgetView {
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
 
-        let widgets = [Widget].init(repeating: LabelWidget("This is a line."), count: 40)
+        let widgets = [WidgetViewType].init(repeating: LabelWidget("This is a line."), count: 40)
 
         return ContainerWidget(
             ScrollWidget(

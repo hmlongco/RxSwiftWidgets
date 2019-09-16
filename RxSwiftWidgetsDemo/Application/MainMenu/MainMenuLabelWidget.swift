@@ -11,7 +11,7 @@ struct MainMenuItemWidget: WidgetView, WidgetViewModifying {
 
     var modifiers = WidgetModifiers()
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
         LabelWidget(text)
             .backgroundColor(.init(white: 1.0, alpha: 0.3))
             .clipsToBounds(true)

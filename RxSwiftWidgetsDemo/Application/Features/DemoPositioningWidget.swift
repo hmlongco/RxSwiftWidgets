@@ -8,7 +8,7 @@ struct DemoPositioningWidget: WidgetView {
         Uses a ZStack to demonstrate multiple ways of positioning widgets within a container.
         """
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
 
         let widget = ZStackWidget([
 
@@ -65,12 +65,12 @@ struct DemoPositioningWidget: WidgetView {
             .navigationBar(title: "Dismissible Demo", hidden: true)
             .safeArea(false)
 
-        widget.walk { print($0) }
+//        widget.walk { print($0) }
 
         return widget
     }
 
-    func borderedStack(_ widgets: [Widget]) -> Widget {
+    func borderedStack(_ widgets: [WidgetViewType]) -> WidgetViewType {
         ZStackWidget(widgets)
             .border(color: .lightGray)
             .padding(10)

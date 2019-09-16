@@ -12,21 +12,22 @@ import RxSwift
 import RxCocoa
 
 public struct VStackWidget
-    : WidgetsContaining
+    : WidgetViewType
+    , WidgetsContaining
     , WidgetViewModifying
     , WidgetPadding
     , CustomDebugStringConvertible {
 
     public var debugDescription: String { "VStackWidget()" }
 
-    public var widgets: [Widget]
+    public var widgets: [WidgetViewType]
     public var modifiers = WidgetModifiers()
 
-    public init(_ widgets: [Widget] = []) {
+    public init(_ widgets: [WidgetViewType] = []) {
         self.widgets = widgets
     }
 
-    public init<Item, O:ObservableElement>(_ items: O, builder: @escaping (_ item: Item) -> Widget) where O.Element == [Item] {
+    public init<Item, O:ObservableElement>(_ items: O, builder: @escaping (_ item: Item) -> WidgetViewType) where O.Element == [Item] {
         self.modifiers.binding = WidgetModifierBlock<WidgetPrivateStackView> { (stack, context) in
             let items = items.map { $0.map { builder($0) } }
             stack.subscribe(to: items, with: context)
@@ -66,7 +67,7 @@ public struct VStackWidget
         return modified(WidgetModifier(keyPath: \UIStackView.distribution, value: distribution))
     }
 
-    public func placeholder(_ widgets: [Widget]) -> Self {
+    public func placeholder(_ widgets: [WidgetViewType]) -> Self {
         return modified { $0.widgets = widgets }
     }
 
@@ -84,7 +85,7 @@ internal class WidgetPrivateStackView: UIStackView {
 
     var disposeBag: DisposeBag!
 
-    public func subscribe(to observable: Observable<[Widget]>, with context: WidgetContext) {
+    public func subscribe(to observable: Observable<[WidgetViewType]>, with context: WidgetContext) {
         observable
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (widgets) in

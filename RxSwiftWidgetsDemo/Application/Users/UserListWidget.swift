@@ -25,7 +25,7 @@ struct UserListWidget: WidgetView {
 
     var viewModel = UserListViewModel()
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
 
         TableWidget([
             DynamicTableSectionWidget(viewModel.$users) {

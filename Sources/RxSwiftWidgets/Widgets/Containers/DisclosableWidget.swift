@@ -3,11 +3,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public struct DisclosableWidget: Widget, WidgetContaining, WidgetPadding, WidgetViewModifying {
+public struct DisclosableWidget
+    : WidgetViewType
+    , WidgetContaining
+    , WidgetPadding
+    , WidgetViewModifying {
 
-    public var widget: Widget
+    public var widget: WidgetViewType
 
-    public init(_ widget: Widget) {
+    public init(_ widget: WidgetViewType) {
         self.widget = widget
     }
 

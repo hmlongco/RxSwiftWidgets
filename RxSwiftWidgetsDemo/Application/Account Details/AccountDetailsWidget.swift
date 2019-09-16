@@ -7,7 +7,7 @@ struct AccountDetailsWidget: WidgetView {
 
     let viewModel = AccountDetailsViewModel()
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
 
         ZStackWidget([
 
@@ -67,7 +67,7 @@ fileprivate struct NameValueSectionWidget: WidgetView {
 
     let values: Observable<[AccountInformation.AccountDetails]>
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
         CardWidget(widget: VStackWidget(values) {
             HStackWidget([
                 LabelWidget($0.name)

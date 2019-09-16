@@ -10,7 +10,8 @@ import UIKit
 
 public typealias FlexibleSpaceWidget = SpacerWidget
 
-public struct SpacerWidget: Widget
+public struct SpacerWidget
+    : WidgetViewType
     , CustomDebugStringConvertible {
 
     public var debugDescription: String { "SpacerWidget()" }

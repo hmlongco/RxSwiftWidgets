@@ -21,7 +21,7 @@ public protocol WidgetViewExtendable: UIView {
 
     var widget: WidgetViewAttributes { get set }
 
-    func build(widget: Widget, with context: WidgetContext)
+    func build(widget: WidgetViewType, with context: WidgetContext)
     func addConstrainedSubview(_ subview: UIView, with padding: UIEdgeInsets?)
 
 }
@@ -34,7 +34,7 @@ extension UIView: WidgetViewExtendable {
 
     private static var WidgetViewAttributesKey: UInt8 = 0
 
-    public func build(widget: Widget, with context: WidgetContext) {
+    public func build(widget: WidgetViewType, with context: WidgetContext) {
         let context = context.set(view: self)
         let view = widget.build(with: context)
         addConstrainedSubview(view)

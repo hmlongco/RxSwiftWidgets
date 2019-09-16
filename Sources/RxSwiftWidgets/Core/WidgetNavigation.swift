@@ -27,6 +27,7 @@ public struct WidgetNavigator {
 
     /// Pushes the widget onto the navigation stack in a new UIWidgetHostController.
     public func push(_ widget: Widget, animated: Bool = true) {
+        guard let widget = widget as? WidgetViewType else { return }
         let context = self.context.set(presentation: .pushed)
         let viewController = UIWidgetHostController(widget, with: context)
         navigationController?.pushViewController(viewController, animated: animated)
@@ -34,6 +35,7 @@ public struct WidgetNavigator {
 
     /// Pushes the widget onto the navigation stack in a new UIWidgetHostController with a return value handler.
     public func push<ReturnType>(_ widget: Widget, animated: Bool = true, onDismiss handler: @escaping WidgetDismissibleReturnHandler<ReturnType>) {
+        guard let widget = widget as? WidgetViewType else { return }
         let context = self.context.set(presentation: .pushed)
         let dismissible = WidgetDismissibleReturn<ReturnType>(handler)
         let viewController = UIWidgetHostController(widget, with: context, dismissible: dismissible)
@@ -42,6 +44,7 @@ public struct WidgetNavigator {
 
     /// Presents a widget on the navigation stack in a new UIWidgetHostController.
     public func present(_ widget: Widget, animated: Bool = true) {
+        guard let widget = widget as? WidgetViewType else { return }
         let context = self.context.set(presentation: .presented)
         let viewController = UIWidgetHostController(widget, with: context)
         navigationController?.present(viewController, animated: animated, completion: nil)
@@ -49,6 +52,7 @@ public struct WidgetNavigator {
 
     /// Presents a widget on the navigation stack in a new UIWidgetHostController with a return value handler.
     public func present<ReturnType>(_ widget: Widget, animated: Bool = true, onDismiss handler: @escaping WidgetDismissibleReturnHandler<ReturnType>) {
+        guard let widget = widget as? WidgetViewType else { return }
         let context = self.context.set(presentation: .presented)
         let dismissible = WidgetDismissibleReturn<ReturnType>(handler)
         let viewController = UIWidgetHostController(widget, with: context, dismissible: dismissible)

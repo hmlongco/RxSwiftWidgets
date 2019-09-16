@@ -12,7 +12,8 @@ import RxCocoa
 
 
 public struct TextFieldWidget
-    : WidgetControlModifying
+    : WidgetViewType
+    , WidgetControlModifying
     , CustomDebugStringConvertible {
 
     public var debugDescription: String { "TextFieldWidget()" }

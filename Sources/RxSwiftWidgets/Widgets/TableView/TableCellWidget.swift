@@ -22,13 +22,14 @@ extension Widgets {
 }
 
 open class TableCellWidget: Widget
+    , WidgetViewType
     , WidgetTableViewCellProviding
     , WidgetViewModifying
     , WidgetPadding {
 
     public var title: String?
     public var detail: String?
-    public var widget: Widget?
+    public var widget: WidgetViewType?
     public var accessoryType: UITableViewCell.AccessoryType = .none
     public var caching = Widgets.TableCellCaching.auto
     public var reusableCellID: String
@@ -55,7 +56,7 @@ open class TableCellWidget: Widget
         self.cellType = RowWidgetValueCell.self
     }
 
-    public init(_ widget: Widget) {
+    public init(_ widget: WidgetViewType) {
         self.widget = widget
         self.reusableCellID = String(describing: RowWidgetCustomCell.self)
         self.cellType = RowWidgetCustomCell.self
@@ -136,7 +137,7 @@ open class RowWidgetCustomCell: UITableViewCell {
         contentView.subviews.forEach { $0.removeFromSuperview() }
     }
 
-    open func reset(_ widget: Widget, with context: WidgetContext, padding: UIEdgeInsets) {
+    open func reset(_ widget: WidgetViewType, with context: WidgetContext, padding: UIEdgeInsets) {
         var context = context
         context.disposeBag = disposeBag
         let view = widget.build(with: context)

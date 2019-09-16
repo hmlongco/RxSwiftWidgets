@@ -8,7 +8,7 @@ struct BackButtonWidget: WidgetView {
 
     let text: String
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
         LabelWidget(text)
             .alignment(.center)
             .alpha(0.0)

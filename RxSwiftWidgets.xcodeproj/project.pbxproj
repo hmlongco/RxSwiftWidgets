@@ -78,6 +78,7 @@
 		4CE3B6CC22F89F4300E47F57 /* DemoScrollingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B6CB22F89F4300E47F57 /* DemoScrollingWidget.swift */; };
 		4CE49AB922FCD7080030CD9D /* WidgetModifyUIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE49AB822FCD7080030CD9D /* WidgetModifyUIControl.swift */; };
 		4CF7B65C232EB609009484AE /* AlertWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7B65B232EB609009484AE /* AlertWidget.swift */; };
+		4CF7B65E232F226C009484AE /* WidgetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7B65D232F226C009484AE /* WidgetType.swift */; };
 		OBJ_341 /* BehaviorRelay+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* BehaviorRelay+Driver.swift */; };
 		OBJ_342 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* Binder.swift */; };
 		OBJ_343 /* ControlEvent+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* ControlEvent+Driver.swift */; };
@@ -605,6 +606,7 @@
 		4CE3B6CB22F89F4300E47F57 /* DemoScrollingWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoScrollingWidget.swift; path = RxSwiftWidgetsDemo/Application/Features/DemoScrollingWidget.swift; sourceTree = SOURCE_ROOT; };
 		4CE49AB822FCD7080030CD9D /* WidgetModifyUIControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetModifyUIControl.swift; sourceTree = "<group>"; };
 		4CF7B65B232EB609009484AE /* AlertWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWidget.swift; sourceTree = "<group>"; };
+		4CF7B65D232F226C009484AE /* WidgetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetType.swift; sourceTree = "<group>"; };
 		OBJ_100 /* RxScrollViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxScrollViewDelegateProxy.swift; sourceTree = "<group>"; };
 		OBJ_101 /* RxSearchBarDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSearchBarDelegateProxy.swift; sourceTree = "<group>"; };
 		OBJ_102 /* RxSearchControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSearchControllerDelegateProxy.swift; sourceTree = "<group>"; };
@@ -1651,6 +1653,7 @@
 				4CE3B69A22F49DFF00E47F57 /* WidgetSwiftUI.swift */,
 				4C8F4E33231470C5001997C8 /* WidgetTheme.swift */,
 				OBJ_18 /* WidgetView.swift */,
+				4CF7B65D232F226C009484AE /* WidgetType.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -2246,6 +2249,7 @@
 				OBJ_663 /* WidgetModifyUIView.swift in Sources */,
 				OBJ_664 /* WidgetModifyUIViewConstraints.swift in Sources */,
 				4C8F4E34231470C5001997C8 /* WidgetTheme.swift in Sources */,
+				4CF7B65E232F226C009484AE /* WidgetType.swift in Sources */,
 				OBJ_665 /* WidgetModifyUIViewCustom.swift in Sources */,
 				4CD6916C2306EFBC00C6FB9C /* TableWidget.swift in Sources */,
 				4C3B618D2327D7F5001253D0 /* UIColor+Widgets.swift in Sources */,

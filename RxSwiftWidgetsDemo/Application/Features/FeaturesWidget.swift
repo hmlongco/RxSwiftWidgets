@@ -8,7 +8,7 @@ struct FeaturesWidget: WidgetView {
 
     @State private var title: String = "Features"
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
 
         ZStackWidget([
 

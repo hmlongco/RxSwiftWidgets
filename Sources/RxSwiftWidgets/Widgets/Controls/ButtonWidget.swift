@@ -12,7 +12,8 @@ import RxCocoa
 
 
 public struct ButtonWidget
-    : WidgetViewModifying
+    : WidgetViewType
+    , WidgetViewModifying
     , WidgetPadding
     , CustomDebugStringConvertible {
 

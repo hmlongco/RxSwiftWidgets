@@ -16,7 +16,7 @@ struct DemoBindingWidget: WidgetView {
         Demonstrates binding object properties in and across Widgets using @State and @Binding values.
         """
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
 
         ZStackWidget([
 

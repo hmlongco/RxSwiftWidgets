@@ -13,7 +13,7 @@ struct UserDetailsWidget: WidgetView {
 
     var user: User
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
 
         ScrollWidget(
             VStackWidget([
@@ -60,7 +60,7 @@ struct UserPhotoWidget: WidgetView {
     var initials: String?
     var size: CGFloat
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
         ZStackWidget([
             LabelWidget(initials)
                 .font(size > 40 ? .title1 : .body)
@@ -81,7 +81,7 @@ fileprivate struct DetailsNameValueWidget: WidgetView {
     var name: String?
     var value: String?
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
         HStackWidget([
             LabelWidget(name)
                 .color(.gray),

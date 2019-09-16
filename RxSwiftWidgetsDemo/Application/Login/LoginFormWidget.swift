@@ -10,7 +10,7 @@ struct LoginFormWidget: WidgetView {
     @State var authenticated: Bool = false
     @State var error: String = ""
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
 
         ZStackWidget([
 
@@ -48,7 +48,7 @@ struct LoginFormWidget: WidgetView {
 
         }
 
-    var logoSection: Widget {
+    var logoSection: WidgetViewType {
         ContainerWidget(
         HStackWidget([
             ImageWidget(named: "RxSwiftWidgets-Logo-DK")
@@ -64,7 +64,7 @@ struct LoginFormWidget: WidgetView {
         )
     }
 
-    var usernameSection: Widget {
+    var usernameSection: WidgetViewType {
         ContainerWidget(
             VStackWidget([
                 LabelWidget.footnote("Username"),
@@ -83,7 +83,7 @@ struct LoginFormWidget: WidgetView {
             .padding(h: 30, v: 8)
     }
 
-    var passwordSection: Widget {
+    var passwordSection: WidgetViewType {
         ContainerWidget(
             VStackWidget([
                 LabelWidget.footnote("Password"),
@@ -104,7 +104,7 @@ struct LoginFormWidget: WidgetView {
             .padding(h: 30, v: 8)
     }
 
-    var loginButtonSection: Widget {
+    var loginButtonSection: WidgetViewType {
         ButtonWidget("Login")
             .backgroundColor(UIColor(red: 0.8, green: 0.0, blue: 0.4, alpha: 0.8))
             .font(.title2)
@@ -115,7 +115,7 @@ struct LoginFormWidget: WidgetView {
             })
     }
 
-    var footnoteSection: Widget {
+    var footnoteSection: WidgetViewType {
         LabelWidget.footnote("RxSwiftWidgets Demo Version 0.7\nCreated by Michael Long")
             .alignment(.center)
             .padding(h: 20, v: 20)

@@ -14,7 +14,7 @@ struct DemoDismissibleWidget: WidgetView {
 
     @State var dismissed = false
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
 
         ZStackWidget([
 

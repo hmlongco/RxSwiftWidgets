@@ -10,9 +10,9 @@ import RxSwiftWidgets
 
 struct CardWidget: WidgetView {
 
-    let widget: Widget
+    let widget: WidgetViewType
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
         ContainerWidget(widget)
             .padding(h: 20, v: 15)
             .cornerRadius(10)

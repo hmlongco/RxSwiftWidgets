@@ -12,19 +12,19 @@ import RxCocoa
 
 open class UIWidgetHostController: UIViewController {
 
-    public var widget: Widget!
+    public var widget: WidgetViewType!
     public var context: WidgetContext!
 
     // lifecycle
 
-    public init(_ widget: Widget, with context: WidgetContext? = nil) {
+    public init(_ widget: WidgetViewType, with context: WidgetContext? = nil) {
         super.init(nibName: nil, bundle: nil)
         self.widget = widget
         self.context = (context?.new() ?? WidgetContext())
             .set(viewController: self)
     }
 
-    public init(_ widget: Widget, with context: WidgetContext, dismissible: WidgetDismissibleType) {
+    public init(_ widget: WidgetViewType, with context: WidgetContext, dismissible: WidgetDismissibleType) {
         super.init(nibName: nil, bundle: nil)
         self.widget = widget
         self.context = context.new()

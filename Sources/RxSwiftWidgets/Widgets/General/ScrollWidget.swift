@@ -19,18 +19,19 @@ extension Widgets {
 }
 
 public struct ScrollWidget
-    : WidgetViewModifying
+    : WidgetViewType
+    , WidgetViewModifying
     , WidgetContaining
     , WidgetPadding
     , CustomDebugStringConvertible {
 
     public var debugDescription: String { "ScrollWidget()" }
 
-    public var widget: Widget
+    public var widget: WidgetViewType
     public var modifiers = WidgetModifiers()
     public var axis = Widgets.ScrollAxis.vertical
 
-    public init(_ widget: Widget) {
+    public init(_ widget: WidgetViewType) {
         self.widget = widget
     }
 

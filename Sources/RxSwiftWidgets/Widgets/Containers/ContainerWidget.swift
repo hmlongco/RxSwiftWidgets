@@ -11,7 +11,8 @@ import RxSwift
 import RxCocoa
 
 public struct ContainerWidget
-    : WidgetContaining
+    : WidgetViewType
+    , WidgetContaining
     , WidgetViewModifying
     , WidgetPadding
     , CustomDebugStringConvertible {
@@ -19,9 +20,9 @@ public struct ContainerWidget
     public var debugDescription: String { "ContainerWidget()" }
 
     public var modifiers = WidgetModifiers()
-    public let widget: Widget
+    public let widget: WidgetViewType
 
-    public init(_ widget: Widget) {
+    public init(_ widget: WidgetViewType) {
         self.widget = widget
     }
 

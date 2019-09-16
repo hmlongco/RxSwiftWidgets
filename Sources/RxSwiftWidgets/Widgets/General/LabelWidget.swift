@@ -12,7 +12,8 @@ import RxCocoa
 
 
 public struct LabelWidget
-    : WidgetViewModifying
+    : WidgetViewType
+    , WidgetViewModifying
     , WidgetPadding
     , CustomDebugStringConvertible {
 

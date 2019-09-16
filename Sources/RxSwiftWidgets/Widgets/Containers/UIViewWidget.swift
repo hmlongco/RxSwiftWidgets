@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 public struct UIViewWidget<View:UIView>
-    : Widget
+    : WidgetViewType
     , WidgetViewModifying
     , CustomDebugStringConvertible {
 

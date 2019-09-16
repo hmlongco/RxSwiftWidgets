@@ -12,17 +12,18 @@ import RxSwift
 import RxCocoa
 
 public struct ZStackWidget
-    : WidgetsContaining
+    : WidgetViewType
+    , WidgetsContaining
     , WidgetViewModifying
     , WidgetPadding
     , CustomDebugStringConvertible {
 
     public var debugDescription: String { "ZStackWidget()" }
 
-    public let widgets: [Widget]
+    public let widgets: [WidgetViewType]
     public var modifiers = WidgetModifiers()
 
-    public init(_ widgets: [Widget]) {
+    public init(_ widgets: [WidgetViewType]) {
         self.widgets = widgets
     }
 

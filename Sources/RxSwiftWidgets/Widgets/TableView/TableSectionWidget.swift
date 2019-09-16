@@ -11,7 +11,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-open class BaseTableSection: Widget
+open class BaseTableSection
+    : Widget
     , WidgetUpdatable {
 
     public weak var parent: WidgetUpdatable? = nil
@@ -43,7 +44,7 @@ open class BaseTableSection: Widget
         }
     }
 
-    public func getWidget(at row: Int) -> Widget? {
+    public func getWidget(at row: Int) -> WidgetViewType? {
         return nil
     }
 
@@ -59,7 +60,7 @@ open class BaseTableSection: Widget
 
 open class TableSectionWidget: BaseTableSection {
 
-    public var widgets: [Widget] {
+    public var widgets: [WidgetViewType] {
         didSet { updated() }
     }
 
@@ -67,7 +68,7 @@ open class TableSectionWidget: BaseTableSection {
     public var caching = Widgets.TableCellCaching.auto
     public var selectionHandler: ((_ context: WidgetContext, _ indexPath: IndexPath) -> Void)?
 
-    public init(_ widgets: [Widget] = []) {
+    public init(_ widgets: [WidgetViewType] = []) {
         self.widgets = widgets
         super.init()
     }
@@ -97,7 +98,7 @@ open class TableSectionWidget: BaseTableSection {
         }
     }
 
-    public override func getWidget(at row: Int) -> Widget? {
+    public override func getWidget(at row: Int) -> WidgetViewType? {
         guard widgets.indices.contains(row) else { return nil }
         return widgets[row]
     }
@@ -123,12 +124,12 @@ open class TableSectionWidget: BaseTableSection {
 
 open class DynamicTableSectionWidget<Item>: BaseTableSection {
 
-    private var builder: (_ item: Item) -> Widget
+    private var builder: (_ item: Item) -> WidgetViewType
     private var items: [Item] = []
     private var selectionHandler: ((_ context: WidgetContext, _ indexPath: IndexPath, _ item: Item) -> Void)?
     private var disposeBag = DisposeBag()
 
-    public init<O:ObservableElement>(_ items: O, builder: @escaping (_ item: Item) -> Widget) where O.Element == [Item] {
+    public init<O:ObservableElement>(_ items: O, builder: @escaping (_ item: Item) -> WidgetViewType) where O.Element == [Item] {
         self.builder = builder
         super.init()
         items
@@ -144,7 +145,7 @@ open class DynamicTableSectionWidget<Item>: BaseTableSection {
         return items.count
     }
 
-    public override func getWidget(at row: Int) -> Widget? {
+    public override func getWidget(at row: Int) -> WidgetViewType? {
         guard items.indices.contains(row) else { return nil }
         return builder(items[row])
     }

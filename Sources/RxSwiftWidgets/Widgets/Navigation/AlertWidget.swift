@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol WidgetController {
+public protocol WidgetController: WidgetControllerType {
     func build(with context: WidgetContext) -> UIViewController
 }
 

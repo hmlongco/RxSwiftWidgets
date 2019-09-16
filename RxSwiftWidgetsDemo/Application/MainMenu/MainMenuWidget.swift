@@ -4,7 +4,7 @@ import RxSwiftWidgets
 
 struct MainMenuWidget: WidgetView {
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
 
         ZStackWidget([
 

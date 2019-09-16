@@ -12,7 +12,7 @@ struct ErrorMessageWidget: WidgetView {
 
     @Binding var message: String
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
         LabelWidget()
             .backgroundColor(UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.8))
             .color(.white)

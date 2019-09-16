@@ -11,7 +11,7 @@ import RxSwiftWidgets
 
 struct DemoStaticTableViewWidget: WidgetView {
 
-    func widget(_ context: WidgetContext) -> Widget {
+    func widget(_ context: WidgetContext) -> WidgetViewType {
 
         TableWidget([
             TableSectionWidget([

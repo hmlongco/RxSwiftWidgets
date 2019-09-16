@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 /// Extends the basic modifification system with modifiers for many of the core UIView attributes.
 public protocol WidgetViewModifying: WidgetModifying {
 

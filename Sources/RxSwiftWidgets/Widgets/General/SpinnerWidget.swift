@@ -10,7 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public struct SpinnerWidget: WidgetViewModifying
+public struct SpinnerWidget
+    : WidgetViewType
+    , WidgetViewModifying
     , CustomDebugStringConvertible {
 
     public var debugDescription: String { "SpinnerWidget()" }

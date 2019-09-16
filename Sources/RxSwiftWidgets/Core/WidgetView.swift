@@ -10,9 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public protocol WidgetView: Widget {
+public protocol WidgetView: WidgetViewType {
 
-    func widget(_ context: WidgetContext) -> Widget
+    func widget(_ context: WidgetContext) -> WidgetViewType
 
     func onBuild(_ context: WidgetContext)
 

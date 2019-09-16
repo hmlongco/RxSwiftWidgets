@@ -12,21 +12,22 @@ import RxSwift
 import RxCocoa
 
 public struct HStackWidget
-    : WidgetsContaining
+    : WidgetViewType
+    , WidgetsContaining
     , WidgetViewModifying
     , WidgetPadding
     , CustomDebugStringConvertible {
 
     public var debugDescription: String { "HStackWidget()" }
 
-    public var widgets: [Widget]
+    public var widgets: [WidgetViewType]
     public var modifiers = WidgetModifiers()
 
-    public init(_ widgets: [Widget] = []) {
+    public init(_ widgets: [WidgetViewType] = []) {
         self.widgets = widgets
     }
 
-    public init<Item, O:ObservableElement>(_ items: O, builder: @escaping (_ item: Item) -> Widget) where O.Element == [Item] {
+    public init<Item, O:ObservableElement>(_ items: O, builder: @escaping (_ item: Item) -> WidgetViewType) where O.Element == [Item] {
         self.modifiers.binding = WidgetModifierBlock<WidgetPrivateStackView> { (stack, context) in
             let items = items.map { $0.map { builder($0) } }
             stack.subscribe(to: items, with: context)
@@ -66,7 +67,7 @@ public struct HStackWidget
         return modified(WidgetModifier(keyPath: \UIStackView.distribution, value: distribution))
     }
 
-    public func placeholder(_ widgets: [Widget]) -> Self {
+    public func placeholder(_ widgets: [WidgetViewType]) -> Self {
         return modified { $0.widgets = widgets }
     }
 
