@@ -69,6 +69,7 @@
 		4C8CCF3122F0FB7E008139A3 /* BindableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */; };
 		4C8CCF3322F1DB32008139A3 /* DoneButtonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CCF3222F1DB32008139A3 /* DoneButtonWidget.swift */; };
 		4C8F4E34231470C5001997C8 /* WidgetTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8F4E33231470C5001997C8 /* WidgetTheme.swift */; };
+		4C9143AA233044D900260FC0 /* WidgetViewNavigating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9143A9233044D900260FC0 /* WidgetViewNavigating.swift */; };
 		4CD6916C2306EFBC00C6FB9C /* TableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD6916B2306EFBC00C6FB9C /* TableWidget.swift */; };
 		4CE3B69C22F49E1400E47F57 /* WidgetSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B69A22F49DFF00E47F57 /* WidgetSwiftUI.swift */; };
 		4CE3B69E22F4BCBC00E47F57 /* WidgetAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3B69D22F4BCBC00E47F57 /* WidgetAnimation.swift */; };
@@ -358,7 +359,7 @@
 		OBJ_654 /* WidgetContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* WidgetContext.swift */; };
 		OBJ_655 /* WidgetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* WidgetModifier.swift */; };
 		OBJ_656 /* WidgetModifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* WidgetModifying.swift */; };
-		OBJ_657 /* WidgetNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* WidgetNavigation.swift */; };
+		OBJ_657 /* WidgetNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* WidgetNavigator.swift */; };
 		OBJ_658 /* WidgetPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* WidgetPadding.swift */; };
 		OBJ_659 /* WidgetPositioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* WidgetPositioning.swift */; };
 		OBJ_660 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* WidgetView.swift */; };
@@ -596,6 +597,7 @@
 		4C8CCF3022F0FB7E008139A3 /* BindableElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableElement.swift; sourceTree = "<group>"; };
 		4C8CCF3222F1DB32008139A3 /* DoneButtonWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneButtonWidget.swift; sourceTree = "<group>"; };
 		4C8F4E33231470C5001997C8 /* WidgetTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTheme.swift; sourceTree = "<group>"; };
+		4C9143A9233044D900260FC0 /* WidgetViewNavigating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewNavigating.swift; sourceTree = "<group>"; };
 		4CD6916B2306EFBC00C6FB9C /* TableWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableWidget.swift; sourceTree = "<group>"; };
 		4CE3B69A22F49DFF00E47F57 /* WidgetSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSwiftUI.swift; sourceTree = "<group>"; };
 		4CE3B69D22F4BCBC00E47F57 /* WidgetAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAnimation.swift; sourceTree = "<group>"; };
@@ -659,7 +661,7 @@
 		OBJ_147 /* UITabBarController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Rx.swift"; sourceTree = "<group>"; };
 		OBJ_148 /* UITabBarItem+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarItem+Rx.swift"; sourceTree = "<group>"; };
 		OBJ_149 /* UITableView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
-		OBJ_15 /* WidgetNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetNavigation.swift; sourceTree = "<group>"; };
+		OBJ_15 /* WidgetNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetNavigator.swift; sourceTree = "<group>"; };
 		OBJ_150 /* UITextField+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Rx.swift"; sourceTree = "<group>"; };
 		OBJ_151 /* UITextView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Rx.swift"; sourceTree = "<group>"; };
 		OBJ_152 /* UIView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
@@ -1645,12 +1647,13 @@
 				4C15DED422EDE4A900196894 /* WidgetDismissible.swift */,
 				OBJ_13 /* WidgetModifier.swift */,
 				OBJ_14 /* WidgetModifying.swift */,
-				OBJ_15 /* WidgetNavigation.swift */,
+				OBJ_15 /* WidgetNavigator.swift */,
 				OBJ_16 /* WidgetPadding.swift */,
 				OBJ_17 /* WidgetPositioning.swift */,
 				4CE3B69A22F49DFF00E47F57 /* WidgetSwiftUI.swift */,
 				4C8F4E33231470C5001997C8 /* WidgetTheme.swift */,
 				OBJ_18 /* WidgetView.swift */,
+				4C9143A9233044D900260FC0 /* WidgetViewNavigating.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -2234,8 +2237,9 @@
 				OBJ_655 /* WidgetModifier.swift in Sources */,
 				4C120079230A244D003B060C /* UIControlWidget.swift in Sources */,
 				4C15DED622EDE5BB00196894 /* WidgetDismissible.swift in Sources */,
+				4C9143AA233044D900260FC0 /* WidgetViewNavigating.swift in Sources */,
 				OBJ_656 /* WidgetModifying.swift in Sources */,
-				OBJ_657 /* WidgetNavigation.swift in Sources */,
+				OBJ_657 /* WidgetNavigator.swift in Sources */,
 				OBJ_658 /* WidgetPadding.swift in Sources */,
 				OBJ_659 /* WidgetPositioning.swift in Sources */,
 				OBJ_660 /* WidgetView.swift in Sources */,

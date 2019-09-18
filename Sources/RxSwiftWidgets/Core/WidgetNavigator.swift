@@ -1,5 +1,5 @@
 //
-//  WidgetNavigation.swift
+//  WidgetNavigator.swift
 //  RxSwiftWidgets
 //
 //  Created by Michael Long on 7/23/19.

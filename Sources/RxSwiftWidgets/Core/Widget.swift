@@ -11,7 +11,7 @@ import UIKit
 /// Base type for any type of widget.
 public protocol AnyWidget { }
 
-/// A special-purpose widget capable of building a specific UIViewController when asked.
+/// A special-purpose widget capable of building a specific UIViewController when asked. Does not generate UIViews.
 public protocol WidgetControllerType: AnyWidget {
     /// Builds or returns a UIViewController that wraps the current widget.
     func controller(with context: WidgetContext) -> UIViewController
@@ -44,11 +44,6 @@ public protocol WidgetsContaining: Widget {
 /// Common functions on WidgetViewType.
 extension WidgetViewType {
 
-    /// Allows any widget to be pushed or presented on the navigation stack.
-    public func controller(with context: WidgetContext) -> UIViewController {
-        return UIWidgetHostController(self, with: context)
-    }
-
     /// Walks widget tree of WidgetContaining and WidgetsContaining and calls closure on each node.
     public func walk(_ process: (_ widget: Widget) -> Void ) {
         func each(_ widget: Widget) {
@@ -64,3 +59,4 @@ extension WidgetViewType {
 
 }
 
+public struct WidgetFactory { }

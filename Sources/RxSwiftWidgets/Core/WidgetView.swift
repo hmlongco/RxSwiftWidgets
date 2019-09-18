@@ -14,25 +14,25 @@ public protocol WidgetView: Widget {
 
     func widget(_ context: WidgetContext) -> Widget
 
-    func onBuild(_ context: WidgetContext)
+    func build(_ widget: Widget, with context: WidgetContext) -> UIView
 
 }
 
 extension WidgetView {
 
+    /// Hook for the standard build function. Delegates to build(:Widget:Context) function below.
     public func build(with context: WidgetContext) -> UIView {
-        let widget = self.widget(context)
+        return build(widget(context), with: context)
+    }
+
+    /// Performs the actual widget build for WidgetView. Called by the standard build function.
+    public func build(_ widget: Widget, with context: WidgetContext) -> UIView {
         let view = widget.build(with: context)
         if let modifying = self as? WidgetModifying {
             let context = modifying.modifiers.modified(context, for: view)
             modifying.modifiers.apply(to: view, with: context)
-            onBuild(context)
-        } else {
-            onBuild(context.set(view: view))
         }
         return view
     }
-
-    public func onBuild(_ context: WidgetContext) { }
 
 }

@@ -26,9 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let widget = MainMenuWidget()
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        let navigationController = UINavigationController()
-        navigationController.addChild(widget.controller(with: WidgetContext()))
-        window?.rootViewController = navigationController
+        window?.rootViewController = widget.controller(with: WidgetContext())
         window?.makeKeyAndVisible()
 
         return true

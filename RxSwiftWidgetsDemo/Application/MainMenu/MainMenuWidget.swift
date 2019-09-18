@@ -2,7 +2,7 @@
 import UIKit
 import RxSwiftWidgets
 
-struct MainMenuWidget: WidgetView {
+struct MainMenuWidget: WidgetView, WidgetViewNavigating {
 
     func widget(_ context: WidgetContext) -> Widget {
 
@@ -61,4 +61,5 @@ struct MainMenuWidget: WidgetView {
             .navigationBar(title: "Menu", hidden: true)
             .safeArea(false)
         }
+
 }
