@@ -106,56 +106,80 @@ extension Widgets.Position {
     }
 
     func anchorLeftEdge(of view: UIView, in superview: UIView, padding: CGFloat, safeArea: Bool) -> NSLayoutConstraint {
-        let superviewAnchor = safeArea ? superview.safeAreaLayoutGuide.leftAnchor : superview.leftAnchor
+        var superviewAnchor = superview.leftAnchor
+        if #available(iOS 11.0, *), safeArea {
+            superviewAnchor = superview.safeAreaLayoutGuide.leftAnchor
+        }
         let anchor = view.leftAnchor.constraint(equalTo: superviewAnchor, constant: padding)
         anchor.priority = .required
         return anchor
     }
 
     func limitLeftEdge(of view: UIView, in superview: UIView, padding: CGFloat, safeArea: Bool) -> NSLayoutConstraint {
-        let superviewAnchor = safeArea ? superview.safeAreaLayoutGuide.leftAnchor : superview.leftAnchor
+        var superviewAnchor = superview.leftAnchor
+        if #available(iOS 11.0, *), safeArea {
+            superviewAnchor = superview.safeAreaLayoutGuide.leftAnchor
+        }
         let anchor = view.leftAnchor.constraint(greaterThanOrEqualTo: superviewAnchor, constant: padding)
         anchor.priority = .defaultHigh
         return anchor
     }
 
     func anchorTopEdge(of view: UIView, in superview: UIView, padding: CGFloat, safeArea: Bool) -> NSLayoutConstraint {
-        let superviewAnchor = safeArea ? superview.safeAreaLayoutGuide.topAnchor : superview.topAnchor
+        var superviewAnchor = superview.topAnchor
+        if #available(iOS 11.0, *), safeArea {
+            superviewAnchor = superview.safeAreaLayoutGuide.topAnchor
+        }
         let anchor = view.topAnchor.constraint(equalTo: superviewAnchor, constant: padding)
         anchor.priority = .required
         return anchor
     }
 
     func limitTopEdge(of view: UIView, in superview: UIView, padding: CGFloat, safeArea: Bool) -> NSLayoutConstraint {
-        let superviewAnchor = safeArea ? superview.safeAreaLayoutGuide.topAnchor : superview.topAnchor
+        var superviewAnchor = superview.topAnchor
+        if #available(iOS 11.0, *), safeArea {
+            superviewAnchor = superview.safeAreaLayoutGuide.topAnchor
+        }
         let anchor = view.topAnchor.constraint(greaterThanOrEqualTo: superviewAnchor, constant: padding)
         anchor.priority = .defaultHigh
         return anchor
     }
 
     func anchorBottomEdge(of view: UIView, in superview: UIView, padding: CGFloat, safeArea: Bool) -> NSLayoutConstraint {
-        let superviewAnchor = safeArea ? superview.safeAreaLayoutGuide.bottomAnchor : superview.bottomAnchor
+        var superviewAnchor = superview.bottomAnchor
+        if #available(iOS 11.0, *), safeArea {
+            superviewAnchor = superview.safeAreaLayoutGuide.bottomAnchor
+        }
         let anchor = view.bottomAnchor.constraint(equalTo: superviewAnchor, constant: -padding)
         anchor.priority = .required
         return anchor
     }
 
     func limitBottomEdge(of view: UIView, in superview: UIView, padding: CGFloat, safeArea: Bool) -> NSLayoutConstraint {
-        let superviewAnchor = safeArea ? superview.safeAreaLayoutGuide.bottomAnchor : superview.bottomAnchor
+        var superviewAnchor = superview.bottomAnchor
+        if #available(iOS 11.0, *), safeArea {
+            superviewAnchor = superview.safeAreaLayoutGuide.bottomAnchor
+        }
         let anchor = view.bottomAnchor.constraint(lessThanOrEqualTo: superviewAnchor, constant: -padding)
         anchor.priority = .defaultHigh
         return anchor
     }
 
     func anchorRightEdge(of view: UIView, in superview: UIView, padding: CGFloat, safeArea: Bool) -> NSLayoutConstraint {
-        let superviewAnchor = safeArea ? superview.safeAreaLayoutGuide.rightAnchor : superview.rightAnchor
+        var superviewAnchor = superview.rightAnchor
+        if #available(iOS 11.0, *), safeArea {
+            superviewAnchor = superview.safeAreaLayoutGuide.rightAnchor
+        }
         let anchor = view.rightAnchor.constraint(equalTo: superviewAnchor, constant: -padding)
         anchor.priority = .required
         return anchor
     }
 
     func limitRightEdge(of view: UIView, in superview: UIView, padding: CGFloat, safeArea: Bool) -> NSLayoutConstraint {
-        let superviewAnchor = safeArea ? superview.safeAreaLayoutGuide.rightAnchor : superview.rightAnchor
+        var superviewAnchor = superview.rightAnchor
+        if #available(iOS 11.0, *), safeArea {
+            superviewAnchor = superview.safeAreaLayoutGuide.rightAnchor
+        }
         let anchor = view.rightAnchor.constraint(lessThanOrEqualTo: superviewAnchor, constant: -padding)
         anchor.priority = .defaultHigh
         return anchor
