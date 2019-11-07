@@ -15,7 +15,6 @@ struct DemoScrollingWidget: WidgetView {
                     .padding(h: 30, v: 20)
                 )
             )
-            .backgroundColor(.white)
             .navigationBar(title: "Scrolling", hidden: false)
             .safeArea(false)
 
