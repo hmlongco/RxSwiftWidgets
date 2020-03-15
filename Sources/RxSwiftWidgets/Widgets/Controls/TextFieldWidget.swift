@@ -73,6 +73,10 @@ public struct TextFieldWidget
     }
 
     /// Sets placeholder for text field
+    public func placeholder(_ placeholder: String) -> Self {
+        return modified(WidgetModifier(keyPath: \UITextField.placeholder, value: placeholder))
+    }
+
     public func placeholder(_ placeholder: String?) -> Self {
         return modified(WidgetModifier(keyPath: \UITextField.placeholder, value: placeholder))
     }

@@ -6,7 +6,7 @@ struct DemoScrollingWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        let widgets = [Widget].init(repeating: LabelWidget("This is a line."), count: 40)
+        let widgets = [Widget].init(repeating: LabelWidget("This is a line.").color(.white), count: 40)
 
         return ContainerWidget(
             ScrollWidget(
@@ -15,6 +15,7 @@ struct DemoScrollingWidget: WidgetView {
                     .padding(h: 30, v: 20)
                 )
             )
+            .backgroundColor(.black)
             .navigationBar(title: "Scrolling", hidden: false)
             .safeArea(false)
 
