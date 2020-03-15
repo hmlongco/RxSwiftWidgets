@@ -9,55 +9,54 @@ struct AccountDetailsWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        ZStackWidget([
+        ZStackWidget {
 
             ImageWidget(named: "vector2")
                 .contentMode(.scaleAspectFill)
-                .safeArea(false),
+                .safeArea(false)
 
-            ScrollWidget(
+            ScrollWidget {
 
-                VStackWidget([
+                VStackWidget {
 
-                    ContainerWidget(
+                    ContainerWidget {
                         SpinnerWidget().color(.gray)
-                    )
+                    }
                     .padding(15)
-                    .hidden(viewModel.loading.map { !$0 }),
+                    .hidden(viewModel.loading.map { !$0 })
 
-                    VStackWidget([
-
+                    VStackWidget {
                         LabelWidget(viewModel.title)
                             .alignment(.center)
                             .color(context.theme.color.accent)
-                            .font(.title1),
+                            .font(.title1)
 
-                        NameValueSectionWidget(values: viewModel.accountDetails),
+                        NameValueSectionWidget(values: viewModel.accountDetails)
 
-                        NameValueSectionWidget(values: viewModel.paymentDetails),
+                        NameValueSectionWidget(values: viewModel.paymentDetails)
 
                         LabelWidget(viewModel.footnotes)
                             .color(.gray)
                             .font(.footnote)
                             .numberOfLines(0)
-                            .padding(h: 15, v: 0),
-                        ])
-                        .spacing(20)
-                        .hidden(viewModel.loading),
+                            .padding(h: 15, v: 0)
+                    }
+                    .spacing(20)
+                    .hidden(viewModel.loading)
 
-                    ]) // VStackWidget
-                    .spacing(15)
+                } // VStackWidget
+                .spacing(15)
 
-                ) // ScrollWidget
-                .padding(h: 30, v: 20)
-                .safeArea(false)
-
-            ]) // ZStackWidget
-            .navigationBar(title: "Account Details", hidden: false)
+            } // ScrollWidget
+            .padding(h: 30, v: 20)
             .safeArea(false)
             .onViewDidAppear { _ in
                 self.viewModel.load()
             }
+
+        } // ZStackWidget
+        .navigationBar(title: "Account Details", hidden: false)
+        .safeArea(false)
     }
 
 }

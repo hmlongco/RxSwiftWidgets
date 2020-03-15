@@ -26,6 +26,14 @@ public struct ZStackWidget
         self.widgets = widgets
     }
 
+//    public init(@WidgetBuilder builder: () -> Widget) {
+//        self.widgets = [builder()]
+//    }
+
+    public init(@WidgetBuilder builder: () -> [Widget]) {
+        self.widgets = builder()
+    }
+
     public func build(with context: WidgetContext) -> UIView {
         let view = UIView()
         let context = modifiers.modified(context, for: view)

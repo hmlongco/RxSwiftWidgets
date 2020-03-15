@@ -11,6 +11,10 @@ public struct DisclosableWidget: Widget, WidgetContaining, WidgetPadding, Widget
         self.widget = widget
     }
 
+    public init(@WidgetBuilder builder: () -> Widget) {
+        self.widget = builder()
+    }
+
     public var modifiers = WidgetModifiers()
 
     private var color = UIColor.init(white: 0.85, alpha: 1.0)

@@ -22,8 +22,16 @@ public struct VStackWidget
     public var widgets: [Widget]
     public var modifiers = WidgetModifiers()
 
-    public init(_ widgets: [Widget] = []) {
+    public init(_ widgets: [Widget]) {
         self.widgets = widgets
+    }
+
+//    public init(@WidgetBuilder builder: () -> Widget) {
+//        self.widgets = [builder()]
+//    }
+
+    public init(@WidgetBuilder builder: () -> [Widget]) {
+        self.widgets = builder()
     }
 
     public init<Item, O:ObservableElement>(_ items: O, builder: @escaping (_ item: Item) -> Widget) where O.Element == [Item] {

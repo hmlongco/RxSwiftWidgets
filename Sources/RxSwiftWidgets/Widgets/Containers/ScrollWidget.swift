@@ -34,6 +34,14 @@ public struct ScrollWidget
         self.widget = widget
     }
 
+    public init(@WidgetBuilder builder: () -> Widget) {
+        self.widget = builder()
+    }
+
+//    public init(@WidgetBuilder builder: () -> [Widget]) {
+//        self.widget = builder().first!
+//    }
+
     public func build(with context: WidgetContext) -> UIView {
 
         let view = WidgetScrollView()

@@ -12,62 +12,61 @@ struct LoginFormWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        ZStackWidget([
+        ZStackWidget {
 
             ImageWidget(named: "vector1")
                 .contentMode(.scaleAspectFill)
-                .safeArea(false),
+                .safeArea(false)
 
-            ScrollWidget(
-                VStackWidget([
-                    logoSection,
-                    ErrorMessageWidget(message: $error),
-                    SpacerWidget(v: 20),
-                    usernameSection,
-                    SpacerWidget(v: 10),
-                    passwordSection,
-                    SpacerWidget(v: 20),
-                    loginButtonSection,
-                    footnoteSection,
-                    ])
-                    .spacing(5)
-                    .padding(h: 0, v: 50)
-                )
-                .automaticallyAdjustForKeyboard()
-                .safeArea(false),
-
-            BackButtonWidget(text: "X"),
-
-
-            ]) // ZStackWidget
-            .navigationBar(title: "Login", hidden: true)
-            .safeArea(false)
-            .onEvent($authenticated.filter { $0 }) { (_, context) in
-                context.navigator?.dismiss()
+            ScrollWidget {
+                VStackWidget {
+                    logoSection
+                    ErrorMessageWidget(message: $error)
+                    SpacerWidget(v: 20)
+                    usernameSection
+                    SpacerWidget(v: 10)
+                    passwordSection
+                    SpacerWidget(v: 20)
+                    loginButtonSection
+                    footnoteSection
+                }
+                .spacing(5)
+                .padding(h: 0, v: 50)
             }
+            .automaticallyAdjustForKeyboard()
+            .safeArea(false)
 
+            BackButtonWidget(text: "X")
+
+        } // ZStackWidget
+        .navigationBar(title: "Login", hidden: true)
+        .safeArea(false)
+        .onEvent($authenticated.filter { $0 }) { (_, context) in
+            context.navigator?.dismiss()
         }
 
+    }
+
     var logoSection: Widget {
-        ContainerWidget(
-        HStackWidget([
-            ImageWidget(named: "RxSwiftWidgets-Logo-DK")
-                .height(100)
-                .width(100)
-                .contentMode(.scaleAspectFit),
-            LabelWidget("RxSwiftWidgets")
-                .font(.title2)
-                .color(.white)
-            ])
+        ContainerWidget {
+            HStackWidget {
+                ImageWidget(named: "RxSwiftWidgets-Logo-DK")
+                    .height(100)
+                    .width(100)
+                    .contentMode(.scaleAspectFit)
+                LabelWidget("RxSwiftWidgets")
+                    .font(.title2)
+                    .color(.white)
+            }
             .padding(10)
             .position(.centerHorizontally)
-        )
+        }
     }
 
     var usernameSection: Widget {
         ContainerWidget(
-            VStackWidget([
-                LabelWidget.footnote("Username"),
+            VStackWidget {
+                LabelWidget.footnote("Username")
                 TextFieldWidget($username)
                     .placeholder("Username / Email Address")
                     .font(.title2)
@@ -76,7 +75,7 @@ struct LoginFormWidget: WidgetView {
                         textField.isSecureTextEntry = false
                         textField.keyboardAppearance = .dark
                     }
-                ])
+                }
                 .spacing(0)
             )
             .backgroundColor(UIColor(white: 1.0, alpha: 0.8))
@@ -84,9 +83,9 @@ struct LoginFormWidget: WidgetView {
     }
 
     var passwordSection: Widget {
-        ContainerWidget(
-            VStackWidget([
-                LabelWidget.footnote("Password"),
+        ContainerWidget {
+            VStackWidget {
+                LabelWidget.footnote("Password")
                 TextFieldWidget($password)
                     .font(.title2)
                     .color(.black)
@@ -97,9 +96,9 @@ struct LoginFormWidget: WidgetView {
                     .onEditingDidEndOnExit { (_, _) in
                         self.login()
                     }
-                ])
+                }
                 .spacing(0)
-            )
+            }
             .backgroundColor(UIColor(white: 1.0, alpha: 0.8))
             .padding(h: 30, v: 8)
     }

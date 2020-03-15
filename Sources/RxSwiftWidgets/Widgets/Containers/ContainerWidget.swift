@@ -25,7 +25,15 @@ public struct ContainerWidget
         self.widget = widget
     }
 
-    public func build(with context: WidgetContext) -> UIView {
+    public init(@WidgetBuilder builder: () -> Widget) {
+        self.widget = builder()
+    }
+
+//    public init(@WidgetBuilder builder: () -> [Widget]) {
+//        self.widget = builder().first!
+//    }
+
+public func build(with context: WidgetContext) -> UIView {
 
         let view = UIView()
         let context = modifiers.modified(context, for: view)
