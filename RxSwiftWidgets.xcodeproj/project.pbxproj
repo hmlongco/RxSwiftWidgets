@@ -1005,6 +1005,7 @@
 				OBJ_34 /* ContainerWidget.swift */,
 				4CE3B6A022F65A1300E47F57 /* DisclosableWidget.swift */,
 				OBJ_35 /* HStackWidget.swift */,
+				4CE3B6C922F77EF000E47F57 /* ScrollWidget.swift */,
 				4C120078230A244D003B060C /* UIControlWidget.swift */,
 				OBJ_40 /* UIViewWidget.swift */,
 				OBJ_39 /* VStackWidget.swift */,
@@ -1027,7 +1028,6 @@
 			children = (
 				OBJ_36 /* ImageWidget.swift */,
 				OBJ_37 /* LabelWidget.swift */,
-				4CE3B6C922F77EF000E47F57 /* ScrollWidget.swift */,
 				OBJ_38 /* SpacerWidget.swift */,
 				4C62D37522F22F640071A51A /* SpinnerWidget.swift */,
 			);
