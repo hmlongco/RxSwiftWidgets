@@ -40,9 +40,13 @@ public struct VStackWidget
         let context = modifiers.modified(context, for: stack)
 
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.insetsLayoutMarginsFromSafeArea = false
         stack.axis = .vertical
-        stack.spacing = UIStackView.spacingUseSystem
+        if #available(iOS 11.0, *) {
+            stack.insetsLayoutMarginsFromSafeArea = false
+            stack.spacing = UIStackView.spacingUseSystem
+        } else {
+            stack.spacing = 0.0
+        }
 
         if let insets = modifiers.padding {
             stack.isLayoutMarginsRelativeArrangement = true

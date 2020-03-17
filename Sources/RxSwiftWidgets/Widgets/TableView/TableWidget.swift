@@ -87,7 +87,10 @@ open class TableWidget
         }
 
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.insetsLayoutMarginsFromSafeArea = false
+        if #available(iOS 11.0, *) {
+            view.insetsLayoutMarginsFromSafeArea = false
+        }
+        view.estimatedRowHeight = 44.0
         
         view.tableViewWidget = self
         view.dataSource = self
