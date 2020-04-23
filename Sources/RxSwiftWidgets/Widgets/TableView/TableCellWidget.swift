@@ -61,6 +61,12 @@ open class TableCellWidget: Widget
         self.cellType = RowWidgetCustomCell.self
     }
 
+    public init(@WidgetBuilder builder: () -> Widget) {
+        self.widget = builder()
+        self.reusableCellID = String(describing: RowWidgetCustomCell.self)
+        self.cellType = RowWidgetCustomCell.self
+    }
+
     public func build(with context: WidgetContext) -> UIView {
         fatalError("")
     }

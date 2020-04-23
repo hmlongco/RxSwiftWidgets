@@ -26,9 +26,9 @@ public struct VStackWidget
         self.widgets = widgets
     }
 
-//    public init(@WidgetBuilder builder: () -> Widget) {
-//        self.widgets = [builder()]
-//    }
+    public init(@WidgetBuilder builder: () -> Widget) {
+        self.widgets = [builder()]
+    }
 
     public init(@WidgetBuilder builder: () -> [Widget]) {
         self.widgets = builder()

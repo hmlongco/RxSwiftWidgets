@@ -15,41 +15,41 @@ struct UserDetailsWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        ScrollWidget(
-            VStackWidget([
+        ScrollWidget {
+            VStackWidget {
 
-                ContainerWidget(
-                    HStackWidget([
-                        UserPhotoWidget(initials: user.initials, size: 80),
+                ContainerWidget {
+                    HStackWidget {
+                        UserPhotoWidget(initials: user.initials, size: 80)
                         LabelWidget(user.name)
                             .font(.title1)
-                        ]) // HStackWidget
-                        .position(.centerHorizontally)
-                    ), // ContainerWidget
+                    } // HStackWidget
+                    .position(.centerHorizontally)
+                } // ContainerWidget
 
                 CardWidget(widget:
-                    VStackWidget([
-                        DetailsNameValueWidget(name: "Address", value: user.address),
-                        DetailsNameValueWidget(name: "City", value: user.city),
-                        DetailsNameValueWidget(name: "State", value: user.state),
-                        DetailsNameValueWidget(name: "Zip", value: user.zip),
-                        ])
-                    ),
+                    VStackWidget {
+                        DetailsNameValueWidget(name: "Address", value: user.address)
+                        DetailsNameValueWidget(name: "City", value: user.city)
+                        DetailsNameValueWidget(name: "State", value: user.state)
+                        DetailsNameValueWidget(name: "Zip", value: user.zip)
+                    }
+                )
 
                 CardWidget(widget:
-                    VStackWidget([
-                        DetailsNameValueWidget(name: "Email", value: user.email),
-                        ])
-                    ),
+                    VStackWidget {
+                        DetailsNameValueWidget(name: "Email", value: user.email)
+                    }
+                )
                 
-                ]) // VStackWidget
-                .spacing(20)
+            } // VStackWidget
+            .spacing(20)
 
-            ) // ScrollWidget
-            .backgroundColor(.semanticSystemBackground)
-            .safeArea(false)
-            .padding(20)
-            .navigationBar(title: "User Information", hidden: false)
+        } // ScrollWidget
+        .backgroundColor(.semanticSystemBackground)
+        .safeArea(false)
+        .padding(20)
+        .navigationBar(title: "User Information", hidden: false)
 
     }
 
@@ -61,17 +61,17 @@ struct UserPhotoWidget: WidgetView {
     var size: CGFloat
 
     func widget(_ context: WidgetContext) -> Widget {
-        ZStackWidget([
+        ZStackWidget {
             LabelWidget(initials)
                 .font(size > 40 ? .title1 : .body)
                 .alignment(.center)
                 .backgroundColor(.gray)
-                .color(.white),
+                .color(.white)
             ImageWidget(named: "User-\(initials ?? "")")
-            ])
-            .height(size)
-            .width(size)
-            .cornerRadius(size/2)
+        }
+        .height(size)
+        .width(size)
+        .cornerRadius(size/2)
     }
 
 }
@@ -82,12 +82,12 @@ fileprivate struct DetailsNameValueWidget: WidgetView {
     var value: String?
 
     func widget(_ context: WidgetContext) -> Widget {
-        HStackWidget([
+        HStackWidget {
             LabelWidget(name)
-                .color(.gray),
-            SpacerWidget(),
+                .color(.gray)
+            SpacerWidget()
             LabelWidget(value)
-        ])
+        }
     }
 
 }

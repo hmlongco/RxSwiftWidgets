@@ -10,24 +10,24 @@ struct DemoPositioningWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        let widget = ZStackWidget([
+        let widget = ZStackWidget {
 
             ImageWidget(named: "vector1")
                 .contentMode(.scaleAspectFill)
-                .safeArea(false),
+                .safeArea(false)
 
-            VStackWidget([
+            VStackWidget {
 
                 LabelWidget("Positioning Sample")
                     .font(.title1)
                     .color(.white)
-                    .alignment(.center),
+                    .alignment(.center)
 
                 LabelWidget(desc)
                     .font(.preferredFont(forTextStyle: .callout))
                     .color(.white)
                     .numberOfLines(0)
-                    .padding(h: 0, v: 15),
+                    .padding(h: 0, v: 15)
 
                 borderedStack([
                     LabelWidget.title3("Center Left")
@@ -38,7 +38,7 @@ struct DemoPositioningWidget: WidgetView {
                         .position(.centerTop),
                     LabelWidget.title3("Center Bottom")
                         .position(.centerBottom),
-                    ]),
+                    ])
 
                 borderedStack([
                     LabelWidget.title3("Top Left")
@@ -51,19 +51,19 @@ struct DemoPositioningWidget: WidgetView {
                         .position(.bottomRight),
                     LabelWidget.title3("Center")
                         .position(.center),
-                    ]),
+                    ])
 
-                SpacerWidget(),
+                SpacerWidget()
 
-                BackButtonWidget(text: "Done"),
+                BackButtonWidget(text: "Done")
 
-                ]) // VStackWidget
-                .spacing(15)
-                .padding(h: 40, v: 50)
+            } // VStackWidget
+            .spacing(15)
+            .padding(h: 40, v: 50)
 
-            ]) // ZStackWidget
-            .navigationBar(title: "Dismissible Demo", hidden: true)
-            .safeArea(false)
+        } // ZStackWidget
+        .navigationBar(title: "Dismissible Demo", hidden: true)
+        .safeArea(false)
 
         widget.walk { print($0) }
 

@@ -57,7 +57,7 @@ open class TableWidget
 
     public weak var tableView: UITableView!
 
-    public var sections: [BaseTableSection]
+    public var sections: [TableSectionWidgetBase]
 
     public var modifiers = WidgetModifiers()
     public var context: WidgetContext!
@@ -67,8 +67,13 @@ open class TableWidget
     public var initialRefresh: Bool = false
     public var refreshHandler: ((_ context: WidgetContext) -> Void)?
 
-    public init(_ sections: [BaseTableSection] = []) {
+    public init(_ sections: [TableSectionWidgetBase] = []) {
         self.sections = sections
+        super.init()
+    }
+
+    public init(@WidgetTableSectionBuilder builder: () -> [TableSectionWidgetBase]) {
+        self.sections = builder()
         super.init()
     }
 

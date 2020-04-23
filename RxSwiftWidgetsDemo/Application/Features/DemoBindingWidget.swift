@@ -18,55 +18,55 @@ struct DemoBindingWidget: WidgetView {
 
     func widget(_ context: WidgetContext) -> Widget {
 
-        ZStackWidget([
+        ZStackWidget {
 
             ImageWidget(named: "vector1")
                 .contentMode(.scaleAspectFill)
-                .safeArea(false),
+                .safeArea(false)
 
-            VStackWidget([
+            VStackWidget {
 
                 LabelWidget("Binding Sample")
                     .font(.title1)
                     .color(.white)
-                    .alignment(.center),
+                    .alignment(.center)
 
                 LabelWidget(desc)
                     .font(.preferredFont(forTextStyle: .callout))
                     .color(.white)
                     .numberOfLines(0)
-                    .padding(h: 0, v: 15),
+                    .padding(h: 0, v: 15)
 
                 LabelWidget($title.map { "Parent page title is '\($0)'."} )
                     .font(.preferredFont(forTextStyle: .callout))
                     .alignment(.center)
                     .color(.white)
                     .numberOfLines(0)
-                    .padding(h: 0, v: 8),
+                    .padding(h: 0, v: 8)
 
                 ButtonWidget("Update Choice 1")
                     .color(.orange)
                     .onTap { context in
                         self.title = "Features - Choice 1"
-                    },
+                    }
 
                 ButtonWidget("Update Choice 2")
                     .color(.orange)
                     .onTap { context in
                         self.title = "Features - Choice 2"
-                    },
+                    }
 
-                SpacerWidget(),
+                SpacerWidget()
 
-                BackButtonWidget(text: "Done"),
+                BackButtonWidget(text: "Done")
 
-                ]) // VStackWidget
-                .spacing(15)
-                .padding(h: 40, v: 50)
+            } // VStackWidget
+            .spacing(15)
+            .padding(h: 40, v: 50)
 
-            ]) // ZStackWidget
-            .navigationBar(title: "Binding Demo", hidden: true)
-            .safeArea(false)
-        }
+        } // ZStackWidget
+        .navigationBar(title: "Binding Demo", hidden: true)
+        .safeArea(false)
+    }
 
 }

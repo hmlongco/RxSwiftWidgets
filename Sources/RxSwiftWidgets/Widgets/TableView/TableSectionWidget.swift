@@ -11,7 +11,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-open class BaseTableSection: Widget
+@_functionBuilder
+public struct WidgetTableSectionBuilder {
+    public static func buildBlock(_ sections: TableSectionWidgetBase...) -> [TableSectionWidgetBase] {
+        sections
+    }
+}
+
+open class TableSectionWidgetBase: Widget
     , WidgetUpdatable {
 
     public weak var parent: WidgetUpdatable? = nil
@@ -57,7 +64,7 @@ open class BaseTableSection: Widget
 
 }
 
-open class TableSectionWidget: BaseTableSection {
+open class TableSectionWidget: TableSectionWidgetBase {
 
     public var widgets: [Widget] {
         didSet { updated() }
@@ -69,6 +76,16 @@ open class TableSectionWidget: BaseTableSection {
 
     public init(_ widgets: [Widget] = []) {
         self.widgets = widgets
+        super.init()
+    }
+
+    public init(@WidgetBuilder builder: () -> Widget) {
+        self.widgets = [builder()]
+        super.init()
+    }
+
+    public init(@WidgetBuilder builder: () -> [Widget]) {
+        self.widgets = builder()
         super.init()
     }
 
@@ -121,7 +138,7 @@ open class TableSectionWidget: BaseTableSection {
 
 }
 
-open class DynamicTableSectionWidget<Item>: BaseTableSection {
+open class DynamicTableSectionWidget<Item>: TableSectionWidgetBase {
 
     private var builder: (_ item: Item) -> Widget
     private var items: [Item] = []

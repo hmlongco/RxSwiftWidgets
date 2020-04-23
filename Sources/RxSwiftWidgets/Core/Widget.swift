@@ -27,7 +27,7 @@ public protocol WidgetViewType: WidgetControllerType {
 public typealias Widget = WidgetViewType
 
 /// Namespace for many RxSwiftWidget Enumerations and Definitions
-public struct Widgets { }
+public enum Widgets { }
 
 /// A widget that contains or wraps another widget
 public protocol WidgetContaining: Widget {
