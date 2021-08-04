@@ -31,8 +31,10 @@ public struct ZStackWidget
         let context = modifiers.modified(context, for: view)
 
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.insetsLayoutMarginsFromSafeArea = false
         view.backgroundColor = .clear
+        if #available(iOS 11.0, *) {
+            view.insetsLayoutMarginsFromSafeArea = false
+        }
 
         for widget in widgets {
             let subview = widget.build(with: context)
