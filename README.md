@@ -1,6 +1,6 @@
 ![RxSwiftWidgets](https://github.com/hmlongco/RxSwiftWidgets/blob/master/Documentation/Resources/RxSwiftWidgetsBanner.jpg)
 
-**NOTE: RxSwiftWidgets was an experimental design prototype, but ended up being a bit heavy for my application needs. Most of my work in this area today has been concentrated on [Builder](https://github.com/hmlongco/Builder).**
+**NOTE: RxSwiftWidgets was an experimental design prototype, but ended up being a bit "clunky". I started over and most of my work in this area has been concentrated on [Builder](https://github.com/hmlongco/Builder).**
 
 RxSwiftWidgets lets you define your UIKit-based user interfaces using a simple, declarative format similar to that used by SwiftUI and Flutter. RxSwiftWidgets is also based on RxSwift, with means that you have all of the reactive data binding and user interface control and functionality you'd expect from such a marriage.
 
